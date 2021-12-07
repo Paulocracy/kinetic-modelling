@@ -1,0 +1,9 @@
+const R
+const T
+
+dG0s:
+
+
+Reactions:
+
+Functions:
