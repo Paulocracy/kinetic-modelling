@@ -1,0 +1,282 @@
+function rate_law_one_s_one_p(is_on, E_conc, k_cat, conc_S, conc_P, k_S, k_P, dG0, R, T)
+  is_on * (E_conc * k_cat * (conc_S / k_S) * (1 - ((conc_P/conc_S)/(exp(-dG0/(R*T))))) ) / (1 + (conc_S/k_S) + (conc_P/k_P))
+end
+
+function rate_law_two_s_one_p(is_on, E_conc, k_cat, conc_S1, conc_S2, conc_P, k_S1, k_S2, k_P, dG0, R, T)
+  is_on * (E_conc * k_cat * (conc_S1 / k_S1) * (conc_S2 / k_S2) * (1 - ((conc_P/(conc_S1*conc_S2))/(exp(-dG0/(R*T))))) ) / (1 + (conc_S1/k_S1) + (conc_S2/k_S2) + (conc_P/k_P))
+end
+
+function rate_law_one_s_two_p(is_on, E_conc, k_cat, conc_S, conc_P1, conc_P2, k_S, k_P1, k_P2, dG0, R, T)
+  is_on * (E_conc * k_cat * (conc_S / k_S) * (1 - (((conc_P1*conc_P2)/conc_S)/(exp(-dG0/(R*T))))) ) / (1 + (conc_S/k_S) + (conc_P1/k_P1) + (conc_P2/k_P2))
+end
+
+model single_pathway()
+    # Constant definitions
+    ## General
+    R = 0.008315
+    T = 298
+    ## R1
+    is_on_R1 = 1
+    E_conc_R1 = 1
+    k_cat_R1 = 6
+    k_Sex_R1 = 0.18
+    k_S_R1 = 2.5
+    dG0_R1 = 0
+    ## R2
+    is_on_R2 = 1
+    E_conc_R2 = 1
+    k_cat_R2 = 5
+    k_S_R2 = 0.4
+    k_X_R2 = 2.1
+    k_A_R2 = 3.1
+    dG0_R2 = 4
+    ## R3
+    is_on_R3 = 1
+    E_conc_R3 = 1
+    k_cat_R3 = 8
+    k_A_R3 = 4.6
+    k_X_R3 = 0.4
+    k_B_R3 = 2.5
+    dG0_R3 = -5
+    ## R4
+    is_on_R4 = 1
+    E_conc_R4 = 1
+    k_cat_R4 = 9
+    k_B_R4 = 0.5
+    k_C_R4 = 0.9
+    k_X_R4 = 3.1
+    dG0_R4 = -5
+    ## R5
+    is_on_R5 = 1
+    E_conc_R5 = 1
+    k_cat_R5 = 10
+    k_C_R5 = 1.5
+    k_X_R5 = 2.6
+    k_P_R5 = 6.8
+    dG0_R5 = 4
+    ## R6
+    is_on_R6 = 1
+    E_conc_R6 = 1
+    k_cat_R6 = 24
+    k_P_R6 = 0.01
+    k_Pex_R6 = 14
+    dG0_R6 = 0
+    ## RTB
+    is_on_RTB = 1
+    E_conc_RTB = 1
+    k_cat_RTB = 1e6
+    k_B_RTB = 2
+    k_Bex_RTB = 2
+    dG0_RTB = 0
+    ## Sex_uptake
+    is_on_Sex_uptake = 1
+    ## Pex_secretion
+    is_on_Pex_secretion = 1
+
+
+    # Metabolite initialization
+    const substanceOnly species Sex = 4
+    substanceOnly species S = 1e-6
+    substanceOnly species A = 1e-6
+    substanceOnly species B = 1e-6
+    substanceOnly species C = 1e-6
+    substanceOnly species X = 1e-6
+    substanceOnly species P = 1e-6
+    substanceOnly species Pex = 1e-6
+    substanceOnly species Bex = 1e-6
+
+
+    # Reactions
+    ## Sex uptake
+    Sex_uptake: -> $Sex; is_on_Sex_uptake * 1e6 * Sex
+    ## R1
+    R1: $Sex -> S;
+    R1 = rate_law_one_s_one_p(is_on_R1, E_conc_R1, k_cat_R1, Sex, S, k_Sex_R1, k_S_R1, dG0_R1, R, T)
+    ## R2
+    R2: S -> A + X;
+    R2 = rate_law_one_s_two_p(is_on_R2, E_conc_R2, k_cat_R2, S, A, X, k_S_R2, k_A_R2, k_X_R2, dG0_R2, R, T)
+    ## R3
+    R3: A + X -> B;
+    R3 = rate_law_two_s_one_p(is_on_R3, E_conc_R3, k_cat_R3, A, X, B, k_A_R3, k_X_R3, k_B_R3, dG0_R3, R, T)
+    ## R4
+    R4: B -> C + X;
+    R4 = rate_law_one_s_two_p(is_on_R4, E_conc_R4, k_cat_R4, B, C, X, k_B_R4, k_C_R4, k_X_R4, dG0_R4, R, T)
+    ## R5
+    R5: C + X -> P;
+    R5 = rate_law_two_s_one_p(is_on_R5, E_conc_R5, k_cat_R5, C, X, P, k_C_R5, k_X_R5, k_P_R5, dG0_R5, R, T)
+    ## R6
+    R6: P -> Pex;
+    R6 = rate_law_one_s_one_p(is_on_R6, E_conc_R6, k_cat_R6, P, Pex, k_P_R6, k_Pex_R6, dG0_R6, R, T)
+    ## Pex excretion
+    Pex_secretion: Pex ->; is_on_Pex_secretion * 1e6 * Pex
+    ## RTB
+    RTB: B -> Bex;
+    RTB = rate_law_one_s_one_p(is_on_RTB, E_conc_RTB, k_cat_RTB, B, Bex, k_B_RTB, k_Bex_RTB, dG0_RTB, R, T)
+end
+
+
+model all_pathways
+  # Community compartments
+  A: single_pathway();
+  A.is_on_R4 = 0
+  A.is_on_R5 = 0
+  A.is_on_R6 = 0
+  A.is_on_RTB = 1
+  A.is_on_Pex_secretion = 0
+  B: single_pathway();
+  B.is_on_Sex_uptake = 0
+  B.is_on_R1 = 0
+  B.is_on_R2 = 0
+  B.is_on_R3 = 0
+  B.is_on_RTB = 1
+  # Single compartment
+  C: single_pathway();
+
+  A.Sex is Global_Sex
+  B.Sex is Global_Sex
+  C.Sex is Global_Sex
+  A.Pex is Community_Pex
+  B.Pex is Community_Pex
+  C.Pex is Single_Pex
+  A.Bex is Community_Bex
+  B.Bex is Community_Bex
+
+  # Set the same parameter variable for all pathways
+  ## General
+  A.T is T
+  B.T is T
+  C.T is T
+  A.R is R
+  B.R is R
+  C.R is R
+  ## R1
+  A.E_conc_R1 is E_conc_R1
+  A.k_cat_R1 is k_cat_R1
+  A.k_Sex_R1 is k_Sex_R1
+  A.k_S_R1 is k_S_R1
+  A.dG0_R1 is dG0_R1
+  B.E_conc_R1 is E_conc_R1
+  B.k_cat_R1 is k_cat_R1
+  B.k_Sex_R1 is k_Sex_R1
+  B.k_S_R1 is k_S_R1
+  B.dG0_R1 is dG0_R1
+  C.E_conc_R1 is E_conc_R1
+  C.k_cat_R1 is k_cat_R1
+  C.k_Sex_R1 is k_Sex_R1
+  C.k_S_R1 is k_S_R1
+  C.dG0_R1 is dG0_R1
+  ## R2
+  A.E_conc_R2 is E_conc_R2
+  A.k_cat_R2 is k_cat_R2
+  A.k_S_R2 is k_S_R2
+  A.k_X_R2 is k_X_R2
+  A.k_A_R2 is k_A_R2
+  A.dG0_R2 is dG0_R2
+  B.E_conc_R2 is E_conc_R2
+  B.k_cat_R2 is k_cat_R2
+  B.k_S_R2 is k_S_R2
+  B.k_X_R2 is k_X_R2
+  B.k_A_R2 is k_A_R2
+  B.dG0_R2 is dG0_R2
+  C.E_conc_R2 is E_conc_R2
+  C.k_cat_R2 is k_cat_R2
+  C.k_S_R2 is k_S_R2
+  C.k_X_R2 is k_X_R2
+  C.k_A_R2 is k_A_R2
+  C.dG0_R2 is dG0_R2
+  ## R3
+  A.E_conc_R3 is E_conc_R3
+  A.k_cat_R3 is k_cat_R3
+  A.k_A_R3 is k_A_R3
+  A.k_X_R3 is k_X_R3
+  A.k_B_R3 is k_B_R3
+  A.dG0_R3 is dG0_R3
+  B.E_conc_R3 is E_conc_R3
+  B.k_cat_R3 is k_cat_R3
+  B.k_A_R3 is k_A_R3
+  B.k_X_R3 is k_X_R3
+  B.k_B_R3 is k_B_R3
+  B.dG0_R3 is dG0_R3
+  C.E_conc_R3 is E_conc_R3
+  C.k_cat_R3 is k_cat_R3
+  C.k_A_R3 is k_A_R3
+  C.k_X_R3 is k_X_R3
+  C.k_B_R3 is k_B_R3
+  C.dG0_R3 is dG0_R3
+  ## R4
+  A.E_conc_R4 is E_conc_R4
+  A.k_cat_R4 is k_cat_R4
+  A.k_B_R4 is k_B_R4
+  A.k_C_R4 is k_C_R4
+  A.k_X_R4 is k_X_R4
+  A.dG0_R4 is dG0_R4
+  B.E_conc_R4 is E_conc_R4
+  B.k_cat_R4 is k_cat_R4
+  B.k_B_R4 is k_B_R4
+  B.k_C_R4 is k_C_R4
+  B.k_X_R4 is k_X_R4
+  B.dG0_R4 is dG0_R4
+  C.E_conc_R4 is E_conc_R4
+  C.k_cat_R4 is k_cat_R4
+  C.k_B_R4 is k_B_R4
+  C.k_C_R4 is k_C_R4
+  C.k_X_R4 is k_X_R4
+  C.dG0_R4 is dG0_R4
+  ## R5
+  A.E_conc_R5 is E_conc_R5
+  A.k_cat_R5 is k_cat_R5
+  A.k_C_R5 is k_C_R5
+  A.k_X_R5 is k_X_R5
+  A.k_P_R5 is k_P_R5
+  A.dG0_R5 is dG0_R5
+  B.E_conc_R5 is E_conc_R5
+  B.k_cat_R5 is k_cat_R5
+  B.k_C_R5 is k_C_R5
+  B.k_X_R5 is k_X_R5
+  B.k_P_R5 is k_P_R5
+  B.dG0_R5 is dG0_R5
+  C.E_conc_R5 is E_conc_R5
+  C.k_cat_R5 is k_cat_R5
+  C.k_C_R5 is k_C_R5
+  C.k_X_R5 is k_X_R5
+  C.k_P_R5 is k_P_R5
+  C.dG0_R5 is dG0_R5
+  ## R6
+  A.E_conc_R6 is E_conc_R6
+  A.k_cat_R6 is k_cat_R6
+  A.k_P_R6 is k_P_R6
+  A.k_Pex_R6 is k_Pex_R6
+  A.dG0_R6 is dG0_R6
+  B.E_conc_R6 is E_conc_R6
+  B.k_cat_R6 is k_cat_R6
+  B.k_P_R6 is k_P_R6
+  B.k_Pex_R6 is k_Pex_R6
+  B.dG0_R6 is dG0_R6
+  C.E_conc_R6 is E_conc_R6
+  C.k_cat_R6 is k_cat_R6
+  C.k_P_R6 is k_P_R6
+  C.k_Pex_R6 is k_Pex_R6
+  C.dG0_R6 is dG0_R6
+  ## RTB
+  A.E_conc_RTB is E_conc_RTB
+  A.k_cat_RTB is k_cat_RTB
+  A.k_B_RTB is k_B_RTB
+  A.k_Bex_RTB is k_Bex_RTB
+  A.dG0_RTB is dG0_RTB
+  B.E_conc_RTB is E_conc_RTB
+  B.k_cat_RTB is k_cat_RTB
+  B.k_B_RTB is k_B_RTB
+  B.k_Bex_RTB is k_Bex_RTB
+  B.dG0_RTB is dG0_RTB
+  C.E_conc_RTB is E_conc_RTB
+  C.k_cat_RTB is k_cat_RTB
+  C.k_B_RTB is k_B_RTB
+  C.k_Bex_RTB is k_Bex_RTB
+  C.dG0_RTB is dG0_RTB
+
+  B.R6 is B_R6
+  C.R6 is C_R6
+
+  absolute_community_flux_advantage := B_R6 - C_R6
+  relative_community_flux_advantage := B_R6 / C_R6
+end
