@@ -10,6 +10,10 @@ function rate_law_one_s_two_p(is_on, E_conc, k_cat, conc_S, conc_P1, conc_P2, k_
   is_on * (E_conc * k_cat * (conc_S / k_S) * (1 - (((conc_P1*conc_P2)/conc_S)/(exp(-dG0/(R*T))))) ) / (1 + (conc_S/k_S) + (conc_P1/k_P1) + (conc_P2/k_P2))
 end
 
+function dG(conc_S1, conc_S2, conc_P1, conc_P2, dG0, R, T)
+  dG0 + R * T * ln((conc_P1 * conc_P2) / (conc_S1 * conc_S2))
+end
+
 model single_pathway()
     # Constant definitions
     ## General
@@ -112,6 +116,24 @@ model single_pathway()
     ## RTB
     RTB: B -> Bex;
     RTB = rate_law_one_s_one_p(is_on_RTB, E_conc_RTB, k_cat_RTB, B, Bex, k_B_RTB, k_Bex_RTB, dG0_RTB, R, T)
+
+    # dG assignments
+    dG_R1 := dG(Sex, 1, S, 1, dG0_R1, R, T)
+    dG_R2 := dG(S, 1, A, X, dG0_R2, R, T)
+    dG_R3 := dG(A, X, B, 1, dG0_R3, R, T)
+    dG_R4 := dG(B, 1, C, X, dG0_R4, R, T)
+    dG_R5 := dG(C, X, P, 1, dG0_R5, R, T)
+    dG_R6 := dG(P, 1, Pex, 1, dG0_R6, R, T)
+    dG_RTB := dG(B, 1, Bex, 1, dG0_RTB, R, T)
+
+    # MDF assignments
+    mdf_R1 := -dG_R1
+    mdf_R2 := -dG_R2
+    mdf_R3 := -dG_R3
+    mdf_R4 := -dG_R4
+    mdf_R5 := -dG_R5
+    mdf_R6 := -dG_R6
+    mdf_RTB := -dG_RTB
 end
 
 
@@ -277,6 +299,10 @@ model all_pathways
   B.R6 is B_R6
   C.R6 is C_R6
 
+  B.X is B_X
+  C.X is C_X
+
   absolute_community_flux_advantage := B_R6 - C_R6
   relative_community_flux_advantage := B_R6 / C_R6
+  community_to_single_metabolite_ratio := B_X / C_X
 end

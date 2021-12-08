@@ -310,6 +310,58 @@
           </lambda>
         </math>
       </functionDefinition>
+      <functionDefinition id="dG">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> conc_S1 </ci>
+            </bvar>
+            <bvar>
+              <ci> conc_S2 </ci>
+            </bvar>
+            <bvar>
+              <ci> conc_P1 </ci>
+            </bvar>
+            <bvar>
+              <ci> conc_P2 </ci>
+            </bvar>
+            <bvar>
+              <ci> dG0 </ci>
+            </bvar>
+            <bvar>
+              <ci> R </ci>
+            </bvar>
+            <bvar>
+              <ci> T </ci>
+            </bvar>
+            <apply>
+              <plus/>
+              <ci> dG0 </ci>
+              <apply>
+                <times/>
+                <ci> R </ci>
+                <ci> T </ci>
+                <apply>
+                  <ln/>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> conc_P1 </ci>
+                      <ci> conc_P2 </ci>
+                    </apply>
+                    <apply>
+                      <times/>
+                      <ci> conc_S1 </ci>
+                      <ci> conc_S2 </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
     </listOfFunctionDefinitions>
     <listOfCompartments>
       <compartment sboTerm="SBO:0000410" id="default_compartment" spatialDimensions="3" size="1" constant="true"/>
@@ -328,13 +380,13 @@
       <species id="B_A" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
       <species id="B_B" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
       <species id="B_C" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="B_X" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="B_X" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
       <species id="B_P" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
       <species id="C_S" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
       <species id="C_A" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
       <species id="C_B" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
       <species id="C_C" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="C_X" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="C_X" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
       <species id="C_P" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
       <species id="Single_Pex" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
       <species id="C_Bex" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
@@ -390,6 +442,20 @@
       <parameter id="dG0_RTB" value="0" constant="true"/>
       <parameter id="A_is_on_Sex_uptake" value="1" constant="true"/>
       <parameter id="A_is_on_Pex_secretion" value="0" constant="true"/>
+      <parameter id="A_dG_R1" constant="false"/>
+      <parameter id="A_dG_R2" constant="false"/>
+      <parameter id="A_dG_R3" constant="false"/>
+      <parameter id="A_dG_R4" constant="false"/>
+      <parameter id="A_dG_R5" constant="false"/>
+      <parameter id="A_dG_R6" constant="false"/>
+      <parameter id="A_dG_RTB" constant="false"/>
+      <parameter id="A_mdf_R1" constant="false"/>
+      <parameter id="A_mdf_R2" constant="false"/>
+      <parameter id="A_mdf_R3" constant="false"/>
+      <parameter id="A_mdf_R4" constant="false"/>
+      <parameter id="A_mdf_R5" constant="false"/>
+      <parameter id="A_mdf_R6" constant="false"/>
+      <parameter id="A_mdf_RTB" constant="false"/>
       <parameter id="B_is_on_R1" value="0" constant="true"/>
       <parameter id="B_is_on_R2" value="0" constant="true"/>
       <parameter id="B_is_on_R3" value="0" constant="true"/>
@@ -399,6 +465,20 @@
       <parameter id="B_is_on_RTB" value="1" constant="true"/>
       <parameter id="B_is_on_Sex_uptake" value="0" constant="true"/>
       <parameter id="B_is_on_Pex_secretion" value="1" constant="true"/>
+      <parameter id="B_dG_R1" constant="false"/>
+      <parameter id="B_dG_R2" constant="false"/>
+      <parameter id="B_dG_R3" constant="false"/>
+      <parameter id="B_dG_R4" constant="false"/>
+      <parameter id="B_dG_R5" constant="false"/>
+      <parameter id="B_dG_R6" constant="false"/>
+      <parameter id="B_dG_RTB" constant="false"/>
+      <parameter id="B_mdf_R1" constant="false"/>
+      <parameter id="B_mdf_R2" constant="false"/>
+      <parameter id="B_mdf_R3" constant="false"/>
+      <parameter id="B_mdf_R4" constant="false"/>
+      <parameter id="B_mdf_R5" constant="false"/>
+      <parameter id="B_mdf_R6" constant="false"/>
+      <parameter id="B_mdf_RTB" constant="false"/>
       <parameter id="C_is_on_R1" value="1" constant="true"/>
       <parameter id="C_is_on_R2" value="1" constant="true"/>
       <parameter id="C_is_on_R3" value="1" constant="true"/>
@@ -408,10 +488,487 @@
       <parameter id="C_is_on_RTB" value="1" constant="true"/>
       <parameter id="C_is_on_Sex_uptake" value="1" constant="true"/>
       <parameter id="C_is_on_Pex_secretion" value="1" constant="true"/>
+      <parameter id="C_dG_R1" constant="false"/>
+      <parameter id="C_dG_R2" constant="false"/>
+      <parameter id="C_dG_R3" constant="false"/>
+      <parameter id="C_dG_R4" constant="false"/>
+      <parameter id="C_dG_R5" constant="false"/>
+      <parameter id="C_dG_R6" constant="false"/>
+      <parameter id="C_dG_RTB" constant="false"/>
+      <parameter id="C_mdf_R1" constant="false"/>
+      <parameter id="C_mdf_R2" constant="false"/>
+      <parameter id="C_mdf_R3" constant="false"/>
+      <parameter id="C_mdf_R4" constant="false"/>
+      <parameter id="C_mdf_R5" constant="false"/>
+      <parameter id="C_mdf_R6" constant="false"/>
+      <parameter id="C_mdf_RTB" constant="false"/>
       <parameter id="absolute_community_flux_advantage" constant="false"/>
       <parameter id="relative_community_flux_advantage" constant="false"/>
+      <parameter id="community_to_single_metabolite_ratio" constant="false"/>
     </listOfParameters>
     <listOfRules>
+      <assignmentRule variable="A_dG_R1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <ci> dG </ci>
+            <ci> Global_Sex </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> A_S </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> dG0_R1 </ci>
+            <ci> R </ci>
+            <ci> T </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="A_dG_R2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <ci> dG </ci>
+            <ci> A_S </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> A_A </ci>
+            <ci> A_X </ci>
+            <ci> dG0_R2 </ci>
+            <ci> R </ci>
+            <ci> T </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="A_dG_R3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <ci> dG </ci>
+            <ci> A_A </ci>
+            <ci> A_X </ci>
+            <ci> A_B </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> dG0_R3 </ci>
+            <ci> R </ci>
+            <ci> T </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="A_dG_R4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <ci> dG </ci>
+            <ci> A_B </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> A_C </ci>
+            <ci> A_X </ci>
+            <ci> dG0_R4 </ci>
+            <ci> R </ci>
+            <ci> T </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="A_dG_R5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <ci> dG </ci>
+            <ci> A_C </ci>
+            <ci> A_X </ci>
+            <ci> A_P </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> dG0_R5 </ci>
+            <ci> R </ci>
+            <ci> T </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="A_dG_R6">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <ci> dG </ci>
+            <ci> A_P </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> Community_Pex </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> dG0_R6 </ci>
+            <ci> R </ci>
+            <ci> T </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="A_dG_RTB">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <ci> dG </ci>
+            <ci> A_B </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> Community_Bex </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> dG0_RTB </ci>
+            <ci> R </ci>
+            <ci> T </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="A_mdf_R1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> A_dG_R1 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="A_mdf_R2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> A_dG_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="A_mdf_R3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> A_dG_R3 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="A_mdf_R4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> A_dG_R4 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="A_mdf_R5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> A_dG_R5 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="A_mdf_R6">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> A_dG_R6 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="A_mdf_RTB">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> A_dG_RTB </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="B_dG_R1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <ci> dG </ci>
+            <ci> Global_Sex </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> B_S </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> dG0_R1 </ci>
+            <ci> R </ci>
+            <ci> T </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="B_dG_R2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <ci> dG </ci>
+            <ci> B_S </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> B_A </ci>
+            <ci> B_X </ci>
+            <ci> dG0_R2 </ci>
+            <ci> R </ci>
+            <ci> T </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="B_dG_R3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <ci> dG </ci>
+            <ci> B_A </ci>
+            <ci> B_X </ci>
+            <ci> B_B </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> dG0_R3 </ci>
+            <ci> R </ci>
+            <ci> T </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="B_dG_R4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <ci> dG </ci>
+            <ci> B_B </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> B_C </ci>
+            <ci> B_X </ci>
+            <ci> dG0_R4 </ci>
+            <ci> R </ci>
+            <ci> T </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="B_dG_R5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <ci> dG </ci>
+            <ci> B_C </ci>
+            <ci> B_X </ci>
+            <ci> B_P </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> dG0_R5 </ci>
+            <ci> R </ci>
+            <ci> T </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="B_dG_R6">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <ci> dG </ci>
+            <ci> B_P </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> Community_Pex </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> dG0_R6 </ci>
+            <ci> R </ci>
+            <ci> T </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="B_dG_RTB">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <ci> dG </ci>
+            <ci> B_B </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> Community_Bex </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> dG0_RTB </ci>
+            <ci> R </ci>
+            <ci> T </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="B_mdf_R1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> B_dG_R1 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="B_mdf_R2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> B_dG_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="B_mdf_R3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> B_dG_R3 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="B_mdf_R4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> B_dG_R4 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="B_mdf_R5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> B_dG_R5 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="B_mdf_R6">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> B_dG_R6 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="B_mdf_RTB">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> B_dG_RTB </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="C_dG_R1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <ci> dG </ci>
+            <ci> Global_Sex </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> C_S </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> dG0_R1 </ci>
+            <ci> R </ci>
+            <ci> T </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="C_dG_R2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <ci> dG </ci>
+            <ci> C_S </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> C_A </ci>
+            <ci> C_X </ci>
+            <ci> dG0_R2 </ci>
+            <ci> R </ci>
+            <ci> T </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="C_dG_R3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <ci> dG </ci>
+            <ci> C_A </ci>
+            <ci> C_X </ci>
+            <ci> C_B </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> dG0_R3 </ci>
+            <ci> R </ci>
+            <ci> T </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="C_dG_R4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <ci> dG </ci>
+            <ci> C_B </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> C_C </ci>
+            <ci> C_X </ci>
+            <ci> dG0_R4 </ci>
+            <ci> R </ci>
+            <ci> T </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="C_dG_R5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <ci> dG </ci>
+            <ci> C_C </ci>
+            <ci> C_X </ci>
+            <ci> C_P </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> dG0_R5 </ci>
+            <ci> R </ci>
+            <ci> T </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="C_dG_R6">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <ci> dG </ci>
+            <ci> C_P </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> Single_Pex </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> dG0_R6 </ci>
+            <ci> R </ci>
+            <ci> T </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="C_dG_RTB">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <ci> dG </ci>
+            <ci> C_B </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> C_Bex </ci>
+            <cn type="integer"> 1 </cn>
+            <ci> dG0_RTB </ci>
+            <ci> R </ci>
+            <ci> T </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="C_mdf_R1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> C_dG_R1 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="C_mdf_R2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> C_dG_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="C_mdf_R3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> C_dG_R3 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="C_mdf_R4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> C_dG_R4 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="C_mdf_R5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> C_dG_R5 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="C_mdf_R6">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> C_dG_R6 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="C_mdf_RTB">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> C_dG_RTB </ci>
+          </apply>
+        </math>
+      </assignmentRule>
       <assignmentRule variable="absolute_community_flux_advantage">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
@@ -427,6 +984,15 @@
             <divide/>
             <ci> B_R6 </ci>
             <ci> C_R6 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="community_to_single_metabolite_ratio">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> B_X </ci>
+            <ci> C_X </ci>
           </apply>
         </math>
       </assignmentRule>
