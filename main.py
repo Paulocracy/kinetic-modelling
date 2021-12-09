@@ -64,7 +64,7 @@ def sample(model: rr.RoadRunner,
 
 
 
-matplotlib.use('TkAgg')
+# matplotlib.use('TkAgg')
 ray.init(num_cpus=cpu_count())
 
 model = te.loada("toymodel.antimony")
