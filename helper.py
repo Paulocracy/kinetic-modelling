@@ -7,6 +7,7 @@ import json
 import matplotlib.pyplot as plt
 import os
 import pickle
+import statistics
 import zipfile
 from typing import Any, List
 from zipfile import ZipFile
@@ -167,7 +168,7 @@ def standardize_folder(folder: str) -> str:
 
 
 def save_xy_point_plot(path: str, xs: List[float], ys: List[float], title: str, xlabel: str, ylabel: str,
-                       style: str="bo", clear_previous_figure: bool=True):
+                       style: str="bo", clear_previous_figure: bool=True) -> None:
     """[summary]
 
     Args:
@@ -188,3 +189,44 @@ def save_xy_point_plot(path: str, xs: List[float], ys: List[float], title: str, 
     plt.ylabel(ylabel)
     if path != "":
         plt.savefig(path)
+
+
+def save_histogram(path: str, data: List[float], title: str, xlabel: str, ylabel: str, num_bins=None, clear_previous_figure: bool=True) -> None:
+    if clear_previous_figure:
+        plt.clf()
+    if num_bins is None:
+        bins = "auto"
+    else:
+        bins = num_bins
+    plt.hist(data, bins=num_bins)
+    plt.title(title)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    if path != "":
+        plt.savefig(path)
+
+
+def get_main_statistics(data: List[float], name: str) -> str:
+    num_positive = sum([x>0.0 for x in data])
+    num_zero = sum([x==0.0 for x in data])
+    num_negative = sum([x<0.0 for x in data])
+    num_gt_1 = sum([x>1.0 for x in data])
+    num_eq_1 = sum([x==1.0 for x in data])
+    num_lt_1 = sum([x<1.0 for x in data])
+
+
+    output = "=="+name+"==\n"
+    output += f"MEAN: {statistics.mean(data)}\n"
+    output += f"MEDIAN: {statistics.median(data)}\n"
+    output += f"MAX: {max(data)}\n"
+    output += f"MIN: {min(data)}\n"
+    output += f"# POSITIVE: {num_positive}\n"
+    output += f"# ZERO: {num_zero}\n"
+    output += f"# NEGATIVE: {num_negative}\n"
+    output += f"# >1.0: {num_gt_1}\n"
+    output += f"# =1.0: {num_eq_1}\n"
+    output += f"# <1.0: {num_lt_1}\n"
+
+    output += "\n"
+
+    return output

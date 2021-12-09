@@ -576,6 +576,7 @@
       <parameter id="C_mdf_RTB" constant="false"/>
       <parameter id="community_A_to_single_metabolite_X_ratio" constant="false"/>
       <parameter id="community_B_to_single_metabolite_X_ratio" constant="false"/>
+      <parameter id="community_B_to_community_A_metabolite_X_ratio" constant="false"/>
       <parameter id="absolute_community_flux_advantage" constant="false"/>
       <parameter id="relative_community_flux_advantage" constant="false"/>
       <parameter id="community_flux" constant="false"/>
@@ -1198,6 +1199,15 @@
             <divide/>
             <ci> B_X </ci>
             <ci> C_X </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="community_B_to_community_A_metabolite_X_ratio">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> B_X </ci>
+            <ci> A_X </ci>
           </apply>
         </math>
       </assignmentRule>

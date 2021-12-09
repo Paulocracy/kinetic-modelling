@@ -306,6 +306,7 @@ model all_pathways
   C.X is C_X
   community_A_to_single_metabolite_X_ratio := A_X / C_X
   community_B_to_single_metabolite_X_ratio := B_X / C_X
+  community_B_to_community_A_metabolite_X_ratio := B_X / A_X
 
   # Flux ratio definitions
   B.R6 is B_R6

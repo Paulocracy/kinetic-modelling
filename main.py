@@ -1,15 +1,13 @@
 import matplotlib
 import random
+from matplotlib.pyplot import title
 import ray
 import tellurium as te
 import roadrunner as rr
-from helper import json_write
-from dataclasses import dataclass
 from multiprocessing import cpu_count
 from tellurium.tellurium import model
-from typing import Any, Dict, List, Tuple
-import concurrent
-
+from typing import Any, Dict, List
+from helper import ensure_folder_existence, get_main_statistics, json_write, save_histogram, save_xy_point_plot
 
 @ray.remote
 def sample(model: rr.RoadRunner,
@@ -55,7 +53,14 @@ def sample(model: rr.RoadRunner,
                 break
             current_index += 1
 
-    return result[-1,:]
+    last_result = result[-1,:]
+    result_dict = {}
+    current_index = 0
+    while current_index < len(selections):
+        result_dict[selections[current_index]] = last_result[current_index]
+        current_index += 1
+
+    return result_dict
 
 
 
@@ -75,6 +80,7 @@ selections = [
     "relative_community_mmdf_advantage",
     "community_A_to_single_metabolite_X_ratio",
     "community_B_to_single_metabolite_X_ratio",
+    "community_B_to_community_A_metabolite_X_ratio",
     "absolute_community_flux_advantage",
     "relative_community_flux_advantage",
     "community_flux",
@@ -90,12 +96,56 @@ original_parameter_values: Dict[str, float] = {
     key: model[key] for key in sampled_parameter_ids
 }
 
-print("A")
-num_samples = 250
+num_samples = 100_000
 max_scaling = 100
 futures = [
     sample.remote(model, selections, original_parameter_values, max_scaling=100)
     for i in range(num_samples)
 ]
-
+import time
+x = time.time()
 results = ray.get(futures)
+
+results_list_dict = {}
+for key in selections:
+    results_list_dict[key] = []
+for result in results:
+    for key in selections:
+        results_list_dict[key].append(result[key])
+
+plotfolder = "./statistics/"
+ensure_folder_existence(plotfolder)
+# HISTOGRAMS
+for key in selections:
+    save_histogram(
+        path=plotfolder+"histogram_"+key+".png",
+        data=results_list_dict[key],
+        title=key,
+        xlabel=key,
+        ylabel="Number of"
+    )
+
+# POINT PLOTS
+pairs = [
+    ("c_mmdf", "s_mmdf"),
+    ("community_flux", "single_flux"),
+    ("relative_community_mmdf_advantage", "relative_community_flux_advantage"),
+    ("community_A_to_single_metabolite_X_ratio", "relative_community_flux_advantage"),
+    ("community_B_to_community_A_metabolite_X_ratio", "relative_community_flux_advantage"),
+]
+
+for pair in pairs:
+    save_xy_point_plot(
+        path=plotfolder+"xy_"+pair[0]+"_VS_"+pair[1]+".png",
+        xs=results_list_dict[pair[0]],
+        ys=results_list_dict[pair[1]],
+        title=pair[0]+" vs. "+pair[1],
+        xlabel=pair[0],
+        ylabel=pair[1],
+    )
+
+# TEXT STATISTICS
+for key in selections:
+    text_statistics = get_main_statistics(results_list_dict[key], key)
+    with open(plotfolder+"statistics_"+key+".txt", "w") as f:
+        f.write(text_statistics)
