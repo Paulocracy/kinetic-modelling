@@ -310,7 +310,7 @@
           </lambda>
         </math>
       </functionDefinition>
-      <functionDefinition id="dG">
+      <functionDefinition id="_dG">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <lambda>
             <bvar>
@@ -362,6 +362,78 @@
           </lambda>
         </math>
       </functionDefinition>
+      <functionDefinition id="dG">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> conc_S1 </ci>
+            </bvar>
+            <bvar>
+              <ci> conc_S2 </ci>
+            </bvar>
+            <bvar>
+              <ci> conc_P1 </ci>
+            </bvar>
+            <bvar>
+              <ci> conc_P2 </ci>
+            </bvar>
+            <bvar>
+              <ci> dG0 </ci>
+            </bvar>
+            <bvar>
+              <ci> R </ci>
+            </bvar>
+            <bvar>
+              <ci> T </ci>
+            </bvar>
+            <bvar>
+              <ci> reaction_flux </ci>
+            </bvar>
+            <apply>
+              <plus/>
+              <apply>
+                <times/>
+                <apply>
+                  <geq/>
+                  <ci> reaction_flux </ci>
+                  <cn type="integer"> 0 </cn>
+                </apply>
+                <apply>
+                  <ci> _dG </ci>
+                  <ci> conc_S1 </ci>
+                  <ci> conc_S2 </ci>
+                  <ci> conc_P1 </ci>
+                  <ci> conc_P2 </ci>
+                  <ci> dG0 </ci>
+                  <ci> R </ci>
+                  <ci> T </ci>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <apply>
+                  <lt/>
+                  <ci> reaction_flux </ci>
+                  <cn type="integer"> 0 </cn>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <ci> _dG </ci>
+                    <ci> conc_S1 </ci>
+                    <ci> conc_S2 </ci>
+                    <ci> conc_P1 </ci>
+                    <ci> conc_P2 </ci>
+                    <ci> dG0 </ci>
+                    <ci> R </ci>
+                    <ci> T </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
     </listOfFunctionDefinitions>
     <listOfCompartments>
       <compartment sboTerm="SBO:0000410" id="default_compartment" spatialDimensions="3" size="1" constant="true"/>
@@ -396,49 +468,49 @@
       <parameter id="T" value="298" constant="true"/>
       <parameter id="A_is_on_R1" value="1" constant="true"/>
       <parameter id="E_conc_R1" value="1" constant="true"/>
-      <parameter id="k_cat_R1" value="6" constant="true"/>
-      <parameter id="k_Sex_R1" value="0.18" constant="true"/>
-      <parameter id="k_S_R1" value="2.5" constant="true"/>
+      <parameter id="global_k_cat_R1" value="6" constant="true"/>
+      <parameter id="global_k_Sex_R1" value="0.18" constant="true"/>
+      <parameter id="global_k_S_R1" value="2.5" constant="true"/>
       <parameter id="dG0_R1" value="0" constant="true"/>
       <parameter id="A_is_on_R2" value="1" constant="true"/>
       <parameter id="E_conc_R2" value="1" constant="true"/>
-      <parameter id="k_cat_R2" value="5" constant="true"/>
-      <parameter id="k_S_R2" value="0.4" constant="true"/>
-      <parameter id="k_X_R2" value="2.1" constant="true"/>
-      <parameter id="k_A_R2" value="3.1" constant="true"/>
+      <parameter id="global_k_cat_R2" value="5" constant="true"/>
+      <parameter id="global_k_S_R2" value="0.4" constant="true"/>
+      <parameter id="global_k_X_R2" value="2.1" constant="true"/>
+      <parameter id="global_k_A_R2" value="3.1" constant="true"/>
       <parameter id="dG0_R2" value="4" constant="true"/>
       <parameter id="A_is_on_R3" value="1" constant="true"/>
       <parameter id="E_conc_R3" value="1" constant="true"/>
-      <parameter id="k_cat_R3" value="8" constant="true"/>
-      <parameter id="k_A_R3" value="4.6" constant="true"/>
-      <parameter id="k_X_R3" value="0.4" constant="true"/>
-      <parameter id="k_B_R3" value="2.5" constant="true"/>
+      <parameter id="global_k_cat_R3" value="8" constant="true"/>
+      <parameter id="global_k_A_R3" value="4.6" constant="true"/>
+      <parameter id="global_k_X_R3" value="0.4" constant="true"/>
+      <parameter id="global_k_B_R3" value="2.5" constant="true"/>
       <parameter id="dG0_R3" value="-5" constant="true"/>
       <parameter id="A_is_on_R4" value="0" constant="true"/>
       <parameter id="E_conc_R4" value="1" constant="true"/>
-      <parameter id="k_cat_R4" value="9" constant="true"/>
-      <parameter id="k_B_R4" value="0.5" constant="true"/>
-      <parameter id="k_C_R4" value="0.9" constant="true"/>
-      <parameter id="k_X_R4" value="3.1" constant="true"/>
+      <parameter id="global_k_cat_R4" value="9" constant="true"/>
+      <parameter id="global_k_B_R4" value="0.5" constant="true"/>
+      <parameter id="global_k_C_R4" value="0.9" constant="true"/>
+      <parameter id="global_k_X_R4" value="3.1" constant="true"/>
       <parameter id="dG0_R4" value="-5" constant="true"/>
       <parameter id="A_is_on_R5" value="0" constant="true"/>
       <parameter id="E_conc_R5" value="1" constant="true"/>
-      <parameter id="k_cat_R5" value="10" constant="true"/>
-      <parameter id="k_C_R5" value="1.5" constant="true"/>
-      <parameter id="k_X_R5" value="2.6" constant="true"/>
-      <parameter id="k_P_R5" value="6.8" constant="true"/>
+      <parameter id="global_k_cat_R5" value="10" constant="true"/>
+      <parameter id="global_k_C_R5" value="1.5" constant="true"/>
+      <parameter id="global_k_X_R5" value="2.6" constant="true"/>
+      <parameter id="global_k_P_R5" value="6.8" constant="true"/>
       <parameter id="dG0_R5" value="4" constant="true"/>
       <parameter id="A_is_on_R6" value="0" constant="true"/>
       <parameter id="E_conc_R6" value="1" constant="true"/>
-      <parameter id="k_cat_R6" value="24" constant="true"/>
-      <parameter id="k_P_R6" value="0.01" constant="true"/>
-      <parameter id="k_Pex_R6" value="14" constant="true"/>
+      <parameter id="global_k_cat_R6" value="24" constant="true"/>
+      <parameter id="global_k_P_R6" value="0.01" constant="true"/>
+      <parameter id="global_k_Pex_R6" value="14" constant="true"/>
       <parameter id="dG0_R6" value="0" constant="true"/>
       <parameter id="A_is_on_RTB" value="1" constant="true"/>
       <parameter id="E_conc_RTB" value="1" constant="true"/>
-      <parameter id="k_cat_RTB" value="1000000" constant="true"/>
-      <parameter id="k_B_RTB" value="2" constant="true"/>
-      <parameter id="k_Bex_RTB" value="2" constant="true"/>
+      <parameter id="global_k_cat_RTB" value="1000000" constant="true"/>
+      <parameter id="global_k_B_RTB" value="2" constant="true"/>
+      <parameter id="global_k_Bex_RTB" value="2" constant="true"/>
       <parameter id="dG0_RTB" value="0" constant="true"/>
       <parameter id="A_is_on_Sex_uptake" value="1" constant="true"/>
       <parameter id="A_is_on_Pex_secretion" value="0" constant="true"/>
@@ -622,6 +694,7 @@
       <parameter id="s_sum_mdf_R6_gt" constant="false"/>
       <parameter id="s_is_R6_mmdf" constant="false"/>
       <parameter id="s_mmdf" constant="false"/>
+      <parameter id="community_mmdf_advantage" constant="false"/>
     </listOfParameters>
     <listOfRules>
       <assignmentRule variable="A_dG_R1">
@@ -635,6 +708,7 @@
             <ci> dG0_R1 </ci>
             <ci> R </ci>
             <ci> T </ci>
+            <ci> A_R1 </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -649,6 +723,7 @@
             <ci> dG0_R2 </ci>
             <ci> R </ci>
             <ci> T </ci>
+            <ci> A_R2 </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -663,6 +738,7 @@
             <ci> dG0_R3 </ci>
             <ci> R </ci>
             <ci> T </ci>
+            <ci> A_R3 </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -677,6 +753,7 @@
             <ci> dG0_R4 </ci>
             <ci> R </ci>
             <ci> T </ci>
+            <ci> A_R4 </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -691,6 +768,7 @@
             <ci> dG0_R5 </ci>
             <ci> R </ci>
             <ci> T </ci>
+            <ci> A_R5 </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -705,6 +783,7 @@
             <ci> dG0_R6 </ci>
             <ci> R </ci>
             <ci> T </ci>
+            <ci> A_R6 </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -719,6 +798,7 @@
             <ci> dG0_RTB </ci>
             <ci> R </ci>
             <ci> T </ci>
+            <ci> A_RTB </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -789,6 +869,7 @@
             <ci> dG0_R1 </ci>
             <ci> R </ci>
             <ci> T </ci>
+            <ci> B_R1 </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -803,6 +884,7 @@
             <ci> dG0_R2 </ci>
             <ci> R </ci>
             <ci> T </ci>
+            <ci> B_R2 </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -817,6 +899,7 @@
             <ci> dG0_R3 </ci>
             <ci> R </ci>
             <ci> T </ci>
+            <ci> B_R3 </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -831,6 +914,7 @@
             <ci> dG0_R4 </ci>
             <ci> R </ci>
             <ci> T </ci>
+            <ci> B_R4 </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -845,6 +929,7 @@
             <ci> dG0_R5 </ci>
             <ci> R </ci>
             <ci> T </ci>
+            <ci> B_R5 </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -859,6 +944,7 @@
             <ci> dG0_R6 </ci>
             <ci> R </ci>
             <ci> T </ci>
+            <ci> B_R6 </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -873,6 +959,7 @@
             <ci> dG0_RTB </ci>
             <ci> R </ci>
             <ci> T </ci>
+            <ci> B_RTB </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -943,6 +1030,7 @@
             <ci> dG0_R1 </ci>
             <ci> R </ci>
             <ci> T </ci>
+            <ci> C_R1 </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -957,6 +1045,7 @@
             <ci> dG0_R2 </ci>
             <ci> R </ci>
             <ci> T </ci>
+            <ci> C_R2 </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -971,6 +1060,7 @@
             <ci> dG0_R3 </ci>
             <ci> R </ci>
             <ci> T </ci>
+            <ci> C_R3 </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -985,6 +1075,7 @@
             <ci> dG0_R4 </ci>
             <ci> R </ci>
             <ci> T </ci>
+            <ci> C_R4 </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -999,6 +1090,7 @@
             <ci> dG0_R5 </ci>
             <ci> R </ci>
             <ci> T </ci>
+            <ci> C_R5 </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -1013,6 +1105,7 @@
             <ci> dG0_R6 </ci>
             <ci> R </ci>
             <ci> T </ci>
+            <ci> C_R6 </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -1027,6 +1120,7 @@
             <ci> dG0_RTB </ci>
             <ci> R </ci>
             <ci> T </ci>
+            <ci> C_RTB </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -2290,6 +2384,15 @@
           </apply>
         </math>
       </assignmentRule>
+      <assignmentRule variable="community_mmdf_advantage">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> c_mmdf </ci>
+            <ci> s_mmdf </ci>
+          </apply>
+        </math>
+      </assignmentRule>
     </listOfRules>
     <listOfReactions>
       <reaction id="A_Sex_uptake" reversible="true" fast="false">
@@ -2320,11 +2423,11 @@
               <ci> rate_law_one_s_one_p </ci>
               <ci> A_is_on_R1 </ci>
               <ci> E_conc_R1 </ci>
-              <ci> k_cat_R1 </ci>
+              <ci> global_k_cat_R1 </ci>
               <ci> Global_Sex </ci>
               <ci> A_S </ci>
-              <ci> k_Sex_R1 </ci>
-              <ci> k_S_R1 </ci>
+              <ci> global_k_Sex_R1 </ci>
+              <ci> global_k_S_R1 </ci>
               <ci> dG0_R1 </ci>
               <ci> R </ci>
               <ci> T </ci>
@@ -2346,13 +2449,13 @@
               <ci> rate_law_one_s_two_p </ci>
               <ci> A_is_on_R2 </ci>
               <ci> E_conc_R2 </ci>
-              <ci> k_cat_R2 </ci>
+              <ci> global_k_cat_R2 </ci>
               <ci> A_S </ci>
               <ci> A_A </ci>
               <ci> A_X </ci>
-              <ci> k_S_R2 </ci>
-              <ci> k_A_R2 </ci>
-              <ci> k_X_R2 </ci>
+              <ci> global_k_S_R2 </ci>
+              <ci> global_k_A_R2 </ci>
+              <ci> global_k_X_R2 </ci>
               <ci> dG0_R2 </ci>
               <ci> R </ci>
               <ci> T </ci>
@@ -2374,13 +2477,13 @@
               <ci> rate_law_two_s_one_p </ci>
               <ci> A_is_on_R3 </ci>
               <ci> E_conc_R3 </ci>
-              <ci> k_cat_R3 </ci>
+              <ci> global_k_cat_R3 </ci>
               <ci> A_A </ci>
               <ci> A_X </ci>
               <ci> A_B </ci>
-              <ci> k_A_R3 </ci>
-              <ci> k_X_R3 </ci>
-              <ci> k_B_R3 </ci>
+              <ci> global_k_A_R3 </ci>
+              <ci> global_k_X_R3 </ci>
+              <ci> global_k_B_R3 </ci>
               <ci> dG0_R3 </ci>
               <ci> R </ci>
               <ci> T </ci>
@@ -2402,13 +2505,13 @@
               <ci> rate_law_one_s_two_p </ci>
               <ci> A_is_on_R4 </ci>
               <ci> E_conc_R4 </ci>
-              <ci> k_cat_R4 </ci>
+              <ci> global_k_cat_R4 </ci>
               <ci> A_B </ci>
               <ci> A_C </ci>
               <ci> A_X </ci>
-              <ci> k_B_R4 </ci>
-              <ci> k_C_R4 </ci>
-              <ci> k_X_R4 </ci>
+              <ci> global_k_B_R4 </ci>
+              <ci> global_k_C_R4 </ci>
+              <ci> global_k_X_R4 </ci>
               <ci> dG0_R4 </ci>
               <ci> R </ci>
               <ci> T </ci>
@@ -2430,13 +2533,13 @@
               <ci> rate_law_two_s_one_p </ci>
               <ci> A_is_on_R5 </ci>
               <ci> E_conc_R5 </ci>
-              <ci> k_cat_R5 </ci>
+              <ci> global_k_cat_R5 </ci>
               <ci> A_C </ci>
               <ci> A_X </ci>
               <ci> A_P </ci>
-              <ci> k_C_R5 </ci>
-              <ci> k_X_R5 </ci>
-              <ci> k_P_R5 </ci>
+              <ci> global_k_C_R5 </ci>
+              <ci> global_k_X_R5 </ci>
+              <ci> global_k_P_R5 </ci>
               <ci> dG0_R5 </ci>
               <ci> R </ci>
               <ci> T </ci>
@@ -2457,11 +2560,11 @@
               <ci> rate_law_one_s_one_p </ci>
               <ci> A_is_on_R6 </ci>
               <ci> E_conc_R6 </ci>
-              <ci> k_cat_R6 </ci>
+              <ci> global_k_cat_R6 </ci>
               <ci> A_P </ci>
               <ci> Community_Pex </ci>
-              <ci> k_P_R6 </ci>
-              <ci> k_Pex_R6 </ci>
+              <ci> global_k_P_R6 </ci>
+              <ci> global_k_Pex_R6 </ci>
               <ci> dG0_R6 </ci>
               <ci> R </ci>
               <ci> T </ci>
@@ -2497,11 +2600,11 @@
               <ci> rate_law_one_s_one_p </ci>
               <ci> A_is_on_RTB </ci>
               <ci> E_conc_RTB </ci>
-              <ci> k_cat_RTB </ci>
+              <ci> global_k_cat_RTB </ci>
               <ci> A_B </ci>
               <ci> Community_Bex </ci>
-              <ci> k_B_RTB </ci>
-              <ci> k_Bex_RTB </ci>
+              <ci> global_k_B_RTB </ci>
+              <ci> global_k_Bex_RTB </ci>
               <ci> dG0_RTB </ci>
               <ci> R </ci>
               <ci> T </ci>
@@ -2537,11 +2640,11 @@
               <ci> rate_law_one_s_one_p </ci>
               <ci> B_is_on_R1 </ci>
               <ci> E_conc_R1 </ci>
-              <ci> k_cat_R1 </ci>
+              <ci> global_k_cat_R1 </ci>
               <ci> Global_Sex </ci>
               <ci> B_S </ci>
-              <ci> k_Sex_R1 </ci>
-              <ci> k_S_R1 </ci>
+              <ci> global_k_Sex_R1 </ci>
+              <ci> global_k_S_R1 </ci>
               <ci> dG0_R1 </ci>
               <ci> R </ci>
               <ci> T </ci>
@@ -2563,13 +2666,13 @@
               <ci> rate_law_one_s_two_p </ci>
               <ci> B_is_on_R2 </ci>
               <ci> E_conc_R2 </ci>
-              <ci> k_cat_R2 </ci>
+              <ci> global_k_cat_R2 </ci>
               <ci> B_S </ci>
               <ci> B_A </ci>
               <ci> B_X </ci>
-              <ci> k_S_R2 </ci>
-              <ci> k_A_R2 </ci>
-              <ci> k_X_R2 </ci>
+              <ci> global_k_S_R2 </ci>
+              <ci> global_k_A_R2 </ci>
+              <ci> global_k_X_R2 </ci>
               <ci> dG0_R2 </ci>
               <ci> R </ci>
               <ci> T </ci>
@@ -2591,13 +2694,13 @@
               <ci> rate_law_two_s_one_p </ci>
               <ci> B_is_on_R3 </ci>
               <ci> E_conc_R3 </ci>
-              <ci> k_cat_R3 </ci>
+              <ci> global_k_cat_R3 </ci>
               <ci> B_A </ci>
               <ci> B_X </ci>
               <ci> B_B </ci>
-              <ci> k_A_R3 </ci>
-              <ci> k_X_R3 </ci>
-              <ci> k_B_R3 </ci>
+              <ci> global_k_A_R3 </ci>
+              <ci> global_k_X_R3 </ci>
+              <ci> global_k_B_R3 </ci>
               <ci> dG0_R3 </ci>
               <ci> R </ci>
               <ci> T </ci>
@@ -2619,13 +2722,13 @@
               <ci> rate_law_one_s_two_p </ci>
               <ci> B_is_on_R4 </ci>
               <ci> E_conc_R4 </ci>
-              <ci> k_cat_R4 </ci>
+              <ci> global_k_cat_R4 </ci>
               <ci> B_B </ci>
               <ci> B_C </ci>
               <ci> B_X </ci>
-              <ci> k_B_R4 </ci>
-              <ci> k_C_R4 </ci>
-              <ci> k_X_R4 </ci>
+              <ci> global_k_B_R4 </ci>
+              <ci> global_k_C_R4 </ci>
+              <ci> global_k_X_R4 </ci>
               <ci> dG0_R4 </ci>
               <ci> R </ci>
               <ci> T </ci>
@@ -2647,13 +2750,13 @@
               <ci> rate_law_two_s_one_p </ci>
               <ci> B_is_on_R5 </ci>
               <ci> E_conc_R5 </ci>
-              <ci> k_cat_R5 </ci>
+              <ci> global_k_cat_R5 </ci>
               <ci> B_C </ci>
               <ci> B_X </ci>
               <ci> B_P </ci>
-              <ci> k_C_R5 </ci>
-              <ci> k_X_R5 </ci>
-              <ci> k_P_R5 </ci>
+              <ci> global_k_C_R5 </ci>
+              <ci> global_k_X_R5 </ci>
+              <ci> global_k_P_R5 </ci>
               <ci> dG0_R5 </ci>
               <ci> R </ci>
               <ci> T </ci>
@@ -2674,11 +2777,11 @@
               <ci> rate_law_one_s_one_p </ci>
               <ci> B_is_on_R6 </ci>
               <ci> E_conc_R6 </ci>
-              <ci> k_cat_R6 </ci>
+              <ci> global_k_cat_R6 </ci>
               <ci> B_P </ci>
               <ci> Community_Pex </ci>
-              <ci> k_P_R6 </ci>
-              <ci> k_Pex_R6 </ci>
+              <ci> global_k_P_R6 </ci>
+              <ci> global_k_Pex_R6 </ci>
               <ci> dG0_R6 </ci>
               <ci> R </ci>
               <ci> T </ci>
@@ -2714,11 +2817,11 @@
               <ci> rate_law_one_s_one_p </ci>
               <ci> B_is_on_RTB </ci>
               <ci> E_conc_RTB </ci>
-              <ci> k_cat_RTB </ci>
+              <ci> global_k_cat_RTB </ci>
               <ci> B_B </ci>
               <ci> Community_Bex </ci>
-              <ci> k_B_RTB </ci>
-              <ci> k_Bex_RTB </ci>
+              <ci> global_k_B_RTB </ci>
+              <ci> global_k_Bex_RTB </ci>
               <ci> dG0_RTB </ci>
               <ci> R </ci>
               <ci> T </ci>
@@ -2754,11 +2857,11 @@
               <ci> rate_law_one_s_one_p </ci>
               <ci> C_is_on_R1 </ci>
               <ci> E_conc_R1 </ci>
-              <ci> k_cat_R1 </ci>
+              <ci> global_k_cat_R1 </ci>
               <ci> Global_Sex </ci>
               <ci> C_S </ci>
-              <ci> k_Sex_R1 </ci>
-              <ci> k_S_R1 </ci>
+              <ci> global_k_Sex_R1 </ci>
+              <ci> global_k_S_R1 </ci>
               <ci> dG0_R1 </ci>
               <ci> R </ci>
               <ci> T </ci>
@@ -2780,13 +2883,13 @@
               <ci> rate_law_one_s_two_p </ci>
               <ci> C_is_on_R2 </ci>
               <ci> E_conc_R2 </ci>
-              <ci> k_cat_R2 </ci>
+              <ci> global_k_cat_R2 </ci>
               <ci> C_S </ci>
               <ci> C_A </ci>
               <ci> C_X </ci>
-              <ci> k_S_R2 </ci>
-              <ci> k_A_R2 </ci>
-              <ci> k_X_R2 </ci>
+              <ci> global_k_S_R2 </ci>
+              <ci> global_k_A_R2 </ci>
+              <ci> global_k_X_R2 </ci>
               <ci> dG0_R2 </ci>
               <ci> R </ci>
               <ci> T </ci>
@@ -2808,13 +2911,13 @@
               <ci> rate_law_two_s_one_p </ci>
               <ci> C_is_on_R3 </ci>
               <ci> E_conc_R3 </ci>
-              <ci> k_cat_R3 </ci>
+              <ci> global_k_cat_R3 </ci>
               <ci> C_A </ci>
               <ci> C_X </ci>
               <ci> C_B </ci>
-              <ci> k_A_R3 </ci>
-              <ci> k_X_R3 </ci>
-              <ci> k_B_R3 </ci>
+              <ci> global_k_A_R3 </ci>
+              <ci> global_k_X_R3 </ci>
+              <ci> global_k_B_R3 </ci>
               <ci> dG0_R3 </ci>
               <ci> R </ci>
               <ci> T </ci>
@@ -2836,13 +2939,13 @@
               <ci> rate_law_one_s_two_p </ci>
               <ci> C_is_on_R4 </ci>
               <ci> E_conc_R4 </ci>
-              <ci> k_cat_R4 </ci>
+              <ci> global_k_cat_R4 </ci>
               <ci> C_B </ci>
               <ci> C_C </ci>
               <ci> C_X </ci>
-              <ci> k_B_R4 </ci>
-              <ci> k_C_R4 </ci>
-              <ci> k_X_R4 </ci>
+              <ci> global_k_B_R4 </ci>
+              <ci> global_k_C_R4 </ci>
+              <ci> global_k_X_R4 </ci>
               <ci> dG0_R4 </ci>
               <ci> R </ci>
               <ci> T </ci>
@@ -2864,13 +2967,13 @@
               <ci> rate_law_two_s_one_p </ci>
               <ci> C_is_on_R5 </ci>
               <ci> E_conc_R5 </ci>
-              <ci> k_cat_R5 </ci>
+              <ci> global_k_cat_R5 </ci>
               <ci> C_C </ci>
               <ci> C_X </ci>
               <ci> C_P </ci>
-              <ci> k_C_R5 </ci>
-              <ci> k_X_R5 </ci>
-              <ci> k_P_R5 </ci>
+              <ci> global_k_C_R5 </ci>
+              <ci> global_k_X_R5 </ci>
+              <ci> global_k_P_R5 </ci>
               <ci> dG0_R5 </ci>
               <ci> R </ci>
               <ci> T </ci>
@@ -2891,11 +2994,11 @@
               <ci> rate_law_one_s_one_p </ci>
               <ci> C_is_on_R6 </ci>
               <ci> E_conc_R6 </ci>
-              <ci> k_cat_R6 </ci>
+              <ci> global_k_cat_R6 </ci>
               <ci> C_P </ci>
               <ci> Single_Pex </ci>
-              <ci> k_P_R6 </ci>
-              <ci> k_Pex_R6 </ci>
+              <ci> global_k_P_R6 </ci>
+              <ci> global_k_Pex_R6 </ci>
               <ci> dG0_R6 </ci>
               <ci> R </ci>
               <ci> T </ci>
@@ -2931,11 +3034,11 @@
               <ci> rate_law_one_s_one_p </ci>
               <ci> C_is_on_RTB </ci>
               <ci> E_conc_RTB </ci>
-              <ci> k_cat_RTB </ci>
+              <ci> global_k_cat_RTB </ci>
               <ci> C_B </ci>
               <ci> C_Bex </ci>
-              <ci> k_B_RTB </ci>
-              <ci> k_Bex_RTB </ci>
+              <ci> global_k_B_RTB </ci>
+              <ci> global_k_Bex_RTB </ci>
               <ci> dG0_RTB </ci>
               <ci> R </ci>
               <ci> T </ci>

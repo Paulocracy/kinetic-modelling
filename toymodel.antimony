@@ -10,8 +10,12 @@ function rate_law_one_s_two_p(is_on, E_conc, k_cat, conc_S, conc_P1, conc_P2, k_
   is_on * (E_conc * k_cat * (conc_S / k_S) * (1 - (((conc_P1*conc_P2)/conc_S)/(exp(-dG0/(R*T))))) ) / (1 + (conc_S/k_S) + (conc_P1/k_P1) + (conc_P2/k_P2))
 end
 
-function dG(conc_S1, conc_S2, conc_P1, conc_P2, dG0, R, T)
+function _dG(conc_S1, conc_S2, conc_P1, conc_P2, dG0, R, T)
   dG0 + R * T * ln((conc_P1 * conc_P2) / (conc_S1 * conc_S2))
+end
+
+function dG(conc_S1, conc_S2, conc_P1, conc_P2, dG0, R, T, reaction_flux)
+  geq(reaction_flux, 0) * _dG(conc_S1, conc_S2, conc_P1, conc_P2, dG0, R, T) + lt(reaction_flux, 0) * -_dG(conc_S1, conc_S2, conc_P1, conc_P2, dG0, R, T)
 end
 
 model single_pathway()
@@ -118,13 +122,13 @@ model single_pathway()
     RTB = rate_law_one_s_one_p(is_on_RTB, E_conc_RTB, k_cat_RTB, B, Bex, k_B_RTB, k_Bex_RTB, dG0_RTB, R, T)
 
     # dG assignments
-    dG_R1 := dG(Sex, 1, S, 1, dG0_R1, R, T)
-    dG_R2 := dG(S, 1, A, X, dG0_R2, R, T)
-    dG_R3 := dG(A, X, B, 1, dG0_R3, R, T)
-    dG_R4 := dG(B, 1, C, X, dG0_R4, R, T)
-    dG_R5 := dG(C, X, P, 1, dG0_R5, R, T)
-    dG_R6 := dG(P, 1, Pex, 1, dG0_R6, R, T)
-    dG_RTB := dG(B, 1, Bex, 1, dG0_RTB, R, T)
+    dG_R1 := dG(Sex, 1, S, 1, dG0_R1, R, T, R1)
+    dG_R2 := dG(S, 1, A, X, dG0_R2, R, T, R2)
+    dG_R3 := dG(A, X, B, 1, dG0_R3, R, T, R3)
+    dG_R4 := dG(B, 1, C, X, dG0_R4, R, T, R4)
+    dG_R5 := dG(C, X, P, 1, dG0_R5, R, T, R5)
+    dG_R6 := dG(P, 1, Pex, 1, dG0_R6, R, T, R6)
+    dG_RTB := dG(B, 1, Bex, 1, dG0_RTB, R, T, RTB)
 
     # MDF assignments
     mdf_R1 := -dG_R1
@@ -173,127 +177,127 @@ model all_pathways
   C.R is R
   ## R1
   A.E_conc_R1 is E_conc_R1
-  A.k_cat_R1 is k_cat_R1
-  A.k_Sex_R1 is k_Sex_R1
-  A.k_S_R1 is k_S_R1
+  A.k_cat_R1 is global_k_cat_R1
+  A.k_Sex_R1 is global_k_Sex_R1
+  A.k_S_R1 is global_k_S_R1
   A.dG0_R1 is dG0_R1
   B.E_conc_R1 is E_conc_R1
-  B.k_cat_R1 is k_cat_R1
-  B.k_Sex_R1 is k_Sex_R1
-  B.k_S_R1 is k_S_R1
+  B.k_cat_R1 is global_k_cat_R1
+  B.k_Sex_R1 is global_k_Sex_R1
+  B.k_S_R1 is global_k_S_R1
   B.dG0_R1 is dG0_R1
   C.E_conc_R1 is E_conc_R1
-  C.k_cat_R1 is k_cat_R1
-  C.k_Sex_R1 is k_Sex_R1
-  C.k_S_R1 is k_S_R1
+  C.k_cat_R1 is global_k_cat_R1
+  C.k_Sex_R1 is global_k_Sex_R1
+  C.k_S_R1 is global_k_S_R1
   C.dG0_R1 is dG0_R1
   ## R2
   A.E_conc_R2 is E_conc_R2
-  A.k_cat_R2 is k_cat_R2
-  A.k_S_R2 is k_S_R2
-  A.k_X_R2 is k_X_R2
-  A.k_A_R2 is k_A_R2
+  A.k_cat_R2 is global_k_cat_R2
+  A.k_S_R2 is global_k_S_R2
+  A.k_X_R2 is global_k_X_R2
+  A.k_A_R2 is global_k_A_R2
   A.dG0_R2 is dG0_R2
   B.E_conc_R2 is E_conc_R2
-  B.k_cat_R2 is k_cat_R2
-  B.k_S_R2 is k_S_R2
-  B.k_X_R2 is k_X_R2
-  B.k_A_R2 is k_A_R2
+  B.k_cat_R2 is global_k_cat_R2
+  B.k_S_R2 is global_k_S_R2
+  B.k_X_R2 is global_k_X_R2
+  B.k_A_R2 is global_k_A_R2
   B.dG0_R2 is dG0_R2
   C.E_conc_R2 is E_conc_R2
-  C.k_cat_R2 is k_cat_R2
-  C.k_S_R2 is k_S_R2
-  C.k_X_R2 is k_X_R2
-  C.k_A_R2 is k_A_R2
+  C.k_cat_R2 is global_k_cat_R2
+  C.k_S_R2 is global_k_S_R2
+  C.k_X_R2 is global_k_X_R2
+  C.k_A_R2 is global_k_A_R2
   C.dG0_R2 is dG0_R2
   ## R3
   A.E_conc_R3 is E_conc_R3
-  A.k_cat_R3 is k_cat_R3
-  A.k_A_R3 is k_A_R3
-  A.k_X_R3 is k_X_R3
-  A.k_B_R3 is k_B_R3
+  A.k_cat_R3 is global_k_cat_R3
+  A.k_A_R3 is global_k_A_R3
+  A.k_X_R3 is global_k_X_R3
+  A.k_B_R3 is global_k_B_R3
   A.dG0_R3 is dG0_R3
   B.E_conc_R3 is E_conc_R3
-  B.k_cat_R3 is k_cat_R3
-  B.k_A_R3 is k_A_R3
-  B.k_X_R3 is k_X_R3
-  B.k_B_R3 is k_B_R3
+  B.k_cat_R3 is global_k_cat_R3
+  B.k_A_R3 is global_k_A_R3
+  B.k_X_R3 is global_k_X_R3
+  B.k_B_R3 is global_k_B_R3
   B.dG0_R3 is dG0_R3
   C.E_conc_R3 is E_conc_R3
-  C.k_cat_R3 is k_cat_R3
-  C.k_A_R3 is k_A_R3
-  C.k_X_R3 is k_X_R3
-  C.k_B_R3 is k_B_R3
+  C.k_cat_R3 is global_k_cat_R3
+  C.k_A_R3 is global_k_A_R3
+  C.k_X_R3 is global_k_X_R3
+  C.k_B_R3 is global_k_B_R3
   C.dG0_R3 is dG0_R3
   ## R4
   A.E_conc_R4 is E_conc_R4
-  A.k_cat_R4 is k_cat_R4
-  A.k_B_R4 is k_B_R4
-  A.k_C_R4 is k_C_R4
-  A.k_X_R4 is k_X_R4
+  A.k_cat_R4 is global_k_cat_R4
+  A.k_B_R4 is global_k_B_R4
+  A.k_C_R4 is global_k_C_R4
+  A.k_X_R4 is global_k_X_R4
   A.dG0_R4 is dG0_R4
   B.E_conc_R4 is E_conc_R4
-  B.k_cat_R4 is k_cat_R4
-  B.k_B_R4 is k_B_R4
-  B.k_C_R4 is k_C_R4
-  B.k_X_R4 is k_X_R4
+  B.k_cat_R4 is global_k_cat_R4
+  B.k_B_R4 is global_k_B_R4
+  B.k_C_R4 is global_k_C_R4
+  B.k_X_R4 is global_k_X_R4
   B.dG0_R4 is dG0_R4
   C.E_conc_R4 is E_conc_R4
-  C.k_cat_R4 is k_cat_R4
-  C.k_B_R4 is k_B_R4
-  C.k_C_R4 is k_C_R4
-  C.k_X_R4 is k_X_R4
+  C.k_cat_R4 is global_k_cat_R4
+  C.k_B_R4 is global_k_B_R4
+  C.k_C_R4 is global_k_C_R4
+  C.k_X_R4 is global_k_X_R4
   C.dG0_R4 is dG0_R4
   ## R5
   A.E_conc_R5 is E_conc_R5
-  A.k_cat_R5 is k_cat_R5
-  A.k_C_R5 is k_C_R5
-  A.k_X_R5 is k_X_R5
-  A.k_P_R5 is k_P_R5
+  A.k_cat_R5 is global_k_cat_R5
+  A.k_C_R5 is global_k_C_R5
+  A.k_X_R5 is global_k_X_R5
+  A.k_P_R5 is global_k_P_R5
   A.dG0_R5 is dG0_R5
   B.E_conc_R5 is E_conc_R5
-  B.k_cat_R5 is k_cat_R5
-  B.k_C_R5 is k_C_R5
-  B.k_X_R5 is k_X_R5
-  B.k_P_R5 is k_P_R5
+  B.k_cat_R5 is global_k_cat_R5
+  B.k_C_R5 is global_k_C_R5
+  B.k_X_R5 is global_k_X_R5
+  B.k_P_R5 is global_k_P_R5
   B.dG0_R5 is dG0_R5
   C.E_conc_R5 is E_conc_R5
-  C.k_cat_R5 is k_cat_R5
-  C.k_C_R5 is k_C_R5
-  C.k_X_R5 is k_X_R5
-  C.k_P_R5 is k_P_R5
+  C.k_cat_R5 is global_k_cat_R5
+  C.k_C_R5 is global_k_C_R5
+  C.k_X_R5 is global_k_X_R5
+  C.k_P_R5 is global_k_P_R5
   C.dG0_R5 is dG0_R5
   ## R6
   A.E_conc_R6 is E_conc_R6
-  A.k_cat_R6 is k_cat_R6
-  A.k_P_R6 is k_P_R6
-  A.k_Pex_R6 is k_Pex_R6
+  A.k_cat_R6 is global_k_cat_R6
+  A.k_P_R6 is global_k_P_R6
+  A.k_Pex_R6 is global_k_Pex_R6
   A.dG0_R6 is dG0_R6
   B.E_conc_R6 is E_conc_R6
-  B.k_cat_R6 is k_cat_R6
-  B.k_P_R6 is k_P_R6
-  B.k_Pex_R6 is k_Pex_R6
+  B.k_cat_R6 is global_k_cat_R6
+  B.k_P_R6 is global_k_P_R6
+  B.k_Pex_R6 is global_k_Pex_R6
   B.dG0_R6 is dG0_R6
   C.E_conc_R6 is E_conc_R6
-  C.k_cat_R6 is k_cat_R6
-  C.k_P_R6 is k_P_R6
-  C.k_Pex_R6 is k_Pex_R6
+  C.k_cat_R6 is global_k_cat_R6
+  C.k_P_R6 is global_k_P_R6
+  C.k_Pex_R6 is global_k_Pex_R6
   C.dG0_R6 is dG0_R6
   ## RTB
   A.E_conc_RTB is E_conc_RTB
-  A.k_cat_RTB is k_cat_RTB
-  A.k_B_RTB is k_B_RTB
-  A.k_Bex_RTB is k_Bex_RTB
+  A.k_cat_RTB is global_k_cat_RTB
+  A.k_B_RTB is global_k_B_RTB
+  A.k_Bex_RTB is global_k_Bex_RTB
   A.dG0_RTB is dG0_RTB
   B.E_conc_RTB is E_conc_RTB
-  B.k_cat_RTB is k_cat_RTB
-  B.k_B_RTB is k_B_RTB
-  B.k_Bex_RTB is k_Bex_RTB
+  B.k_cat_RTB is global_k_cat_RTB
+  B.k_B_RTB is global_k_B_RTB
+  B.k_Bex_RTB is global_k_Bex_RTB
   B.dG0_RTB is dG0_RTB
   C.E_conc_RTB is E_conc_RTB
-  C.k_cat_RTB is k_cat_RTB
-  C.k_B_RTB is k_B_RTB
-  C.k_Bex_RTB is k_Bex_RTB
+  C.k_cat_RTB is global_k_cat_RTB
+  C.k_B_RTB is global_k_B_RTB
+  C.k_Bex_RTB is global_k_Bex_RTB
   C.dG0_RTB is dG0_RTB
 
   B.R6 is B_R6
@@ -459,4 +463,6 @@ model all_pathways
   s_is_R6_mmdf := eq(s_sum_mdf_R6_gt, 5)
   ### Single MMDF itself
   s_mmdf := s_is_R1_mmdf * C_mdf_R1 + s_is_R2_mmdf * C_mdf_R2 + s_is_R3_mmdf * C_mdf_R3 + s_is_R4_mmdf * C_mdf_R4 + s_is_R5_mmdf * C_mdf_R5 + s_is_R6_mmdf * C_mdf_R6
+
+  community_mmdf_advantage := c_mmdf - s_mmdf
 end
