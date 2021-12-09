@@ -505,6 +505,7 @@
       <parameter id="absolute_community_flux_advantage" constant="false"/>
       <parameter id="relative_community_flux_advantage" constant="false"/>
       <parameter id="community_to_single_metabolite_ratio" constant="false"/>
+      <parameter id="gtx" constant="false"/>
     </listOfParameters>
     <listOfRules>
       <assignmentRule variable="A_dG_R1">
@@ -993,6 +994,15 @@
             <divide/>
             <ci> B_X </ci>
             <ci> C_X </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="gtx">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <gt/>
+            <ci> absolute_community_flux_advantage </ci>
+            <cn type="integer"> 0 </cn>
           </apply>
         </math>
       </assignmentRule>

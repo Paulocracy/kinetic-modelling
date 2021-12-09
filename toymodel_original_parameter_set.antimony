@@ -305,6 +305,4 @@ model all_pathways
   absolute_community_flux_advantage := B_R6 - C_R6
   relative_community_flux_advantage := B_R6 / C_R6
   community_to_single_metabolite_ratio := B_X / C_X
-
-  gtx := gt(absolute_community_flux_advantage, 0)
 end
