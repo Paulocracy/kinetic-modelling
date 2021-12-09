@@ -32,7 +32,7 @@ def sample(model: rr.RoadRunner,
             model[id] = new_value
 
         # Run simulation
-        result = model.simulate(0, 5000, 10000, selections=selections)
+        result = model.simulate(0, 500, 1000, selections=selections)
 
         # Convergence test
         preprevious_result = result[-3,:]
