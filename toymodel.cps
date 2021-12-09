@@ -372,7 +372,7 @@
       <species id="A_A" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
       <species id="A_B" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
       <species id="A_C" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="A_X" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="A_X" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
       <species id="A_P" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
       <species id="Community_Pex" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
       <species id="Community_Bex" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
@@ -504,8 +504,124 @@
       <parameter id="C_mdf_RTB" constant="false"/>
       <parameter id="absolute_community_flux_advantage" constant="false"/>
       <parameter id="relative_community_flux_advantage" constant="false"/>
-      <parameter id="community_to_single_metabolite_ratio" constant="false"/>
-      <parameter id="gtx" constant="false"/>
+      <parameter id="community_A_to_single_metabolite_ratio" constant="false"/>
+      <parameter id="community_B_to_single_metabolite_ratio" constant="false"/>
+      <parameter id="c_mdf_R1_lt_1" constant="false"/>
+      <parameter id="c_mdf_R1_lt_2" constant="false"/>
+      <parameter id="c_mdf_R1_lt_3" constant="false"/>
+      <parameter id="c_mdf_R1_lt_4" constant="false"/>
+      <parameter id="c_mdf_R1_lt_5" constant="false"/>
+      <parameter id="c_mdf_R1_lt_6" constant="false"/>
+      <parameter id="c_mdf_R1_lt_7" constant="false"/>
+      <parameter id="c_sum_mdf_R1_gt" constant="false"/>
+      <parameter id="c_is_R1_mmdf" constant="false"/>
+      <parameter id="c_mdf_R2_lt_1" constant="false"/>
+      <parameter id="c_mdf_R2_lt_2" constant="false"/>
+      <parameter id="c_mdf_R2_lt_3" constant="false"/>
+      <parameter id="c_mdf_R2_lt_4" constant="false"/>
+      <parameter id="c_mdf_R2_lt_5" constant="false"/>
+      <parameter id="c_mdf_R2_lt_6" constant="false"/>
+      <parameter id="c_mdf_R2_lt_7" constant="false"/>
+      <parameter id="c_sum_mdf_R2_gt" constant="false"/>
+      <parameter id="c_is_R2_mmdf" constant="false"/>
+      <parameter id="c_mdf_R3_lt_1" constant="false"/>
+      <parameter id="c_mdf_R3_lt_2" constant="false"/>
+      <parameter id="c_mdf_R3_lt_3" constant="false"/>
+      <parameter id="c_mdf_R3_lt_4" constant="false"/>
+      <parameter id="c_mdf_R3_lt_5" constant="false"/>
+      <parameter id="c_mdf_R3_lt_6" constant="false"/>
+      <parameter id="c_mdf_R3_lt_7" constant="false"/>
+      <parameter id="c_sum_mdf_R3_gt" constant="false"/>
+      <parameter id="c_is_R3_mmdf" constant="false"/>
+      <parameter id="c_mdf_RTBA_lt_3" constant="false"/>
+      <parameter id="c_mdf_RTBA_lt_1" constant="false"/>
+      <parameter id="c_mdf_RTBA_lt_2" constant="false"/>
+      <parameter id="c_mdf_RTBA_lt_4" constant="false"/>
+      <parameter id="c_mdf_RTBA_lt_5" constant="false"/>
+      <parameter id="c_mdf_RTBA_lt_6" constant="false"/>
+      <parameter id="c_mdf_RTBA_lt_7" constant="false"/>
+      <parameter id="c_sum_mdf_RTBA_gt" constant="false"/>
+      <parameter id="c_is_RTBA_mmdf" constant="false"/>
+      <parameter id="c_mdf_RTBB_lt_4" constant="false"/>
+      <parameter id="c_mdf_RTBB_lt_1" constant="false"/>
+      <parameter id="c_mdf_RTBB_lt_2" constant="false"/>
+      <parameter id="c_mdf_RTBB_lt_3" constant="false"/>
+      <parameter id="c_mdf_RTBB_lt_5" constant="false"/>
+      <parameter id="c_mdf_RTBB_lt_6" constant="false"/>
+      <parameter id="c_mdf_RTBB_lt_7" constant="false"/>
+      <parameter id="c_sum_mdf_RTBB_gt" constant="false"/>
+      <parameter id="c_is_RTBB_mmdf" constant="false"/>
+      <parameter id="c_mdf_R4_lt_1" constant="false"/>
+      <parameter id="c_mdf_R4_lt_2" constant="false"/>
+      <parameter id="c_mdf_R4_lt_5" constant="false"/>
+      <parameter id="c_mdf_R4_lt_3" constant="false"/>
+      <parameter id="c_mdf_R4_lt_4" constant="false"/>
+      <parameter id="c_mdf_R4_lt_6" constant="false"/>
+      <parameter id="c_mdf_R4_lt_7" constant="false"/>
+      <parameter id="c_sum_mdf_R4_gt" constant="false"/>
+      <parameter id="c_is_R4_mmdf" constant="false"/>
+      <parameter id="c_mdf_R5_lt_1" constant="false"/>
+      <parameter id="c_mdf_R5_lt_2" constant="false"/>
+      <parameter id="c_mdf_R5_lt_5" constant="false"/>
+      <parameter id="c_mdf_R5_lt_3" constant="false"/>
+      <parameter id="c_mdf_R5_lt_4" constant="false"/>
+      <parameter id="c_mdf_R5_lt_6" constant="false"/>
+      <parameter id="c_mdf_R5_lt_7" constant="false"/>
+      <parameter id="c_sum_mdf_R5_gt" constant="false"/>
+      <parameter id="c_is_R5_mmdf" constant="false"/>
+      <parameter id="c_mdf_R6_lt_1" constant="false"/>
+      <parameter id="c_mdf_R6_lt_2" constant="false"/>
+      <parameter id="c_mdf_R6_lt_5" constant="false"/>
+      <parameter id="c_mdf_R6_lt_3" constant="false"/>
+      <parameter id="c_mdf_R6_lt_4" constant="false"/>
+      <parameter id="c_mdf_R6_lt_6" constant="false"/>
+      <parameter id="c_mdf_R6_lt_7" constant="false"/>
+      <parameter id="c_sum_mdf_R6_gt" constant="false"/>
+      <parameter id="c_is_R6_mmdf" constant="false"/>
+      <parameter id="c_mmdf" constant="false"/>
+      <parameter id="s_mdf_R1_lt_1" constant="false"/>
+      <parameter id="s_mdf_R1_lt_2" constant="false"/>
+      <parameter id="s_mdf_R1_lt_3" constant="false"/>
+      <parameter id="s_mdf_R1_lt_4" constant="false"/>
+      <parameter id="s_mdf_R1_lt_5" constant="false"/>
+      <parameter id="s_sum_mdf_R1_gt" constant="false"/>
+      <parameter id="s_is_R1_mmdf" constant="false"/>
+      <parameter id="s_mdf_R2_lt_1" constant="false"/>
+      <parameter id="s_mdf_R2_lt_2" constant="false"/>
+      <parameter id="s_mdf_R2_lt_3" constant="false"/>
+      <parameter id="s_mdf_R2_lt_4" constant="false"/>
+      <parameter id="s_mdf_R2_lt_5" constant="false"/>
+      <parameter id="s_sum_mdf_R2_gt" constant="false"/>
+      <parameter id="s_is_R2_mmdf" constant="false"/>
+      <parameter id="s_mdf_R3_lt_1" constant="false"/>
+      <parameter id="s_mdf_R3_lt_2" constant="false"/>
+      <parameter id="s_mdf_R3_lt_3" constant="false"/>
+      <parameter id="s_mdf_R3_lt_4" constant="false"/>
+      <parameter id="s_mdf_R3_lt_5" constant="false"/>
+      <parameter id="s_sum_mdf_R3_gt" constant="false"/>
+      <parameter id="s_is_R3_mmdf" constant="false"/>
+      <parameter id="s_mdf_R4_lt_1" constant="false"/>
+      <parameter id="s_mdf_R4_lt_2" constant="false"/>
+      <parameter id="s_mdf_R4_lt_3" constant="false"/>
+      <parameter id="s_mdf_R4_lt_4" constant="false"/>
+      <parameter id="s_mdf_R4_lt_5" constant="false"/>
+      <parameter id="s_sum_mdf_R4_gt" constant="false"/>
+      <parameter id="s_is_R4_mmdf" constant="false"/>
+      <parameter id="s_mdf_R5_lt_1" constant="false"/>
+      <parameter id="s_mdf_R5_lt_2" constant="false"/>
+      <parameter id="s_mdf_R5_lt_3" constant="false"/>
+      <parameter id="s_mdf_R5_lt_4" constant="false"/>
+      <parameter id="s_mdf_R5_lt_5" constant="false"/>
+      <parameter id="s_sum_mdf_R5_gt" constant="false"/>
+      <parameter id="s_is_R5_mmdf" constant="false"/>
+      <parameter id="s_mdf_R6_lt_1" constant="false"/>
+      <parameter id="s_mdf_R6_lt_2" constant="false"/>
+      <parameter id="s_mdf_R6_lt_3" constant="false"/>
+      <parameter id="s_mdf_R6_lt_4" constant="false"/>
+      <parameter id="s_mdf_R6_lt_5" constant="false"/>
+      <parameter id="s_sum_mdf_R6_gt" constant="false"/>
+      <parameter id="s_is_R6_mmdf" constant="false"/>
+      <parameter id="s_mmdf" constant="false"/>
     </listOfParameters>
     <listOfRules>
       <assignmentRule variable="A_dG_R1">
@@ -988,7 +1104,16 @@
           </apply>
         </math>
       </assignmentRule>
-      <assignmentRule variable="community_to_single_metabolite_ratio">
+      <assignmentRule variable="community_A_to_single_metabolite_ratio">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> A_X </ci>
+            <ci> C_X </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="community_B_to_single_metabolite_ratio">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <divide/>
@@ -997,12 +1122,1171 @@
           </apply>
         </math>
       </assignmentRule>
-      <assignmentRule variable="gtx">
+      <assignmentRule variable="c_mdf_R1_lt_1">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
-            <gt/>
-            <ci> absolute_community_flux_advantage </ci>
-            <cn type="integer"> 0 </cn>
+            <lt/>
+            <ci> A_mdf_R1 </ci>
+            <ci> A_mdf_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R1_lt_2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_R1 </ci>
+            <ci> A_mdf_R3 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R1_lt_3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_R1 </ci>
+            <ci> A_mdf_RTB </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R1_lt_4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_R1 </ci>
+            <ci> B_mdf_RTB </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R1_lt_5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_R1 </ci>
+            <ci> B_mdf_R4 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R1_lt_6">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_R1 </ci>
+            <ci> B_mdf_R5 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R1_lt_7">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_R1 </ci>
+            <ci> B_mdf_R6 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_sum_mdf_R1_gt">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <ci> c_mdf_R1_lt_1 </ci>
+            <ci> c_mdf_R1_lt_2 </ci>
+            <ci> c_mdf_R1_lt_3 </ci>
+            <ci> c_mdf_R1_lt_4 </ci>
+            <ci> c_mdf_R1_lt_5 </ci>
+            <ci> c_mdf_R1_lt_6 </ci>
+            <ci> c_mdf_R1_lt_7 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_is_R1_mmdf">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <eq/>
+            <ci> c_sum_mdf_R1_gt </ci>
+            <cn type="integer"> 7 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R2_lt_1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_R2 </ci>
+            <ci> A_mdf_R1 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R2_lt_2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_R2 </ci>
+            <ci> A_mdf_R3 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R2_lt_3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_R2 </ci>
+            <ci> A_mdf_RTB </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R2_lt_4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_R2 </ci>
+            <ci> B_mdf_RTB </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R2_lt_5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_R2 </ci>
+            <ci> B_mdf_R4 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R2_lt_6">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_R2 </ci>
+            <ci> B_mdf_R5 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R2_lt_7">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_R2 </ci>
+            <ci> B_mdf_R6 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_sum_mdf_R2_gt">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <ci> c_mdf_R2_lt_1 </ci>
+            <ci> c_mdf_R2_lt_2 </ci>
+            <ci> c_mdf_R2_lt_3 </ci>
+            <ci> c_mdf_R2_lt_4 </ci>
+            <ci> c_mdf_R2_lt_5 </ci>
+            <ci> c_mdf_R2_lt_6 </ci>
+            <ci> c_mdf_R2_lt_7 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_is_R2_mmdf">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <eq/>
+            <ci> c_sum_mdf_R2_gt </ci>
+            <cn type="integer"> 7 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R3_lt_1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_R3 </ci>
+            <ci> A_mdf_R1 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R3_lt_2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_R3 </ci>
+            <ci> A_mdf_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R3_lt_3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_R3 </ci>
+            <ci> A_mdf_RTB </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R3_lt_4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_R3 </ci>
+            <ci> B_mdf_RTB </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R3_lt_5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_R3 </ci>
+            <ci> B_mdf_R4 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R3_lt_6">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_R3 </ci>
+            <ci> B_mdf_R5 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R3_lt_7">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_R3 </ci>
+            <ci> B_mdf_R6 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_sum_mdf_R3_gt">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <ci> c_mdf_R3_lt_1 </ci>
+            <ci> c_mdf_R3_lt_2 </ci>
+            <ci> c_mdf_R3_lt_3 </ci>
+            <ci> c_mdf_R3_lt_4 </ci>
+            <ci> c_mdf_R3_lt_5 </ci>
+            <ci> c_mdf_R3_lt_6 </ci>
+            <ci> c_mdf_R3_lt_7 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_is_R3_mmdf">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <eq/>
+            <ci> c_sum_mdf_R3_gt </ci>
+            <cn type="integer"> 7 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_RTBA_lt_3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_RTB </ci>
+            <ci> A_mdf_R1 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_RTBA_lt_1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_RTB </ci>
+            <ci> A_mdf_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_RTBA_lt_2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_RTB </ci>
+            <ci> A_mdf_R3 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_RTBA_lt_4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_RTB </ci>
+            <ci> B_mdf_RTB </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_RTBA_lt_5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_RTB </ci>
+            <ci> B_mdf_R4 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_RTBA_lt_6">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_RTB </ci>
+            <ci> B_mdf_R5 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_RTBA_lt_7">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> A_mdf_RTB </ci>
+            <ci> B_mdf_R6 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_sum_mdf_RTBA_gt">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <ci> c_mdf_RTBA_lt_1 </ci>
+            <ci> c_mdf_RTBA_lt_2 </ci>
+            <ci> c_mdf_RTBA_lt_3 </ci>
+            <ci> c_mdf_RTBA_lt_4 </ci>
+            <ci> c_mdf_RTBA_lt_5 </ci>
+            <ci> c_mdf_RTBA_lt_6 </ci>
+            <ci> c_mdf_RTBA_lt_7 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_is_RTBA_mmdf">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <eq/>
+            <ci> c_sum_mdf_RTBA_gt </ci>
+            <cn type="integer"> 7 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_RTBB_lt_4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_RTB </ci>
+            <ci> A_mdf_R1 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_RTBB_lt_1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_RTB </ci>
+            <ci> A_mdf_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_RTBB_lt_2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_RTB </ci>
+            <ci> A_mdf_R3 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_RTBB_lt_3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_RTB </ci>
+            <ci> A_mdf_RTB </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_RTBB_lt_5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_RTB </ci>
+            <ci> B_mdf_R4 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_RTBB_lt_6">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_RTB </ci>
+            <ci> B_mdf_R5 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_RTBB_lt_7">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_RTB </ci>
+            <ci> B_mdf_R6 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_sum_mdf_RTBB_gt">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <ci> c_mdf_RTBB_lt_1 </ci>
+            <ci> c_mdf_RTBB_lt_2 </ci>
+            <ci> c_mdf_RTBB_lt_3 </ci>
+            <ci> c_mdf_RTBB_lt_4 </ci>
+            <ci> c_mdf_RTBB_lt_5 </ci>
+            <ci> c_mdf_RTBB_lt_6 </ci>
+            <ci> c_mdf_RTBB_lt_7 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_is_RTBB_mmdf">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <eq/>
+            <ci> c_sum_mdf_RTBB_gt </ci>
+            <cn type="integer"> 7 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R4_lt_1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_R4 </ci>
+            <ci> A_mdf_R1 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R4_lt_2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_R4 </ci>
+            <ci> A_mdf_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R4_lt_5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_R4 </ci>
+            <ci> A_mdf_R3 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R4_lt_3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_R4 </ci>
+            <ci> A_mdf_RTB </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R4_lt_4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_R4 </ci>
+            <ci> B_mdf_RTB </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R4_lt_6">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_R4 </ci>
+            <ci> B_mdf_R5 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R4_lt_7">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_R4 </ci>
+            <ci> B_mdf_R6 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_sum_mdf_R4_gt">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <ci> c_mdf_R4_lt_1 </ci>
+            <ci> c_mdf_R4_lt_2 </ci>
+            <ci> c_mdf_R4_lt_3 </ci>
+            <ci> c_mdf_R4_lt_4 </ci>
+            <ci> c_mdf_R4_lt_5 </ci>
+            <ci> c_mdf_R4_lt_6 </ci>
+            <ci> c_mdf_R4_lt_7 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_is_R4_mmdf">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <eq/>
+            <ci> c_sum_mdf_R4_gt </ci>
+            <cn type="integer"> 7 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R5_lt_1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_R5 </ci>
+            <ci> A_mdf_R1 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R5_lt_2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_R5 </ci>
+            <ci> A_mdf_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R5_lt_5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_R5 </ci>
+            <ci> A_mdf_R3 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R5_lt_3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_R5 </ci>
+            <ci> A_mdf_RTB </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R5_lt_4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_R5 </ci>
+            <ci> B_mdf_RTB </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R5_lt_6">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_R5 </ci>
+            <ci> B_mdf_R4 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R5_lt_7">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_R5 </ci>
+            <ci> B_mdf_R6 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_sum_mdf_R5_gt">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <ci> c_mdf_R5_lt_1 </ci>
+            <ci> c_mdf_R5_lt_2 </ci>
+            <ci> c_mdf_R5_lt_3 </ci>
+            <ci> c_mdf_R5_lt_4 </ci>
+            <ci> c_mdf_R5_lt_5 </ci>
+            <ci> c_mdf_R5_lt_6 </ci>
+            <ci> c_mdf_R5_lt_7 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_is_R5_mmdf">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <eq/>
+            <ci> c_sum_mdf_R5_gt </ci>
+            <cn type="integer"> 7 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R6_lt_1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_R6 </ci>
+            <ci> A_mdf_R1 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R6_lt_2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_R6 </ci>
+            <ci> A_mdf_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R6_lt_5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_R6 </ci>
+            <ci> A_mdf_R3 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R6_lt_3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_R6 </ci>
+            <ci> A_mdf_RTB </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R6_lt_4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_R6 </ci>
+            <ci> B_mdf_RTB </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R6_lt_6">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_R6 </ci>
+            <ci> B_mdf_R4 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mdf_R6_lt_7">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> B_mdf_R6 </ci>
+            <ci> B_mdf_R5 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_sum_mdf_R6_gt">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <ci> c_mdf_R6_lt_1 </ci>
+            <ci> c_mdf_R6_lt_2 </ci>
+            <ci> c_mdf_R6_lt_3 </ci>
+            <ci> c_mdf_R6_lt_4 </ci>
+            <ci> c_mdf_R6_lt_5 </ci>
+            <ci> c_mdf_R6_lt_6 </ci>
+            <ci> c_mdf_R6_lt_7 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_is_R6_mmdf">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <eq/>
+            <ci> c_sum_mdf_R6_gt </ci>
+            <cn type="integer"> 7 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mmdf">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <apply>
+              <times/>
+              <ci> c_is_R1_mmdf </ci>
+              <ci> A_mdf_R1 </ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci> c_is_R2_mmdf </ci>
+              <ci> A_mdf_R2 </ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci> c_is_R3_mmdf </ci>
+              <ci> A_mdf_R3 </ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci> c_is_RTBA_mmdf </ci>
+              <ci> A_mdf_RTB </ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci> c_is_RTBB_mmdf </ci>
+              <ci> B_mdf_RTB </ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci> c_is_R4_mmdf </ci>
+              <ci> B_mdf_R4 </ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci> c_is_R5_mmdf </ci>
+              <ci> B_mdf_R5 </ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci> c_is_R6_mmdf </ci>
+              <ci> B_mdf_R6 </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R1_lt_1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R1 </ci>
+            <ci> C_mdf_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R1_lt_2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R1 </ci>
+            <ci> C_mdf_R3 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R1_lt_3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R1 </ci>
+            <ci> C_mdf_R4 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R1_lt_4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R1 </ci>
+            <ci> C_mdf_R5 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R1_lt_5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R1 </ci>
+            <ci> C_mdf_R6 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_sum_mdf_R1_gt">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <ci> s_mdf_R1_lt_1 </ci>
+            <ci> s_mdf_R1_lt_2 </ci>
+            <ci> s_mdf_R1_lt_3 </ci>
+            <ci> s_mdf_R1_lt_4 </ci>
+            <ci> s_mdf_R1_lt_5 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_is_R1_mmdf">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <eq/>
+            <ci> s_sum_mdf_R1_gt </ci>
+            <cn type="integer"> 5 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R2_lt_1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R2 </ci>
+            <ci> C_mdf_R1 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R2_lt_2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R2 </ci>
+            <ci> C_mdf_R3 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R2_lt_3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R2 </ci>
+            <ci> C_mdf_R4 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R2_lt_4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R2 </ci>
+            <ci> C_mdf_R5 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R2_lt_5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R2 </ci>
+            <ci> C_mdf_R6 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_sum_mdf_R2_gt">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <ci> s_mdf_R2_lt_1 </ci>
+            <ci> s_mdf_R2_lt_2 </ci>
+            <ci> s_mdf_R2_lt_3 </ci>
+            <ci> s_mdf_R2_lt_4 </ci>
+            <ci> s_mdf_R2_lt_5 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_is_R2_mmdf">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <eq/>
+            <ci> s_sum_mdf_R2_gt </ci>
+            <cn type="integer"> 5 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R3_lt_1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R3 </ci>
+            <ci> C_mdf_R1 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R3_lt_2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R3 </ci>
+            <ci> C_mdf_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R3_lt_3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R3 </ci>
+            <ci> C_mdf_R4 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R3_lt_4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R3 </ci>
+            <ci> C_mdf_R5 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R3_lt_5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R3 </ci>
+            <ci> C_mdf_R6 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_sum_mdf_R3_gt">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <ci> s_mdf_R3_lt_1 </ci>
+            <ci> s_mdf_R3_lt_2 </ci>
+            <ci> s_mdf_R3_lt_3 </ci>
+            <ci> s_mdf_R3_lt_4 </ci>
+            <ci> s_mdf_R3_lt_5 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_is_R3_mmdf">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <eq/>
+            <ci> s_sum_mdf_R3_gt </ci>
+            <cn type="integer"> 5 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R4_lt_1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R4 </ci>
+            <ci> C_mdf_R1 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R4_lt_2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R4 </ci>
+            <ci> C_mdf_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R4_lt_3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R4 </ci>
+            <ci> C_mdf_R3 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R4_lt_4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R4 </ci>
+            <ci> C_mdf_R5 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R4_lt_5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R4 </ci>
+            <ci> C_mdf_R6 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_sum_mdf_R4_gt">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <ci> s_mdf_R4_lt_1 </ci>
+            <ci> s_mdf_R4_lt_2 </ci>
+            <ci> s_mdf_R4_lt_3 </ci>
+            <ci> s_mdf_R4_lt_4 </ci>
+            <ci> s_mdf_R4_lt_5 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_is_R4_mmdf">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <eq/>
+            <ci> s_sum_mdf_R4_gt </ci>
+            <cn type="integer"> 5 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R5_lt_1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R5 </ci>
+            <ci> C_mdf_R1 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R5_lt_2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R5 </ci>
+            <ci> C_mdf_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R5_lt_3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R5 </ci>
+            <ci> C_mdf_R3 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R5_lt_4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R5 </ci>
+            <ci> C_mdf_R4 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R5_lt_5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R5 </ci>
+            <ci> C_mdf_R6 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_sum_mdf_R5_gt">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <ci> s_mdf_R5_lt_1 </ci>
+            <ci> s_mdf_R5_lt_2 </ci>
+            <ci> s_mdf_R5_lt_3 </ci>
+            <ci> s_mdf_R5_lt_4 </ci>
+            <ci> s_mdf_R5_lt_5 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_is_R5_mmdf">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <eq/>
+            <ci> s_sum_mdf_R5_gt </ci>
+            <cn type="integer"> 5 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R6_lt_1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R6 </ci>
+            <ci> C_mdf_R1 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R6_lt_2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R6 </ci>
+            <ci> C_mdf_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R6_lt_3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R6 </ci>
+            <ci> C_mdf_R3 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R6_lt_4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R6 </ci>
+            <ci> C_mdf_R4 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mdf_R6_lt_5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <lt/>
+            <ci> C_mdf_R6 </ci>
+            <ci> C_mdf_R5 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_sum_mdf_R6_gt">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <ci> s_mdf_R6_lt_1 </ci>
+            <ci> s_mdf_R6_lt_2 </ci>
+            <ci> s_mdf_R6_lt_3 </ci>
+            <ci> s_mdf_R6_lt_4 </ci>
+            <ci> s_mdf_R6_lt_5 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_is_R6_mmdf">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <eq/>
+            <ci> s_sum_mdf_R6_gt </ci>
+            <cn type="integer"> 5 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mmdf">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <apply>
+              <times/>
+              <ci> s_is_R1_mmdf </ci>
+              <ci> C_mdf_R1 </ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci> s_is_R2_mmdf </ci>
+              <ci> C_mdf_R2 </ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci> s_is_R3_mmdf </ci>
+              <ci> C_mdf_R3 </ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci> s_is_R4_mmdf </ci>
+              <ci> C_mdf_R4 </ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci> s_is_R5_mmdf </ci>
+              <ci> C_mdf_R5 </ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci> s_is_R6_mmdf </ci>
+              <ci> C_mdf_R6 </ci>
+            </apply>
           </apply>
         </math>
       </assignmentRule>

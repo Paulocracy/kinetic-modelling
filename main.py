@@ -11,6 +11,6 @@ print(model.getFullStoichiometryMatrix())
 with open("toymodel.cps", "w") as f:
     f.write(model.getSBML())
 
-selections = ['time'] + ["absolute_community_flux_advantage", "gtx"] # model.getBoundarySpeciesIds() + model.getFloatingSpeciesIds()
+selections = ['time'] + ["absolute_community_flux_advantage", "c_mmdf", "s_mmdf"] # model.getBoundarySpeciesIds() + model.getFloatingSpeciesIds()
 model.simulate(0, 500, 250, selections=selections)
 model.plot()
