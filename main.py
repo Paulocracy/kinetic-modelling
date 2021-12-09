@@ -32,7 +32,11 @@ def sample(model: rr.RoadRunner,
             model[id] = new_value
 
         # Run simulation
-        result = model.simulate(0, 500, 1000, selections=selections)
+        try:
+            result = model.simulate(0, 500, 1000, selections=selections)
+        except RuntimeError:
+            print("Runtime error")
+            continue
 
         # Convergence test
         preprevious_result = result[-3,:]
@@ -93,7 +97,5 @@ futures = [
     sample.remote(model, selections, original_parameter_values, max_scaling=100)
     for i in range(num_samples)
 ]
-import time
-c = time.time()
+
 results = ray.get(futures)
-print(c - time.time())
