@@ -300,17 +300,20 @@ model all_pathways
   C.k_Bex_RTB is global_k_Bex_RTB
   C.dG0_RTB is dG0_RTB
 
-  B.R6 is B_R6
-  C.R6 is C_R6
-
+  # Metabolite ratio definitions
   A.X is A_X
   B.X is B_X
   C.X is C_X
+  community_A_to_single_metabolite_X_ratio := A_X / C_X
+  community_B_to_single_metabolite_X_ratio := B_X / C_X
 
+  # Flux ratio definitions
+  B.R6 is B_R6
+  C.R6 is C_R6
   absolute_community_flux_advantage := B_R6 - C_R6
   relative_community_flux_advantage := B_R6 / C_R6
-  community_A_to_single_metabolite_ratio := A_X / C_X
-  community_B_to_single_metabolite_ratio := B_X / C_X
+  community_flux := B_R6
+  single_flux := C_R6
 
   # MMDF definitions
   A.mdf_R1 is A_mdf_R1
@@ -464,5 +467,6 @@ model all_pathways
   ### Single MMDF itself
   s_mmdf := s_is_R1_mmdf * C_mdf_R1 + s_is_R2_mmdf * C_mdf_R2 + s_is_R3_mmdf * C_mdf_R3 + s_is_R4_mmdf * C_mdf_R4 + s_is_R5_mmdf * C_mdf_R5 + s_is_R6_mmdf * C_mdf_R6
 
-  community_mmdf_advantage := c_mmdf - s_mmdf
+  absolute_community_mmdf_advantage := c_mmdf - s_mmdf
+  relative_community_mmdf_advantage := c_mmdf / s_mmdf
 end

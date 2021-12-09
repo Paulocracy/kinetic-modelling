@@ -574,10 +574,12 @@
       <parameter id="C_mdf_R5" constant="false"/>
       <parameter id="C_mdf_R6" constant="false"/>
       <parameter id="C_mdf_RTB" constant="false"/>
+      <parameter id="community_A_to_single_metabolite_X_ratio" constant="false"/>
+      <parameter id="community_B_to_single_metabolite_X_ratio" constant="false"/>
       <parameter id="absolute_community_flux_advantage" constant="false"/>
       <parameter id="relative_community_flux_advantage" constant="false"/>
-      <parameter id="community_A_to_single_metabolite_ratio" constant="false"/>
-      <parameter id="community_B_to_single_metabolite_ratio" constant="false"/>
+      <parameter id="community_flux" constant="false"/>
+      <parameter id="single_flux" constant="false"/>
       <parameter id="c_mdf_R1_lt_1" constant="false"/>
       <parameter id="c_mdf_R1_lt_2" constant="false"/>
       <parameter id="c_mdf_R1_lt_3" constant="false"/>
@@ -694,7 +696,8 @@
       <parameter id="s_sum_mdf_R6_gt" constant="false"/>
       <parameter id="s_is_R6_mmdf" constant="false"/>
       <parameter id="s_mmdf" constant="false"/>
-      <parameter id="community_mmdf_advantage" constant="false"/>
+      <parameter id="absolute_community_mmdf_advantage" constant="false"/>
+      <parameter id="relative_community_mmdf_advantage" constant="false"/>
     </listOfParameters>
     <listOfRules>
       <assignmentRule variable="A_dG_R1">
@@ -1180,6 +1183,24 @@
           </apply>
         </math>
       </assignmentRule>
+      <assignmentRule variable="community_A_to_single_metabolite_X_ratio">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> A_X </ci>
+            <ci> C_X </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="community_B_to_single_metabolite_X_ratio">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> B_X </ci>
+            <ci> C_X </ci>
+          </apply>
+        </math>
+      </assignmentRule>
       <assignmentRule variable="absolute_community_flux_advantage">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
@@ -1198,22 +1219,14 @@
           </apply>
         </math>
       </assignmentRule>
-      <assignmentRule variable="community_A_to_single_metabolite_ratio">
+      <assignmentRule variable="community_flux">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <apply>
-            <divide/>
-            <ci> A_X </ci>
-            <ci> C_X </ci>
-          </apply>
+          <ci> B_R6 </ci>
         </math>
       </assignmentRule>
-      <assignmentRule variable="community_B_to_single_metabolite_ratio">
+      <assignmentRule variable="single_flux">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <apply>
-            <divide/>
-            <ci> B_X </ci>
-            <ci> C_X </ci>
-          </apply>
+          <ci> C_R6 </ci>
         </math>
       </assignmentRule>
       <assignmentRule variable="c_mdf_R1_lt_1">
@@ -2384,10 +2397,19 @@
           </apply>
         </math>
       </assignmentRule>
-      <assignmentRule variable="community_mmdf_advantage">
+      <assignmentRule variable="absolute_community_mmdf_advantage">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <minus/>
+            <ci> c_mmdf </ci>
+            <ci> s_mmdf </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="relative_community_mmdf_advantage">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
             <ci> c_mmdf </ci>
             <ci> s_mmdf </ci>
           </apply>

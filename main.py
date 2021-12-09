@@ -13,22 +13,19 @@ with open("toymodel.cps", "w") as f:
 
 model["global_k_A_R2"] = 100
 print(model["global_k_A_R2"])
-selections = ['time'] + [
-    # "absolute_community_flux_advantage",
-    "c_mmdf", "s_mmdf",
-    # "community_mmdf_advantage",
-    "A_mdf_R1",
-    "A_mdf_R2",
-    "A_mdf_R3",
-    "A_mdf_RTB",
-    "B_mdf_RTB",
-    "B_mdf_R4",
-    "B_mdf_R5",
-    "B_mdf_R6",
-    "A_B",
-    "Community_Bex",
-    "B_B",
-] # model.getBoundarySpeciesIds() + model.getFloatingSpeciesIds()
+selections = [
+    "time",
+    "c_mmdf",
+    "s_mmdf",
+    "absolute_community_mmdf_advantage",
+    "relative_community_mmdf_advantage",
+    "community_A_to_single_metabolite_X_ratio",
+    "community_B_to_single_metabolite_X_ratio",
+    "absolute_community_flux_advantage",
+    "relative_community_flux_advantage",
+    "community_flux",
+    "single_flux",
+]
 result = model.simulate(0, 10, 10, selections=selections)
 print(result)
 # model.plot()
