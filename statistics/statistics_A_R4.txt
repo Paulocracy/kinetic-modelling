@@ -1,0 +1,12 @@
+==A_R4==
+MEAN: 0.0
+MEDIAN: 0.0
+MAX: 0.0
+MIN: 0.0
+# POSITIVE: 0
+# ZERO: 10000
+# NEGATIVE: 0
+# >1.0: 0
+# =1.0: 0
+# <1.0: 10000
+
