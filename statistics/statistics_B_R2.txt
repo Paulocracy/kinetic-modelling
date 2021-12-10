@@ -4,9 +4,9 @@ MEDIAN: 0.0
 MAX: -0.0
 MIN: -0.0
 # POSITIVE: 0
-# ZERO: 10000
+# ZERO: 10
 # NEGATIVE: 0
 # >1.0: 0
 # =1.0: 0
-# <1.0: 10000
+# <1.0: 10
 

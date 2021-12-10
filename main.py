@@ -69,12 +69,25 @@ def sample(model: rr.RoadRunner,
             is_not_stable = True
 
     if (result_dict["relative_community_flux_advantage"] > 3):
-        print("relative_community_flux_advantage", result_dict["relative_community_flux_advantage"])
-        print("A_X", result_dict["A_X"])
-        print("B_X", result_dict["B_X"])
-        print("C_X", result_dict["C_X"])
-        print("community_B_to_community_A_metabolite_X_ratio", result_dict["community_B_to_community_A_metabolite_X_ratio"])
-        print("community_A_to_community_B_metabolite_X_ratio", result_dict["community_A_to_community_B_metabolite_X_ratio"])
+        extra_data = "==="
+        extra_data += "relative_community_flux_advantage" + str(result_dict["relative_community_flux_advantage"]) + "\n"
+        extra_data += "A_X " + str(result_dict["A_X"]) + "\n"
+        extra_data += "B_X " + str(result_dict["B_X"]) + "\n"
+        extra_data += "C_X " + str(result_dict["C_X"]) + "\n"
+        extra_data += "A_S " + str(result_dict["A_S"]) + "\n"
+        extra_data += "A_A " + str(result_dict["A_A"]) + "\n"
+        extra_data += "A_B " + str(result_dict["A_B"]) + "\n"
+        extra_data += "B_B " + str(result_dict["B_B"]) + "\n"
+        extra_data += "B_C " + str(result_dict["B_C"]) + "\n"
+        extra_data += "B_P " + str(result_dict["B_P"]) + "\n"
+        extra_data += "C_X " + str(result_dict["C_X"]) + "\n"
+        extra_data += "community_B_to_community_A_metabolite_X_ratio " + str(result_dict["community_B_to_community_A_metabolite_X_ratio"]) + "\n"
+        extra_data += "community_A_to_community_B_metabolite_X_ratio " + str(result_dict["community_A_to_community_B_metabolite_X_ratio"]) + "\n"
+        extra_data += "community_flux " + str(result_dict["community_flux"]) + "\n"
+        extra_data += "single_flux " + str(result_dict["single_flux"]) + "\n"
+        result_dict["extra_data"] = extra_data + "\n"
+    else:
+        result_dict["extra_data"] = ""
 
     return result_dict
 
@@ -114,6 +127,12 @@ selections = [
     "B_X",
     "A_X",
     "C_X",
+    "A_S",
+    "A_A",
+    "A_B",
+    "B_B",
+    "B_C",
+    "B_P",
     "A_dG_R1",
     "A_dG_R2",
     "A_dG_R3",
@@ -146,13 +165,13 @@ futures = [
 import time
 x = time.time()
 results = ray.get(futures)
-random.seed(1234567890)
+random.seed(234567890)
 
 results_list_dict = {}
-for key in selections:
+for key in selections + ["extra_data"]:
     results_list_dict[key] = []
 for result in results:
-    for key in selections:
+    for key in selections + ["extra_data"]:
         results_list_dict[key].append(result[key])
 
 plotfolder = "./statistics/"
@@ -176,22 +195,14 @@ pairs = [
     ("relative_community_mmdf_advantage", "relative_community_flux_advantage"),
     ("community_A_to_single_metabolite_X_ratio", "relative_community_flux_advantage"),
     ("community_B_to_single_metabolite_X_ratio", "relative_community_flux_advantage"),
-    ("community_B_to_community_A_metabolite_X_ratio", "relative_community_flux_advantage"),
-    ("community_A_to_community_B_metabolite_X_ratio", "relative_community_flux_advantage"),
-    ("community_A_to_community_B_metabolite_X_ratio", "absolute_community_flux_advantage"),
-    ("community_B_to_community_A_metabolite_X_ratio", "absolute_community_flux_advantage"),
     ("community_B_to_community_A_metabolite_X_ratio", "community_flux"),
     ("community_A_to_community_B_metabolite_X_ratio", "community_flux"),
-    ("community_A_to_single_metabolite_X_ratio", "single_flux"),
-    ("community_B_to_single_metabolite_X_ratio", "single_flux"),
+    ("community_B_to_community_A_metabolite_X_ratio", "relative_community_flux_advantage"),
+    ("community_A_to_community_B_metabolite_X_ratio", "relative_community_flux_advantage"),
     ("relative_community_flux_advantage", "community_B_to_community_A_metabolite_X_ratio"),
     ("relative_community_flux_advantage", "community_A_to_community_B_metabolite_X_ratio"),
-    ("relative_community_mmdf_advantage", "community_A_to_community_B_metabolite_X_ratio"),
-    ("relative_community_mmdf_advantage", "community_B_to_community_A_metabolite_X_ratio"),
-    ("A_dG_R2", "relative_community_flux_advantage"),
-    ("A_dG_R3", "relative_community_flux_advantage"),
-    ("B_dG_R4", "relative_community_flux_advantage"),
-    ("B_dG_R5", "relative_community_flux_advantage"),
+    ("community_flux", "relative_community_flux_advantage"),
+    ("single_flux", "relative_community_flux_advantage"),
 ]
 
 for pair in pairs:
@@ -211,3 +222,10 @@ for key in selections:
     text_statistics = get_main_statistics(results_list_dict[key], key)
     with open(plotfolder+"statistics_"+key+".txt", "w") as f:
         f.write(text_statistics)
+
+# TEXT REPORT
+complete_extra_data = ""
+for result in results_list_dict["extra_data"]:
+    complete_extra_data += result
+with open("extra_data.txt", "w") as f:
+    f.write(complete_extra_data)
