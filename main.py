@@ -94,6 +94,14 @@ selections = [
     "relative_community_flux_advantage",
     "community_flux",
     "single_flux",
+    "A_R4",
+    "A_R5",
+    "A_R6",
+    "A_Pex_secretion",
+    "B_R1",
+    "B_R2",
+    "B_R3",
+    "B_Sex_uptake",
 ]
 string_keys: List[str] = [
     key for key in model.keys() if type(key) is str
@@ -104,7 +112,6 @@ sampled_parameter_ids = [
 original_parameter_values: Dict[str, float] = {
     key: model[key] for key in sampled_parameter_ids
 }
-
 min_flux = 0.01
 num_samples = 10_000
 max_scaling = 100

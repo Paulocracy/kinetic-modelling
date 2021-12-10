@@ -439,7 +439,7 @@
       <compartment sboTerm="SBO:0000410" id="default_compartment" spatialDimensions="3" size="1" constant="true"/>
     </listOfCompartments>
     <listOfSpecies>
-      <species id="Global_Sex" compartment="default_compartment" initialConcentration="4" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species id="Community_Sex" compartment="default_compartment" initialConcentration="4" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
       <species id="A_S" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
       <species id="A_A" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
       <species id="A_B" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
@@ -454,6 +454,7 @@
       <species id="B_C" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
       <species id="B_X" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
       <species id="B_P" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="Single_Sex" compartment="default_compartment" initialConcentration="4" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
       <species id="C_S" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
       <species id="C_A" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
       <species id="C_B" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
@@ -709,7 +710,7 @@
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <ci> dG </ci>
-            <ci> Global_Sex </ci>
+            <ci> Community_Sex </ci>
             <cn type="integer"> 1 </cn>
             <ci> A_S </ci>
             <cn type="integer"> 1 </cn>
@@ -870,7 +871,7 @@
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <ci> dG </ci>
-            <ci> Global_Sex </ci>
+            <ci> Community_Sex </ci>
             <cn type="integer"> 1 </cn>
             <ci> B_S </ci>
             <cn type="integer"> 1 </cn>
@@ -1031,7 +1032,7 @@
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <ci> dG </ci>
-            <ci> Global_Sex </ci>
+            <ci> Single_Sex </ci>
             <cn type="integer"> 1 </cn>
             <ci> C_S </ci>
             <cn type="integer"> 1 </cn>
@@ -2477,7 +2478,7 @@
     <listOfReactions>
       <reaction id="A_Sex_uptake" reversible="true" fast="false">
         <listOfProducts>
-          <speciesReference species="Global_Sex" stoichiometry="1" constant="true"/>
+          <speciesReference species="Community_Sex" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -2485,14 +2486,14 @@
               <times/>
               <ci> A_is_on_Sex_uptake </ci>
               <cn type="integer"> 1000000 </cn>
-              <ci> Global_Sex </ci>
+              <ci> Community_Sex </ci>
             </apply>
           </math>
         </kineticLaw>
       </reaction>
       <reaction id="A_R1" reversible="true" fast="false">
         <listOfReactants>
-          <speciesReference species="Global_Sex" stoichiometry="1" constant="true"/>
+          <speciesReference species="Community_Sex" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="A_S" stoichiometry="1" constant="true"/>
@@ -2504,7 +2505,7 @@
               <ci> A_is_on_R1 </ci>
               <ci> E_conc_R1 </ci>
               <ci> global_k_cat_R1 </ci>
-              <ci> Global_Sex </ci>
+              <ci> Community_Sex </ci>
               <ci> A_S </ci>
               <ci> global_k_Sex_R1 </ci>
               <ci> global_k_S_R1 </ci>
@@ -2694,7 +2695,7 @@
       </reaction>
       <reaction id="B_Sex_uptake" reversible="true" fast="false">
         <listOfProducts>
-          <speciesReference species="Global_Sex" stoichiometry="1" constant="true"/>
+          <speciesReference species="Community_Sex" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -2702,14 +2703,14 @@
               <times/>
               <ci> B_is_on_Sex_uptake </ci>
               <cn type="integer"> 1000000 </cn>
-              <ci> Global_Sex </ci>
+              <ci> Community_Sex </ci>
             </apply>
           </math>
         </kineticLaw>
       </reaction>
       <reaction id="B_R1" reversible="true" fast="false">
         <listOfReactants>
-          <speciesReference species="Global_Sex" stoichiometry="1" constant="true"/>
+          <speciesReference species="Community_Sex" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="B_S" stoichiometry="1" constant="true"/>
@@ -2721,7 +2722,7 @@
               <ci> B_is_on_R1 </ci>
               <ci> E_conc_R1 </ci>
               <ci> global_k_cat_R1 </ci>
-              <ci> Global_Sex </ci>
+              <ci> Community_Sex </ci>
               <ci> B_S </ci>
               <ci> global_k_Sex_R1 </ci>
               <ci> global_k_S_R1 </ci>
@@ -2911,7 +2912,7 @@
       </reaction>
       <reaction id="C_Sex_uptake" reversible="true" fast="false">
         <listOfProducts>
-          <speciesReference species="Global_Sex" stoichiometry="1" constant="true"/>
+          <speciesReference species="Single_Sex" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -2919,14 +2920,14 @@
               <times/>
               <ci> C_is_on_Sex_uptake </ci>
               <cn type="integer"> 1000000 </cn>
-              <ci> Global_Sex </ci>
+              <ci> Single_Sex </ci>
             </apply>
           </math>
         </kineticLaw>
       </reaction>
       <reaction id="C_R1" reversible="true" fast="false">
         <listOfReactants>
-          <speciesReference species="Global_Sex" stoichiometry="1" constant="true"/>
+          <speciesReference species="Single_Sex" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="C_S" stoichiometry="1" constant="true"/>
@@ -2938,7 +2939,7 @@
               <ci> C_is_on_R1 </ci>
               <ci> E_conc_R1 </ci>
               <ci> global_k_cat_R1 </ci>
-              <ci> Global_Sex </ci>
+              <ci> Single_Sex </ci>
               <ci> C_S </ci>
               <ci> global_k_Sex_R1 </ci>
               <ci> global_k_S_R1 </ci>

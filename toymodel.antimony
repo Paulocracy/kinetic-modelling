@@ -158,9 +158,9 @@ model all_pathways
   # Single compartment
   C: single_pathway();
 
-  A.Sex is Global_Sex
-  B.Sex is Global_Sex
-  C.Sex is Global_Sex
+  A.Sex is Community_Sex
+  B.Sex is Community_Sex
+  C.Sex is Single_Sex
   A.Pex is Community_Pex
   B.Pex is Community_Pex
   C.Pex is Single_Pex
