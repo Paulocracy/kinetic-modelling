@@ -577,6 +577,7 @@
       <parameter id="community_A_to_single_metabolite_X_ratio" constant="false"/>
       <parameter id="community_B_to_single_metabolite_X_ratio" constant="false"/>
       <parameter id="community_B_to_community_A_metabolite_X_ratio" constant="false"/>
+      <parameter id="community_A_to_community_B_metabolite_X_ratio" constant="false"/>
       <parameter id="absolute_community_flux_advantage" constant="false"/>
       <parameter id="relative_community_flux_advantage" constant="false"/>
       <parameter id="community_flux" constant="false"/>
@@ -697,6 +698,9 @@
       <parameter id="s_sum_mdf_R6_gt" constant="false"/>
       <parameter id="s_is_R6_mmdf" constant="false"/>
       <parameter id="s_mmdf" constant="false"/>
+      <parameter id="s_mmdf_gt_c_mmdf" constant="false"/>
+      <parameter id="c_mmdf_gt_s_mmdf" constant="false"/>
+      <parameter id="total_mmdf" constant="false"/>
       <parameter id="absolute_community_mmdf_advantage" constant="false"/>
       <parameter id="relative_community_mmdf_advantage" constant="false"/>
     </listOfParameters>
@@ -1208,6 +1212,15 @@
             <divide/>
             <ci> B_X </ci>
             <ci> A_X </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="community_A_to_community_B_metabolite_X_ratio">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> A_X </ci>
+            <ci> B_X </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -2403,6 +2416,41 @@
               <times/>
               <ci> s_is_R6_mmdf </ci>
               <ci> C_mdf_R6 </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="s_mmdf_gt_c_mmdf">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <gt/>
+            <ci> s_mmdf </ci>
+            <ci> c_mmdf </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_mmdf_gt_s_mmdf">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <gt/>
+            <ci> c_mmdf </ci>
+            <ci> s_mmdf </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="total_mmdf">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <apply>
+              <times/>
+              <ci> s_mmdf_gt_c_mmdf </ci>
+              <ci> s_mmdf </ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci> c_mmdf_gt_s_mmdf </ci>
+              <ci> c_mmdf </ci>
             </apply>
           </apply>
         </math>

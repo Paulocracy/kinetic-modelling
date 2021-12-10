@@ -13,7 +13,8 @@ from helper import ensure_folder_existence, get_main_statistics, json_write, sav
 def sample(model: rr.RoadRunner,
            selections: List[str],
            sampled_values: Dict[str, float],
-           max_scaling: float):
+           max_scaling: float,
+           min_flux: float):
     is_not_stable = True
     while is_not_stable:
         # Change values randomly
@@ -53,12 +54,18 @@ def sample(model: rr.RoadRunner,
                 break
             current_index += 1
 
-    last_result = result[-1,:]
-    result_dict = {}
-    current_index = 0
-    while current_index < len(selections):
-        result_dict[selections[current_index]] = last_result[current_index]
-        current_index += 1
+        if is_not_stable:
+            continue
+
+        last_result = result[-1,:]
+        result_dict = {}
+        current_index = 0
+        while current_index < len(selections):
+            result_dict[selections[current_index]] = last_result[current_index]
+            current_index += 1
+
+        if (result_dict["community_flux"] < min_flux) or (result_dict["single_flux"] < min_flux):
+            is_not_stable = True
 
     return result_dict
 
@@ -76,11 +83,13 @@ selections = [
     "time",
     "c_mmdf",
     "s_mmdf",
+    "total_mmdf",
     "absolute_community_mmdf_advantage",
     "relative_community_mmdf_advantage",
     "community_A_to_single_metabolite_X_ratio",
     "community_B_to_single_metabolite_X_ratio",
     "community_B_to_community_A_metabolite_X_ratio",
+    "community_A_to_community_B_metabolite_X_ratio",
     "absolute_community_flux_advantage",
     "relative_community_flux_advantage",
     "community_flux",
@@ -96,10 +105,11 @@ original_parameter_values: Dict[str, float] = {
     key: model[key] for key in sampled_parameter_ids
 }
 
-num_samples = 100_000
+min_flux = 0.01
+num_samples = 25_000
 max_scaling = 100
 futures = [
-    sample.remote(model, selections, original_parameter_values, max_scaling=100)
+    sample.remote(model, selections, original_parameter_values, max_scaling, min_flux)
     for i in range(num_samples)
 ]
 import time
@@ -117,6 +127,8 @@ plotfolder = "./statistics/"
 ensure_folder_existence(plotfolder)
 # HISTOGRAMS
 for key in selections:
+    if key == "time":
+        continue
     save_histogram(
         path=plotfolder+"histogram_"+key+".png",
         data=results_list_dict[key],
@@ -131,7 +143,9 @@ pairs = [
     ("community_flux", "single_flux"),
     ("relative_community_mmdf_advantage", "relative_community_flux_advantage"),
     ("community_A_to_single_metabolite_X_ratio", "relative_community_flux_advantage"),
+    ("community_B_to_single_metabolite_X_ratio", "relative_community_flux_advantage"),
     ("community_B_to_community_A_metabolite_X_ratio", "relative_community_flux_advantage"),
+    ("community_A_to_community_B_metabolite_X_ratio", "relative_community_flux_advantage"),
 ]
 
 for pair in pairs:
@@ -146,6 +160,8 @@ for pair in pairs:
 
 # TEXT STATISTICS
 for key in selections:
+    if key == "time":
+        continue
     text_statistics = get_main_statistics(results_list_dict[key], key)
     with open(plotfolder+"statistics_"+key+".txt", "w") as f:
         f.write(text_statistics)
