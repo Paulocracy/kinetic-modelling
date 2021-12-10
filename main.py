@@ -116,7 +116,7 @@ original_parameter_values: Dict[str, float] = {
     key: model[key] for key in sampled_parameter_ids
 }
 min_flux = 0.01
-num_samples = 50_000
+num_samples = 10_000
 max_scaling = 1000
 futures = [
     sample.remote(model, selections, original_parameter_values, max_scaling, min_flux)
