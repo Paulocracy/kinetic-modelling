@@ -152,6 +152,8 @@ pairs = [
     ("community_A_to_community_B_metabolite_X_ratio", "community_flux"),
     ("community_A_to_single_metabolite_X_ratio", "single_flux"),
     ("community_B_to_single_metabolite_X_ratio", "single_flux"),
+    ("relative_community_flux_advantage", "community_B_to_community_A_metabolite_X_ratio"),
+    ("relative_community_flux_advantage", "community_A_to_community_B_metabolite_X_ratio"),
 ]
 
 for pair in pairs:
