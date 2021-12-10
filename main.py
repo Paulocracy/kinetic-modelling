@@ -106,7 +106,7 @@ original_parameter_values: Dict[str, float] = {
 }
 
 min_flux = 0.01
-num_samples = 25_000
+num_samples = 10_000
 max_scaling = 100
 futures = [
     sample.remote(model, selections, original_parameter_values, max_scaling, min_flux)
@@ -146,6 +146,12 @@ pairs = [
     ("community_B_to_single_metabolite_X_ratio", "relative_community_flux_advantage"),
     ("community_B_to_community_A_metabolite_X_ratio", "relative_community_flux_advantage"),
     ("community_A_to_community_B_metabolite_X_ratio", "relative_community_flux_advantage"),
+    ("community_A_to_community_B_metabolite_X_ratio", "absolute_community_flux_advantage"),
+    ("community_B_to_community_A_metabolite_X_ratio", "absolute_community_flux_advantage"),
+    ("community_B_to_community_A_metabolite_X_ratio", "community_flux"),
+    ("community_A_to_community_B_metabolite_X_ratio", "community_flux"),
+    ("community_A_to_single_metabolite_X_ratio", "single_flux"),
+    ("community_B_to_single_metabolite_X_ratio", "single_flux"),
 ]
 
 for pair in pairs:
