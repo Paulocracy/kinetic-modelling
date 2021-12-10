@@ -67,6 +67,14 @@ def sample(model: rr.RoadRunner,
         if (result_dict["community_flux"] < min_flux) or (result_dict["single_flux"] < min_flux):
             is_not_stable = True
 
+    if (result_dict["relative_community_flux_advantage"] > 3):
+        print("relative_community_flux_advantage", result_dict["relative_community_flux_advantage"])
+        print("A_X", result_dict["A_X"])
+        print("B_X", result_dict["B_X"])
+        print("C_X", result_dict["C_X"])
+        print("community_B_to_community_A_metabolite_X_ratio", result_dict["community_B_to_community_A_metabolite_X_ratio"])
+        print("community_A_to_community_B_metabolite_X_ratio", result_dict["community_A_to_community_B_metabolite_X_ratio"])
+
     return result_dict
 
 
@@ -116,7 +124,7 @@ original_parameter_values: Dict[str, float] = {
     key: model[key] for key in sampled_parameter_ids
 }
 min_flux = 0.01
-num_samples = 10_000
+num_samples = 5_000
 max_scaling = 1000
 futures = [
     sample.remote(model, selections, original_parameter_values, max_scaling, min_flux)
