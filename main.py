@@ -114,6 +114,18 @@ selections = [
     "B_X",
     "A_X",
     "C_X",
+    "A_dG_R1",
+    "A_dG_R2",
+    "A_dG_R3",
+    "B_dG_R4",
+    "B_dG_R5",
+    "B_dG_R6",
+    "C_dG_R1",
+    "C_dG_R2",
+    "C_dG_R3",
+    "C_dG_R4",
+    "C_dG_R5",
+    "C_dG_R6",
 ]
 string_keys: List[str] = [
     key for key in model.keys() if type(key) is str
@@ -134,6 +146,7 @@ futures = [
 import time
 x = time.time()
 results = ray.get(futures)
+random.seed(1234567890)
 
 results_list_dict = {}
 for key in selections:
@@ -175,6 +188,10 @@ pairs = [
     ("relative_community_flux_advantage", "community_A_to_community_B_metabolite_X_ratio"),
     ("relative_community_mmdf_advantage", "community_A_to_community_B_metabolite_X_ratio"),
     ("relative_community_mmdf_advantage", "community_B_to_community_A_metabolite_X_ratio"),
+    ("A_dG_R2", "relative_community_flux_advantage"),
+    ("A_dG_R3", "relative_community_flux_advantage"),
+    ("B_dG_R4", "relative_community_flux_advantage"),
+    ("B_dG_R5", "relative_community_flux_advantage"),
 ]
 
 for pair in pairs:
