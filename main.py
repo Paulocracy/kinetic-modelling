@@ -102,6 +102,9 @@ selections = [
     "B_R2",
     "B_R3",
     "B_Sex_uptake",
+    "B_X",
+    "A_X",
+    "C_X",
 ]
 string_keys: List[str] = [
     key for key in model.keys() if type(key) is str
