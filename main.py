@@ -156,18 +156,21 @@ original_parameter_values: Dict[str, float] = {
     key: model[key] for key in sampled_parameter_ids
 }
 min_flux = 0.01
-num_samples = 10_000
 max_scaling = 1000
-futures = [
-    sample.remote(model, selections, original_parameter_values, max_scaling, min_flux)
-    for i in range(num_samples)
-]
-import time
-x = time.time()
-results = ray.get(futures)
-random.seed(234567890)
+num_batches = 10
+num_runs_per_batch = 10_000
+results: List[Dict[str, float]] = []
+for _ in range(num_batches):
+    futures = [
+        sample.remote(model, selections, original_parameter_values, max_scaling, min_flux)
+        for i in range(num_runs_per_batch)
+    ]
+    new_results = ray.get(futures)
+    results += new_results
 
-results_list_dict = {}
+random.seed(34567890)
+
+results_list_dict: Dict[str, List[float]] = {}
 for key in selections + ["extra_data"]:
     results_list_dict[key] = []
 for result in results:
