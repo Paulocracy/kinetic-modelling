@@ -152,8 +152,8 @@ selections = [
     "is_community_advantageous_with_b_x_gt_a_x_B",
     "is_community_advantageous_with_a_x_gt_b_x_B",
     "community_advantage_with_b_x_gt_a_x",
-    "community_advantage_with_b_x_gt_a_x",
-    "community_advantage_with_a_x_gt_b_x_B",
+    "community_advantage_with_b_x_gt_a_x_B",
+    "community_advantage_with_a_x_gt_b_x",
     "community_advantage_with_a_x_gt_b_x_B",
 ] + [x for x in model.keys() if x.startswith("global_")]
 string_keys: List[str] = [
