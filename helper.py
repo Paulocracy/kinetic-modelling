@@ -227,6 +227,13 @@ def get_main_statistics(data: List[float], name: str) -> str:
     output += f"# =1.0: {num_eq_1}\n"
     output += f"# <1.0: {num_lt_1}\n"
 
+    data_wo_zero = [x for x in data if x != 1.0]
+    if len(data_wo_zero) > 0:
+        output += f"MEAN IF NOT ZERO: {statistics.mean(data_wo_zero)}\n"
+        output += f"MEDIAN IF NOT ZERO: {statistics.median(data_wo_zero)}\n"
+        output += f"MIN IF NOT ZERO: {min(data_wo_zero)}\n"
+        output += f"MAX IF NOT ZERO: {max(data_wo_zero)}\n"
+
     output += "\n"
 
     return output
