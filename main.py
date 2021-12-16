@@ -167,8 +167,8 @@ original_parameter_values: Dict[str, float] = {
 }
 min_flux = 0.01
 max_scaling = 1000
-num_batches = 1
-num_runs_per_batch = 5_000
+num_batches = 2
+num_runs_per_batch = 10_000
 results: List[Dict[str, float]] = []
 for _ in range(num_batches):
     futures = [
@@ -178,7 +178,7 @@ for _ in range(num_batches):
     new_results = ray.get(futures)
     results += new_results
 
-random.seed(1232132)
+random.seed(23432234)
 
 results_list_dict: Dict[str, List[float]] = {}
 for key in selections + ["extra_data"]:
@@ -240,7 +240,7 @@ for key in selections:
 complete_extra_data = ""
 for result in results_list_dict["extra_data"]:
     complete_extra_data += result
-with open("extra_data.txt", "w") as f:
+with open(plotfolder+"extra_data.txt", "w") as f:
     f.write(complete_extra_data)
 
-json_zip_write("./TEST.json", results_list_dict)
+json_zip_write(plotfolder+"TEST.json", results_list_dict)
