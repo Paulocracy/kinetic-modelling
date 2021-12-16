@@ -148,6 +148,9 @@ selections = [
     "is_community_advantageous",
     "is_community_advantageous_with_b_x_gt_a_x",
     "is_community_advantageous_with_a_x_gt_b_x",
+    "is_community_advantageous_B",
+    "is_community_advantageous_with_b_x_gt_a_x_B",
+    "is_community_advantageous_with_a_x_gt_b_x"_B,
 ] + [x for x in model.keys() if x.startswith("global_")]
 string_keys: List[str] = [
     key for key in model.keys() if type(key) is str
@@ -161,7 +164,7 @@ original_parameter_values: Dict[str, float] = {
 min_flux = 0.01
 max_scaling = 1000
 num_batches = 1
-num_runs_per_batch = 10_000
+num_runs_per_batch = 5_000
 results: List[Dict[str, float]] = []
 for _ in range(num_batches):
     futures = [

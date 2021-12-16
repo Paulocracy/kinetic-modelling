@@ -482,4 +482,11 @@ model all_pathways
   is_community_advantageous := gt(relative_community_flux_advantage, 1.0)
   is_community_advantageous_with_b_x_gt_a_x := is_b_x_gt_a_x * is_community_advantageous
   is_community_advantageous_with_a_x_gt_b_x := is_a_x_gt_b_x * is_community_advantageous
+
+  # Extra statistics B
+  is_a_x_gt_b_x_B := gt(community_A_to_community_B_metabolite_X_ratio, 1.01)
+  is_b_x_gt_a_x_B := gt(community_B_to_community_A_metabolite_X_ratio, 1.01)
+  is_community_advantageous_B := gt(relative_community_flux_advantage, 1.01)
+  is_community_advantageous_with_b_x_gt_a_x_B := is_b_x_gt_a_x_B * is_community_advantageous_B
+  is_community_advantageous_with_a_x_gt_b_x_B := is_a_x_gt_b_x_B * is_community_advantageous_B
 end
