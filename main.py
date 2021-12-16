@@ -160,8 +160,8 @@ original_parameter_values: Dict[str, float] = {
 }
 min_flux = 0.01
 max_scaling = 1000
-num_batches = 5
-num_runs_per_batch = 10
+num_batches = 1
+num_runs_per_batch = 10_000
 results: List[Dict[str, float]] = []
 for _ in range(num_batches):
     futures = [
