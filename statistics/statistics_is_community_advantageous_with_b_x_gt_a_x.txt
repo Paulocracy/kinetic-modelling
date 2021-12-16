@@ -1,0 +1,16 @@
+==is_community_advantageous_with_b_x_gt_a_x==
+MEAN: 0.31895
+MEDIAN: 0.0
+MAX: 1.0
+MIN: 0.0
+# POSITIVE: 6379
+# ZERO: 13621
+# NEGATIVE: 0
+# >1.0: 0
+# =1.0: 6379
+# <1.0: 13621
+MEAN IF NOT ZERO: 0.0
+MEDIAN IF NOT ZERO: 0.0
+MIN IF NOT ZERO: 0.0
+MAX IF NOT ZERO: 0.0
+
