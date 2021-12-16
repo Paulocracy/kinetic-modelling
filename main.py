@@ -145,7 +145,10 @@ selections = [
     "C_dG_R4",
     "C_dG_R5",
     "C_dG_R6",
-]
+    "is_community_advantageous",
+    "is_community_advantageous_with_b_x_gt_a_x",
+    "is_community_advantageous_with_a_x_gt_b_x",
+] + [x for x in model.keys() if x.startswith("global_")]
 string_keys: List[str] = [
     key for key in model.keys() if type(key) is str
 ]
@@ -158,7 +161,7 @@ original_parameter_values: Dict[str, float] = {
 min_flux = 0.01
 max_scaling = 1000
 num_batches = 5
-num_runs_per_batch = 10_000
+num_runs_per_batch = 10
 results: List[Dict[str, float]] = []
 for _ in range(num_batches):
     futures = [
@@ -206,7 +209,7 @@ pairs = [
     ("relative_community_flux_advantage", "community_A_to_community_B_metabolite_X_ratio"),
     ("community_flux", "relative_community_flux_advantage"),
     ("single_flux", "relative_community_flux_advantage"),
-]
+] + [(x, "relative_community_flux_advantage") for x in selections if x.startswith("global_")]
 
 for pair in pairs:
     save_xy_point_plot(

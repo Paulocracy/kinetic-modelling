@@ -704,6 +704,11 @@
       <parameter id="total_mmdf" constant="false"/>
       <parameter id="absolute_community_mmdf_advantage" constant="false"/>
       <parameter id="relative_community_mmdf_advantage" constant="false"/>
+      <parameter id="is_a_x_gt_b_x" constant="false"/>
+      <parameter id="is_b_x_gt_a_x" constant="false"/>
+      <parameter id="is_community_advantageous" constant="false"/>
+      <parameter id="is_community_advantageous_with_b_x_gt_a_x" constant="false"/>
+      <parameter id="is_community_advantageous_with_a_x_gt_b_x" constant="false"/>
     </listOfParameters>
     <listOfRules>
       <assignmentRule variable="A_dG_R1">
@@ -2471,6 +2476,51 @@
             <divide/>
             <ci> c_mmdf </ci>
             <ci> s_mmdf </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="is_a_x_gt_b_x">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <gt/>
+            <ci> community_A_to_community_B_metabolite_X_ratio </ci>
+            <cn type="integer"> 1 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="is_b_x_gt_a_x">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <gt/>
+            <ci> community_B_to_community_A_metabolite_X_ratio </ci>
+            <cn type="integer"> 1 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="is_community_advantageous">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <gt/>
+            <ci> relative_community_flux_advantage </ci>
+            <cn type="integer"> 1 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="is_community_advantageous_with_b_x_gt_a_x">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> is_b_x_gt_a_x </ci>
+            <ci> is_community_advantageous </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="is_community_advantageous_with_a_x_gt_b_x">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> is_a_x_gt_b_x </ci>
+            <ci> is_community_advantageous </ci>
           </apply>
         </math>
       </assignmentRule>

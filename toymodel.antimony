@@ -475,4 +475,11 @@ model all_pathways
 
   absolute_community_mmdf_advantage := c_mmdf - s_mmdf
   relative_community_mmdf_advantage := c_mmdf / s_mmdf
+
+  # Extra statistics
+  is_a_x_gt_b_x := gt(community_A_to_community_B_metabolite_X_ratio, 1.0)
+  is_b_x_gt_a_x := gt(community_B_to_community_A_metabolite_X_ratio, 1.0)
+  is_community_advantageous := gt(relative_community_flux_advantage, 1.0)
+  is_community_advantageous_with_b_x_gt_a_x := is_b_x_gt_a_x * is_community_advantageous
+  is_community_advantageous_with_a_x_gt_b_x := is_a_x_gt_b_x * is_community_advantageous
 end
