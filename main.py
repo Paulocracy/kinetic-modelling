@@ -167,7 +167,7 @@ original_parameter_values: Dict[str, float] = {
 }
 min_flux = 0.01
 max_scaling = 1000
-num_batches = 2
+num_batches = 5
 num_runs_per_batch = 10_000
 results: List[Dict[str, float]] = []
 for _ in range(num_batches):
@@ -178,7 +178,7 @@ for _ in range(num_batches):
     new_results = ray.get(futures)
     results += new_results
 
-random.seed(23432234)
+random.seed(5454542)
 
 results_list_dict: Dict[str, List[float]] = {}
 for key in selections + ["extra_data"]:
