@@ -7,7 +7,7 @@ import roadrunner as rr
 from multiprocessing import cpu_count
 from tellurium.tellurium import model
 from typing import Any, Dict, List
-from helper import ensure_folder_existence, get_main_statistics, json_write, save_histogram, save_xy_point_plot
+from helper import ensure_folder_existence, get_main_statistics, json_write, json_zip_write, save_histogram, save_xy_point_plot
 
 @ray.remote
 def sample(model: rr.RoadRunner,
@@ -178,7 +178,7 @@ for _ in range(num_batches):
     new_results = ray.get(futures)
     results += new_results
 
-random.seed(3434242)
+random.seed(1232132)
 
 results_list_dict: Dict[str, List[float]] = {}
 for key in selections + ["extra_data"]:
@@ -242,3 +242,5 @@ for result in results_list_dict["extra_data"]:
     complete_extra_data += result
 with open("extra_data.txt", "w") as f:
     f.write(complete_extra_data)
+
+json_zip_write("./TEST.json", results_list_dict)
