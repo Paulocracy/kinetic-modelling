@@ -709,11 +709,15 @@
       <parameter id="is_community_advantageous" constant="false"/>
       <parameter id="is_community_advantageous_with_b_x_gt_a_x" constant="false"/>
       <parameter id="is_community_advantageous_with_a_x_gt_b_x" constant="false"/>
+      <parameter id="community_advantage_with_b_x_gt_a_x" constant="false"/>
+      <parameter id="community_advantage_with_a_x_gt_b_x" constant="false"/>
       <parameter id="is_a_x_gt_b_x_B" constant="false"/>
       <parameter id="is_b_x_gt_a_x_B" constant="false"/>
       <parameter id="is_community_advantageous_B" constant="false"/>
       <parameter id="is_community_advantageous_with_b_x_gt_a_x_B" constant="false"/>
       <parameter id="is_community_advantageous_with_a_x_gt_b_x_B" constant="false"/>
+      <parameter id="community_advantage_with_b_x_gt_a_x_B" constant="false"/>
+      <parameter id="community_advantage_with_a_x_gt_b_x_B" constant="false"/>
     </listOfParameters>
     <listOfRules>
       <assignmentRule variable="A_dG_R1">
@@ -2529,6 +2533,24 @@
           </apply>
         </math>
       </assignmentRule>
+      <assignmentRule variable="community_advantage_with_b_x_gt_a_x">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> relative_community_flux_advantage </ci>
+            <ci> is_community_advantageous_with_b_x_gt_a_x </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="community_advantage_with_a_x_gt_b_x">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> relative_community_flux_advantage </ci>
+            <ci> is_community_advantageous_with_a_x_gt_b_x </ci>
+          </apply>
+        </math>
+      </assignmentRule>
       <assignmentRule variable="is_a_x_gt_b_x_B">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
@@ -2571,6 +2593,24 @@
             <times/>
             <ci> is_a_x_gt_b_x_B </ci>
             <ci> is_community_advantageous_B </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="community_advantage_with_b_x_gt_a_x_B">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> relative_community_flux_advantage </ci>
+            <ci> is_community_advantageous_with_b_x_gt_a_x_B </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="community_advantage_with_a_x_gt_b_x_B">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> relative_community_flux_advantage </ci>
+            <ci> is_community_advantageous_with_a_x_gt_b_x_B </ci>
           </apply>
         </math>
       </assignmentRule>

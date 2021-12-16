@@ -1,0 +1,12 @@
+==community_advantage_with_b_x_gt_a_x==
+MEAN: 0.36203452413241816
+MEDIAN: 0.0
+MAX: 3.153882178569848
+MIN: 0.0
+# POSITIVE: 1600
+# ZERO: 3400
+# NEGATIVE: 0
+# >1.0: 1600
+# =1.0: 0
+# <1.0: 3400
+

@@ -1,0 +1,12 @@
+==is_community_advantageous_B==
+MEAN: 0.3474
+MEDIAN: 0.0
+MAX: 1.0
+MIN: 0.0
+# POSITIVE: 1737
+# ZERO: 3263
+# NEGATIVE: 0
+# >1.0: 0
+# =1.0: 1737
+# <1.0: 3263
+
