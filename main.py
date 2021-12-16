@@ -69,8 +69,8 @@ def sample(model: rr.RoadRunner,
             is_not_stable = True
 
     if (result_dict["relative_community_flux_advantage"] > 3):
-        extra_data = "==="
-        extra_data += "relative_community_flux_advantage" + str(result_dict["relative_community_flux_advantage"]) + "\n"
+        extra_data = "===\n"
+        extra_data += "relative_community_flux_advantage " + str(result_dict["relative_community_flux_advantage"]) + "\n"
         extra_data += "A_X " + str(result_dict["A_X"]) + "\n"
         extra_data += "B_X " + str(result_dict["B_X"]) + "\n"
         extra_data += "C_X " + str(result_dict["C_X"]) + "\n"

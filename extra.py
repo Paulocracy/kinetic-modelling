@@ -1,5 +1,5 @@
 from helper import json_zip_load
-dictionary = json_zip_load("./TEST.json")
+dictionary = json_zip_load("./statistics_20000/TEST.json")
 
 rel_flux_adv = dictionary["relative_community_flux_advantage"]
 abs_flux_adv = dictionary["absolute_community_flux_advantage"]
