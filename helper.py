@@ -206,6 +206,17 @@ def save_histogram(path: str, data: List[float], title: str, xlabel: str, ylabel
         plt.savefig(path)
 
 
+def save_boxplot(path: str, data: List[float], title: str, xlabel: str, ylabel: str, clear_previous_figure: bool=True) -> None:
+    if clear_previous_figure:
+        plt.clf()
+    plt.boxplot(data)
+    plt.title(title)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    if path != "":
+        plt.savefig(path)
+
+
 def get_main_statistics(data: List[float], name: str) -> str:
     num_positive = sum([x>0.0 for x in data])
     num_zero = sum([x==0.0 for x in data])
