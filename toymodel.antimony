@@ -90,7 +90,8 @@ model single_pathway()
     substanceOnly species C = 1e-6
     substanceOnly species X = 1e-6
     substanceOnly species P = 1e-6
-    substanceOnly species Pex = 1e-6
+    const substanceOnly species Pex = 2
+    # substanceOnly species Pex = 1e-6
     substanceOnly species Bex = 1e-6
 
 

@@ -81,6 +81,8 @@ def sample(model: rr.RoadRunner,
         extra_data += "B_C " + str(result_dict["B_C"]) + "\n"
         extra_data += "B_P " + str(result_dict["B_P"]) + "\n"
         extra_data += "C_X " + str(result_dict["C_X"]) + "\n"
+        extra_data += "Community_Pex " + str(result_dict["Community_Pex"]) + "\n"
+        extra_data += "Single_Pex " + str(result_dict["Single_Pex"]) + "\n"
         extra_data += "community_B_to_community_A_metabolite_X_ratio " + str(result_dict["community_B_to_community_A_metabolite_X_ratio"]) + "\n"
         extra_data += "community_A_to_community_B_metabolite_X_ratio " + str(result_dict["community_A_to_community_B_metabolite_X_ratio"]) + "\n"
         extra_data += "community_flux " + str(result_dict["community_flux"]) + "\n"
@@ -155,6 +157,8 @@ selections = [
     "community_advantage_with_b_x_gt_a_x_B",
     "community_advantage_with_a_x_gt_b_x",
     "community_advantage_with_a_x_gt_b_x_B",
+    "Community_Pex",
+    "Single_Pex",
 ] + [x for x in model.keys() if x.startswith("global_")]
 string_keys: List[str] = [
     key for key in model.keys() if type(key) is str
@@ -165,7 +169,7 @@ sampled_parameter_ids = [
 original_parameter_values: Dict[str, float] = {
     key: model[key] for key in sampled_parameter_ids
 }
-min_flux = 0.01
+min_flux = 1.0
 max_scaling = 1000
 num_batches = 5
 num_runs_per_batch = 10_000
