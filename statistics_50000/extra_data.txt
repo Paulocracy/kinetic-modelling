@@ -609,4 +609,3 @@ community_B_to_community_A_metabolite_X_ratio 0.015365784780067391
 community_A_to_community_B_metabolite_X_ratio 65.07965680328982
 community_flux 0.09059043862542017
 single_flux 0.02892195577122991
-
