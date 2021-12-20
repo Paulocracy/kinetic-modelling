@@ -33,8 +33,8 @@ def sample(model: rr.RoadRunner,
         # Run simulation
         try:
             result = model.simulate(0, 500, 1000, selections=selections)
-        except RuntimeError:
-            print("Runtime error")
+        except RuntimeError as e:
+            print(f"Tellurium runtime error: {e}")
             continue
 
         # Convergence test
@@ -94,14 +94,11 @@ def sample(model: rr.RoadRunner,
     return result_dict
 
 
-
-# matplotlib.use('TkAgg')
-ray.init(num_cpus=cpu_count())
-
 model = te.loada("toymodel.antimony")
 
 with open("toymodel.cps", "w") as f:
     f.write(model.getSBML())
+    print("Exported!")
 
 selections = [
     "time",
@@ -110,53 +107,48 @@ selections = [
     "total_mmdf",
     "absolute_community_mmdf_advantage",
     "relative_community_mmdf_advantage",
-    "community_A_to_single_metabolite_X_ratio",
-    "community_B_to_single_metabolite_X_ratio",
-    "community_B_to_community_A_metabolite_X_ratio",
-    "community_A_to_community_B_metabolite_X_ratio",
+    "CS1_to_CS2_X_ratio",
+    "CS2_to_CS1_X_ratio",
+    "CS1_to_SS1_X_ratio",
+    "CS2_to_SS1_X_ratio",
     "absolute_community_flux_advantage",
     "relative_community_flux_advantage",
     "community_flux",
     "single_flux",
-    "A_R4",
-    "A_R5",
-    "A_R6",
-    "A_Pex_secretion",
-    "B_R1",
-    "B_R2",
-    "B_R3",
-    "B_Sex_uptake",
-    "B_X",
-    "A_X",
-    "C_X",
-    "A_S",
-    "A_A",
-    "A_B",
-    "B_B",
-    "B_C",
-    "B_P",
-    "A_dG_R1",
-    "A_dG_R2",
-    "A_dG_R3",
-    "B_dG_R4",
-    "B_dG_R5",
-    "B_dG_R6",
-    "C_dG_R1",
-    "C_dG_R2",
-    "C_dG_R3",
-    "C_dG_R4",
-    "C_dG_R5",
-    "C_dG_R6",
+    "CS1_R4",
+    "CS1_R5",
+    "CS1_R6",
+    "CS1_Sex_uptake",
+    "CS2_R1",
+    "CS2_R2",
+    "CS2_R3",
+    "CS2_Pex_secretion",
+    "CS2_X",
+    "CS1_X",
+    "SS1_X",
+    "CS1_S",
+    "CS1_A",
+    "CS1_B",
+    "CS2_B",
+    "CS2_C",
+    "CS2_P",
+    "CS1_dG_R1",
+    "CS1_dG_R2",
+    "CS1_dG_R3",
+    "CS2_dG_R4",
+    "CS2_dG_R5",
+    "CS2_dG_R6",
+    "SS1_dG_R1",
+    "SS1_dG_R2",
+    "SS1_dG_R3",
+    "SS1_dG_R4",
+    "SS1_dG_R5",
+    "SS1_dG_R6",
     "is_community_advantageous",
-    "is_community_advantageous_with_b_x_gt_a_x",
-    "is_community_advantageous_with_a_x_gt_b_x",
-    "is_community_advantageous_B",
-    "is_community_advantageous_with_b_x_gt_a_x_B",
-    "is_community_advantageous_with_a_x_gt_b_x_B",
-    "community_advantage_with_b_x_gt_a_x",
-    "community_advantage_with_b_x_gt_a_x_B",
-    "community_advantage_with_a_x_gt_b_x",
-    "community_advantage_with_a_x_gt_b_x_B",
+    "is_community_advantageous_with_CS2_X_gt_CS1_X",
+    "is_community_advantageous_with_CS1_X_gt_CS2_X",
+    "community_advantage_with_CS2_X_gt_CS1_X",
+    "community_advantage_with_CS1_X_gt_CS2_X",
     "Community_Pex",
     "Single_Pex",
 ] + [x for x in model.keys() if x.startswith("global_")]
@@ -171,9 +163,11 @@ original_parameter_values: Dict[str, float] = {
 }
 min_flux = 1.0
 max_scaling = 1000
-num_batches = 5
-num_runs_per_batch = 10_000
+num_batches = 1
+num_runs_per_batch = 100
 results: List[Dict[str, float]] = []
+# matplotlib.use('TkAgg')
+ray.init(num_cpus=cpu_count())
 for _ in range(num_batches):
     futures = [
         sample.remote(model, selections, original_parameter_values, max_scaling, min_flux)
@@ -210,14 +204,14 @@ pairs = [
     ("c_mmdf", "s_mmdf"),
     ("community_flux", "single_flux"),
     ("relative_community_mmdf_advantage", "relative_community_flux_advantage"),
-    ("community_A_to_single_metabolite_X_ratio", "relative_community_flux_advantage"),
-    ("community_B_to_single_metabolite_X_ratio", "relative_community_flux_advantage"),
-    ("community_B_to_community_A_metabolite_X_ratio", "community_flux"),
-    ("community_A_to_community_B_metabolite_X_ratio", "community_flux"),
-    ("community_B_to_community_A_metabolite_X_ratio", "relative_community_flux_advantage"),
-    ("community_A_to_community_B_metabolite_X_ratio", "relative_community_flux_advantage"),
-    ("relative_community_flux_advantage", "community_B_to_community_A_metabolite_X_ratio"),
-    ("relative_community_flux_advantage", "community_A_to_community_B_metabolite_X_ratio"),
+    ("CS1_to_CS2_X_ratio", "community_flux"),
+    ("CS2_to_CS1_X_ratio", "community_flux"),
+    ("CS1_to_SS1_X_ratio", "relative_community_flux_advantage"),
+    ("CS2_to_SS1_X_ratio", "relative_community_flux_advantage"),
+    ("CS1_to_CS2_X_ratio", "relative_community_flux_advantage"),
+    ("CS2_to_CS1_X_ratio", "relative_community_flux_advantage"),
+    ("relative_community_flux_advantage", "CS1_to_CS2_X_ratio"),
+    ("relative_community_flux_advantage", "CS2_to_CS1_X_ratio"),
     ("community_flux", "relative_community_flux_advantage"),
     ("single_flux", "relative_community_flux_advantage"),
 ] + [(x, "relative_community_flux_advantage") for x in selections if x.startswith("global_")]

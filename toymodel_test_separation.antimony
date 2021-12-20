@@ -1,0 +1,507 @@
+function dG(conc_S1, conc_S2, conc_P1, conc_P2, dG0, R, T)
+  ( dG0 + R * T * ln((conc_P1 * conc_P2) / (conc_S1 * conc_S2)) )
+end
+
+function dG_flux_adjusted(conc_S1, conc_S2, conc_P1, conc_P2, dG0, R, T, reaction_flux)
+  geq(reaction_flux, 0) * dG(conc_S1, conc_S2, conc_P1, conc_P2, dG0, R, T) + lt(reaction_flux, 0) * -dG(conc_S1, conc_S2, conc_P1, conc_P2, dG0, R, T)
+end
+
+
+function v_plus(is_on, conc_E, k_cat)
+  ( is_on * conc_E * k_cat )
+end
+
+function _mul(conc_1, conc_2, k_1, k_2)
+  ( (conc_1 / k_1) * (conc_2 / k_2) )
+end
+
+function kappa(conc_S1, conc_S2, conc_P1, conc_P2, k_S1, k_S2, k_P1, k_P2)
+  ( (_mul(conc_S1, conc_S2, k_S1, k_S2)) / (1 + (_mul(conc_S1, conc_S2, k_S1, k_S2)) + (_mul(conc_P1, conc_P2, k_P1, k_P2))) )
+end
+
+function gamma_rate(conc_S1, conc_S2, conc_P1, conc_P2, dG0, R, T)
+  ( 1 - exp(dG(conc_S1, conc_S2, conc_P1, conc_P2, dG0, R, T) / (R*T)) )
+end
+
+function rate_law(is_on, conc_E, k_cat, conc_S1, conc_S2, conc_P1, conc_P2, k_S1, k_S2, k_P1, k_P2, dG0, R, T)
+  v_plus(is_on, conc_E, k_cat) * kappa(conc_S1, conc_S2, conc_P1, conc_P2, k_S1, k_S2, k_P1, k_P2) * gamma_rate(conc_S1, conc_S2, conc_P1, conc_P2, dG0, R, T)
+end
+
+
+model single_pathway()
+    # Constant definitions
+    ## General
+    R = 0.008315
+    T = 298
+    ## R1
+    is_on_R1 = 1
+    E_conc_R1 = 1
+    k_cat_R1 = 6
+    k_Sex_R1 = 0.18
+    k_S_R1 = 2.5
+    dG0_R1 = 0
+    ## R2
+    is_on_R2 = 1
+    E_conc_R2 = 1
+    k_cat_R2 = 5
+    k_S_R2 = 0.4
+    k_X_R2 = 2.1
+    k_A_R2 = 3.1
+    dG0_R2 = 4
+    ## R3
+    is_on_R3 = 1
+    E_conc_R3 = 1
+    k_cat_R3 = 8
+    k_A_R3 = 4.6
+    k_X_R3 = 0.4
+    k_B_R3 = 2.5
+    dG0_R3 = -5
+    ## R4
+    is_on_R4 = 1
+    E_conc_R4 = 1
+    k_cat_R4 = 9
+    k_B_R4 = 0.5
+    k_C_R4 = 0.9
+    k_X_R4 = 3.1
+    dG0_R4 = -5
+    ## R5
+    is_on_R5 = 1
+    E_conc_R5 = 1
+    k_cat_R5 = 10
+    k_C_R5 = 1.5
+    k_X_R5 = 2.6
+    k_P_R5 = 6.8
+    dG0_R5 = 4
+    ## R6
+    is_on_R6 = 1
+    E_conc_R6 = 1
+    k_cat_R6 = 24
+    k_P_R6 = 0.01
+    k_Pex_R6 = 14
+    dG0_R6 = 0
+    ## RTB
+    is_on_RTB = 1
+    E_conc_RTB = 1
+    k_cat_RTB = 1e6
+    k_B_RTB = 2
+    k_Bex_RTB = 2
+    dG0_RTB = 0
+    ## Sex_uptake
+    is_on_Sex_uptake = 1
+    ## Pex_secretion
+    is_on_Pex_secretion = 1
+
+
+    # Metabolite initialization
+    const substanceOnly species Sex = 4
+    substanceOnly species S = 1e-6
+    substanceOnly species A = 1e-6
+    substanceOnly species B = 1e-6
+    substanceOnly species C = 1e-6
+    substanceOnly species X = 1e-6
+    substanceOnly species P = 1e-6
+    const substanceOnly species Pex = 2
+    # substanceOnly species Pex = 1e-6
+    substanceOnly species Bex = 1e-6
+
+
+    # Reactions
+    ## Sex uptake
+    Sex_uptake: -> $Sex; is_on_Sex_uptake * 1e6 * Sex
+    ## R1
+    R1: $Sex -> S;
+    R1 = rate_law(is_on_R1, E_conc_R1, k_cat_R1, Sex, 1, S, 1, k_Sex_R1, 1, k_S_R1, 1, dG0_R1, R, T)
+    ## R2
+    R2: S -> A + X;
+    R2 = rate_law(is_on_R2, E_conc_R2, k_cat_R2, S, 1, A, X, k_S_R2, 1, k_A_R2, k_X_R2, dG0_R2, R, T)
+    ## R3
+    R3: A + X -> B;
+    R3 = rate_law(is_on_R3, E_conc_R3, k_cat_R3, A, X, B, 1, k_A_R3, k_X_R3, k_B_R3, 1, dG0_R3, R, T)
+    ## R4
+    R4: B -> C + X;
+    R4 = rate_law(is_on_R4, E_conc_R4, k_cat_R4, B, 1, C, X, k_B_R4, 1, k_C_R4, k_X_R4, dG0_R4, R, T)
+    ## R5
+    R5: C + X -> P;
+    R5 = rate_law(is_on_R5, E_conc_R5, k_cat_R5, C, X, P, 1, k_C_R5, k_X_R5, k_P_R5, 1, dG0_R5, R, T)
+    ## R6
+    R6: P -> Pex;
+    R6 = rate_law(is_on_R6, E_conc_R6, k_cat_R6, P, 1, Pex, 1, k_P_R6, 1, k_Pex_R6, 1, dG0_R6, R, T)
+    ## Pex excretion
+    Pex_secretion: Pex ->; is_on_Pex_secretion * 1e6 * Pex
+    ## RTB
+    RTB: B -> Bex;
+    RTB = rate_law(is_on_RTB, E_conc_RTB, k_cat_RTB, B, 1, Bex, 1, k_B_RTB, 1, k_Bex_RTB, 1, dG0_RTB, R, T)
+
+    # dG assignments
+    dG_R1 := dG_flux_adjusted(Sex, 1, S, 1, dG0_R1, R, T, R1)
+    dG_R2 := dG_flux_adjusted(S, 1, A, X, dG0_R2, R, T, R2)
+    dG_R3 := dG_flux_adjusted(A, X, B, 1, dG0_R3, R, T, R3)
+    dG_R4 := dG_flux_adjusted(B, 1, C, X, dG0_R4, R, T, R4)
+    dG_R5 := dG_flux_adjusted(C, X, P, 1, dG0_R5, R, T, R5)
+    dG_R6 := dG_flux_adjusted(P, 1, Pex, 1, dG0_R6, R, T, R6)
+    dG_RTB := dG_flux_adjusted(B, 1, Bex, 1, dG0_RTB, R, T, RTB)
+
+    # MDF assignments
+    mdf_R1 := -dG_R1
+    mdf_R2 := -dG_R2
+    mdf_R3 := -dG_R3
+    mdf_R4 := -dG_R4
+    mdf_R5 := -dG_R5
+    mdf_R6 := -dG_R6
+    mdf_RTB := -dG_RTB
+end
+
+
+model all_pathways
+  # Community compartments
+  A: single_pathway();
+  A.is_on_R4 = 0
+  A.is_on_R5 = 0
+  A.is_on_R6 = 0
+  A.is_on_RTB = 1
+  A.is_on_Pex_secretion = 0
+  B: single_pathway();
+  B.is_on_Sex_uptake = 0
+  B.is_on_R1 = 0
+  B.is_on_R2 = 0
+  B.is_on_R3 = 0
+  B.is_on_RTB = 1
+  # Single compartment
+  C: single_pathway();
+
+  A.Sex is Community_Sex
+  B.Sex is Community_Sex
+  C.Sex is Single_Sex
+  A.Pex is Community_Pex
+  B.Pex is Community_Pex
+  C.Pex is Single_Pex
+  A.Bex is Community_Bex
+  B.Bex is Community_Bex
+
+  # Set the same parameter variable for all pathways
+  ## General
+  A.T is T
+  B.T is T
+  C.T is T
+  A.R is R
+  B.R is R
+  C.R is R
+  ## R1
+  A.E_conc_R1 is E_conc_R1
+  A.k_cat_R1 is global_k_cat_R1
+  A.k_Sex_R1 is global_k_Sex_R1
+  A.k_S_R1 is global_k_S_R1
+  A.dG0_R1 is dG0_R1
+  B.E_conc_R1 is E_conc_R1
+  B.k_cat_R1 is global_k_cat_R1
+  B.k_Sex_R1 is global_k_Sex_R1
+  B.k_S_R1 is global_k_S_R1
+  B.dG0_R1 is dG0_R1
+  C.E_conc_R1 is E_conc_R1
+  C.k_cat_R1 is global_k_cat_R1
+  C.k_Sex_R1 is global_k_Sex_R1
+  C.k_S_R1 is global_k_S_R1
+  C.dG0_R1 is dG0_R1
+  ## R2
+  A.E_conc_R2 is E_conc_R2
+  A.k_cat_R2 is global_k_cat_R2
+  A.k_S_R2 is global_k_S_R2
+  A.k_X_R2 is global_k_X_R2
+  A.k_A_R2 is global_k_A_R2
+  A.dG0_R2 is dG0_R2
+  B.E_conc_R2 is E_conc_R2
+  B.k_cat_R2 is global_k_cat_R2
+  B.k_S_R2 is global_k_S_R2
+  B.k_X_R2 is global_k_X_R2
+  B.k_A_R2 is global_k_A_R2
+  B.dG0_R2 is dG0_R2
+  C.E_conc_R2 is E_conc_R2
+  C.k_cat_R2 is global_k_cat_R2
+  C.k_S_R2 is global_k_S_R2
+  C.k_X_R2 is global_k_X_R2
+  C.k_A_R2 is global_k_A_R2
+  C.dG0_R2 is dG0_R2
+  ## R3
+  A.E_conc_R3 is E_conc_R3
+  A.k_cat_R3 is global_k_cat_R3
+  A.k_A_R3 is global_k_A_R3
+  A.k_X_R3 is global_k_X_R3
+  A.k_B_R3 is global_k_B_R3
+  A.dG0_R3 is dG0_R3
+  B.E_conc_R3 is E_conc_R3
+  B.k_cat_R3 is global_k_cat_R3
+  B.k_A_R3 is global_k_A_R3
+  B.k_X_R3 is global_k_X_R3
+  B.k_B_R3 is global_k_B_R3
+  B.dG0_R3 is dG0_R3
+  C.E_conc_R3 is E_conc_R3
+  C.k_cat_R3 is global_k_cat_R3
+  C.k_A_R3 is global_k_A_R3
+  C.k_X_R3 is global_k_X_R3
+  C.k_B_R3 is global_k_B_R3
+  C.dG0_R3 is dG0_R3
+  ## R4
+  A.E_conc_R4 is E_conc_R4
+  A.k_cat_R4 is global_k_cat_R4
+  A.k_B_R4 is global_k_B_R4
+  A.k_C_R4 is global_k_C_R4
+  A.k_X_R4 is global_k_X_R4
+  A.dG0_R4 is dG0_R4
+  B.E_conc_R4 is E_conc_R4
+  B.k_cat_R4 is global_k_cat_R4
+  B.k_B_R4 is global_k_B_R4
+  B.k_C_R4 is global_k_C_R4
+  B.k_X_R4 is global_k_X_R4
+  B.dG0_R4 is dG0_R4
+  C.E_conc_R4 is E_conc_R4
+  C.k_cat_R4 is global_k_cat_R4
+  C.k_B_R4 is global_k_B_R4
+  C.k_C_R4 is global_k_C_R4
+  C.k_X_R4 is global_k_X_R4
+  C.dG0_R4 is dG0_R4
+  ## R5
+  A.E_conc_R5 is E_conc_R5
+  A.k_cat_R5 is global_k_cat_R5
+  A.k_C_R5 is global_k_C_R5
+  A.k_X_R5 is global_k_X_R5
+  A.k_P_R5 is global_k_P_R5
+  A.dG0_R5 is dG0_R5
+  B.E_conc_R5 is E_conc_R5
+  B.k_cat_R5 is global_k_cat_R5
+  B.k_C_R5 is global_k_C_R5
+  B.k_X_R5 is global_k_X_R5
+  B.k_P_R5 is global_k_P_R5
+  B.dG0_R5 is dG0_R5
+  C.E_conc_R5 is E_conc_R5
+  C.k_cat_R5 is global_k_cat_R5
+  C.k_C_R5 is global_k_C_R5
+  C.k_X_R5 is global_k_X_R5
+  C.k_P_R5 is global_k_P_R5
+  C.dG0_R5 is dG0_R5
+  ## R6
+  A.E_conc_R6 is E_conc_R6
+  A.k_cat_R6 is global_k_cat_R6
+  A.k_P_R6 is global_k_P_R6
+  A.k_Pex_R6 is global_k_Pex_R6
+  A.dG0_R6 is dG0_R6
+  B.E_conc_R6 is E_conc_R6
+  B.k_cat_R6 is global_k_cat_R6
+  B.k_P_R6 is global_k_P_R6
+  B.k_Pex_R6 is global_k_Pex_R6
+  B.dG0_R6 is dG0_R6
+  C.E_conc_R6 is E_conc_R6
+  C.k_cat_R6 is global_k_cat_R6
+  C.k_P_R6 is global_k_P_R6
+  C.k_Pex_R6 is global_k_Pex_R6
+  C.dG0_R6 is dG0_R6
+  ## RTB
+  A.E_conc_RTB is E_conc_RTB
+  A.k_cat_RTB is global_k_cat_RTB
+  A.k_B_RTB is global_k_B_RTB
+  A.k_Bex_RTB is global_k_Bex_RTB
+  A.dG0_RTB is dG0_RTB
+  B.E_conc_RTB is E_conc_RTB
+  B.k_cat_RTB is global_k_cat_RTB
+  B.k_B_RTB is global_k_B_RTB
+  B.k_Bex_RTB is global_k_Bex_RTB
+  B.dG0_RTB is dG0_RTB
+  C.E_conc_RTB is E_conc_RTB
+  C.k_cat_RTB is global_k_cat_RTB
+  C.k_B_RTB is global_k_B_RTB
+  C.k_Bex_RTB is global_k_Bex_RTB
+  C.dG0_RTB is dG0_RTB
+
+  # Metabolite ratio definitions
+  A.X is A_X
+  B.X is B_X
+  C.X is C_X
+  community_A_to_single_metabolite_X_ratio := A_X / C_X
+  community_B_to_single_metabolite_X_ratio := B_X / C_X
+  community_B_to_community_A_metabolite_X_ratio := B_X / A_X
+  community_A_to_community_B_metabolite_X_ratio := A_X / B_X
+
+  # Flux ratio definitions
+  B.R6 is B_R6
+  C.R6 is C_R6
+  absolute_community_flux_advantage := B_R6 - C_R6
+  relative_community_flux_advantage := B_R6 / C_R6
+  community_flux := B_R6
+  single_flux := C_R6
+
+  # MMDF definitions
+  A.mdf_R1 is A_mdf_R1
+  A.mdf_R2 is A_mdf_R2
+  A.mdf_R3 is A_mdf_R3
+  A.mdf_RTB is A_mdf_RTB
+  B.mdf_RTB is B_mdf_RTB
+  B.mdf_R4 is B_mdf_R4
+  B.mdf_R5 is B_mdf_R5
+  B.mdf_R6 is B_mdf_R6
+  C.mdf_R1 is C_mdf_R1
+  C.mdf_R2 is C_mdf_R2
+  C.mdf_R3 is C_mdf_R3
+  C.mdf_R4 is C_mdf_R4
+  C.mdf_R5 is C_mdf_R5
+  C.mdf_R6 is C_mdf_R6
+
+  ## For community
+  ### A.R1
+  c_mdf_R1_lt_1 := lt(A_mdf_R1, A_mdf_R2)
+  c_mdf_R1_lt_2 := lt(A_mdf_R1, A_mdf_R3)
+  c_mdf_R1_lt_3 := lt(A_mdf_R1, A_mdf_RTB)
+  c_mdf_R1_lt_4 := lt(A_mdf_R1, B_mdf_RTB)
+  c_mdf_R1_lt_5 := lt(A_mdf_R1, B_mdf_R4)
+  c_mdf_R1_lt_6 := lt(A_mdf_R1, B_mdf_R5)
+  c_mdf_R1_lt_7 := lt(A_mdf_R1, B_mdf_R6)
+  c_sum_mdf_R1_gt := c_mdf_R1_lt_1 + c_mdf_R1_lt_2 + c_mdf_R1_lt_3 + c_mdf_R1_lt_4 + c_mdf_R1_lt_5 + c_mdf_R1_lt_6 + c_mdf_R1_lt_7
+  c_is_R1_mmdf := eq(c_sum_mdf_R1_gt, 7)
+  ### A.R2
+  c_mdf_R2_lt_1 := lt(A_mdf_R2, A_mdf_R1)
+  c_mdf_R2_lt_2 := lt(A_mdf_R2, A_mdf_R3)
+  c_mdf_R2_lt_3 := lt(A_mdf_R2, A_mdf_RTB)
+  c_mdf_R2_lt_4 := lt(A_mdf_R2, B_mdf_RTB)
+  c_mdf_R2_lt_5 := lt(A_mdf_R2, B_mdf_R4)
+  c_mdf_R2_lt_6 := lt(A_mdf_R2, B_mdf_R5)
+  c_mdf_R2_lt_7 := lt(A_mdf_R2, B_mdf_R6)
+  c_sum_mdf_R2_gt := c_mdf_R2_lt_1 + c_mdf_R2_lt_2 + c_mdf_R2_lt_3 + c_mdf_R2_lt_4 + c_mdf_R2_lt_5 + c_mdf_R2_lt_6 + c_mdf_R2_lt_7
+  c_is_R2_mmdf := eq(c_sum_mdf_R2_gt, 7)
+  ### A.R3
+  c_mdf_R3_lt_1 := lt(A_mdf_R3, A_mdf_R1)
+  c_mdf_R3_lt_2 := lt(A_mdf_R3, A_mdf_R2)
+  c_mdf_R3_lt_3 := lt(A_mdf_R3, A_mdf_RTB)
+  c_mdf_R3_lt_4 := lt(A_mdf_R3, B_mdf_RTB)
+  c_mdf_R3_lt_5 := lt(A_mdf_R3, B_mdf_R4)
+  c_mdf_R3_lt_6 := lt(A_mdf_R3, B_mdf_R5)
+  c_mdf_R3_lt_7 := lt(A_mdf_R3, B_mdf_R6)
+  c_sum_mdf_R3_gt := c_mdf_R3_lt_1 + c_mdf_R3_lt_2 + c_mdf_R3_lt_3 + c_mdf_R3_lt_4 + c_mdf_R3_lt_5 + c_mdf_R3_lt_6 + c_mdf_R3_lt_7
+  c_is_R3_mmdf := eq(c_sum_mdf_R3_gt, 7)
+  ### A.RTB
+  c_mdf_RTBA_lt_3 := lt(A_mdf_RTB, A_mdf_R1)
+  c_mdf_RTBA_lt_1 := lt(A_mdf_RTB, A_mdf_R2)
+  c_mdf_RTBA_lt_2 := lt(A_mdf_RTB, A_mdf_R3)
+  c_mdf_RTBA_lt_4 := lt(A_mdf_RTB, B_mdf_RTB)
+  c_mdf_RTBA_lt_5 := lt(A_mdf_RTB, B_mdf_R4)
+  c_mdf_RTBA_lt_6 := lt(A_mdf_RTB, B_mdf_R5)
+  c_mdf_RTBA_lt_7 := lt(A_mdf_RTB, B_mdf_R6)
+  c_sum_mdf_RTBA_gt := c_mdf_RTBA_lt_1 + c_mdf_RTBA_lt_2 + c_mdf_RTBA_lt_3 + c_mdf_RTBA_lt_4 + c_mdf_RTBA_lt_5 + c_mdf_RTBA_lt_6 + c_mdf_RTBA_lt_7
+  c_is_RTBA_mmdf := eq(c_sum_mdf_RTBA_gt, 7)
+  ### B.RTB
+  c_mdf_RTBB_lt_4 := lt(B_mdf_RTB, A_mdf_R1)
+  c_mdf_RTBB_lt_1 := lt(B_mdf_RTB, A_mdf_R2)
+  c_mdf_RTBB_lt_2 := lt(B_mdf_RTB, A_mdf_R3)
+  c_mdf_RTBB_lt_3 := lt(B_mdf_RTB, A_mdf_RTB)
+  c_mdf_RTBB_lt_5 := lt(B_mdf_RTB, B_mdf_R4)
+  c_mdf_RTBB_lt_6 := lt(B_mdf_RTB, B_mdf_R5)
+  c_mdf_RTBB_lt_7 := lt(B_mdf_RTB, B_mdf_R6)
+  c_sum_mdf_RTBB_gt := c_mdf_RTBB_lt_1 + c_mdf_RTBB_lt_2 + c_mdf_RTBB_lt_3 + c_mdf_RTBB_lt_4 + c_mdf_RTBB_lt_5 + c_mdf_RTBB_lt_6 + c_mdf_RTBB_lt_7
+  c_is_RTBB_mmdf := eq(c_sum_mdf_RTBB_gt, 7)
+  ### B.R4
+  c_mdf_R4_lt_1 := lt(B_mdf_R4, A_mdf_R1)
+  c_mdf_R4_lt_2 := lt(B_mdf_R4, A_mdf_R2)
+  c_mdf_R4_lt_5 := lt(B_mdf_R4, A_mdf_R3)
+  c_mdf_R4_lt_3 := lt(B_mdf_R4, A_mdf_RTB)
+  c_mdf_R4_lt_4 := lt(B_mdf_R4, B_mdf_RTB)
+  c_mdf_R4_lt_6 := lt(B_mdf_R4, B_mdf_R5)
+  c_mdf_R4_lt_7 := lt(B_mdf_R4, B_mdf_R6)
+  c_sum_mdf_R4_gt := c_mdf_R4_lt_1 + c_mdf_R4_lt_2 + c_mdf_R4_lt_3 + c_mdf_R4_lt_4 + c_mdf_R4_lt_5 + c_mdf_R4_lt_6 + c_mdf_R4_lt_7
+  c_is_R4_mmdf := eq(c_sum_mdf_R4_gt, 7)
+  ### B.R5
+  c_mdf_R5_lt_1 := lt(B_mdf_R5, A_mdf_R1)
+  c_mdf_R5_lt_2 := lt(B_mdf_R5, A_mdf_R2)
+  c_mdf_R5_lt_5 := lt(B_mdf_R5, A_mdf_R3)
+  c_mdf_R5_lt_3 := lt(B_mdf_R5, A_mdf_RTB)
+  c_mdf_R5_lt_4 := lt(B_mdf_R5, B_mdf_RTB)
+  c_mdf_R5_lt_6 := lt(B_mdf_R5, B_mdf_R4)
+  c_mdf_R5_lt_7 := lt(B_mdf_R5, B_mdf_R6)
+  c_sum_mdf_R5_gt := c_mdf_R5_lt_1 + c_mdf_R5_lt_2 + c_mdf_R5_lt_3 + c_mdf_R5_lt_4 + c_mdf_R5_lt_5 + c_mdf_R5_lt_6 + c_mdf_R5_lt_7
+  c_is_R5_mmdf := eq(c_sum_mdf_R5_gt, 7)
+  ### B.R6
+  c_mdf_R6_lt_1 := lt(B_mdf_R6, A_mdf_R1)
+  c_mdf_R6_lt_2 := lt(B_mdf_R6, A_mdf_R2)
+  c_mdf_R6_lt_5 := lt(B_mdf_R6, A_mdf_R3)
+  c_mdf_R6_lt_3 := lt(B_mdf_R6, A_mdf_RTB)
+  c_mdf_R6_lt_4 := lt(B_mdf_R6, B_mdf_RTB)
+  c_mdf_R6_lt_6 := lt(B_mdf_R6, B_mdf_R4)
+  c_mdf_R6_lt_7 := lt(B_mdf_R6, B_mdf_R5)
+  c_sum_mdf_R6_gt := c_mdf_R6_lt_1 + c_mdf_R6_lt_2 + c_mdf_R6_lt_3 + c_mdf_R6_lt_4 + c_mdf_R6_lt_5 + c_mdf_R6_lt_6 + c_mdf_R6_lt_7
+  c_is_R6_mmdf := eq(c_sum_mdf_R6_gt, 7)
+  ### Community MMDF itself
+  c_mmdf := c_is_R1_mmdf * A_mdf_R1 + c_is_R2_mmdf * A_mdf_R2 + c_is_R3_mmdf * A_mdf_R3 + c_is_RTBA_mmdf * A_mdf_RTB + c_is_RTBB_mmdf * B_mdf_RTB + c_is_R4_mmdf * B_mdf_R4 + c_is_R5_mmdf * B_mdf_R5 + c_is_R6_mmdf * B_mdf_R6
+
+  ## Single species
+  ### C.R1
+  s_mdf_R1_lt_1 := lt(C_mdf_R1, C_mdf_R2)
+  s_mdf_R1_lt_2 := lt(C_mdf_R1, C_mdf_R3)
+  s_mdf_R1_lt_3 := lt(C_mdf_R1, C_mdf_R4)
+  s_mdf_R1_lt_4 := lt(C_mdf_R1, C_mdf_R5)
+  s_mdf_R1_lt_5 := lt(C_mdf_R1, C_mdf_R6)
+  s_sum_mdf_R1_gt := s_mdf_R1_lt_1 + s_mdf_R1_lt_2 + s_mdf_R1_lt_3 + s_mdf_R1_lt_4 + s_mdf_R1_lt_5
+  s_is_R1_mmdf := eq(s_sum_mdf_R1_gt, 5)
+  ### C.R2
+  s_mdf_R2_lt_1 := lt(C_mdf_R2, C_mdf_R1)
+  s_mdf_R2_lt_2 := lt(C_mdf_R2, C_mdf_R3)
+  s_mdf_R2_lt_3 := lt(C_mdf_R2, C_mdf_R4)
+  s_mdf_R2_lt_4 := lt(C_mdf_R2, C_mdf_R5)
+  s_mdf_R2_lt_5 := lt(C_mdf_R2, C_mdf_R6)
+  s_sum_mdf_R2_gt := s_mdf_R2_lt_1 + s_mdf_R2_lt_2 + s_mdf_R2_lt_3 + s_mdf_R2_lt_4 + s_mdf_R2_lt_5
+  s_is_R2_mmdf := eq(s_sum_mdf_R2_gt, 5)
+  ### C.R3
+  s_mdf_R3_lt_1 := lt(C_mdf_R3, C_mdf_R1)
+  s_mdf_R3_lt_2 := lt(C_mdf_R3, C_mdf_R2)
+  s_mdf_R3_lt_3 := lt(C_mdf_R3, C_mdf_R4)
+  s_mdf_R3_lt_4 := lt(C_mdf_R3, C_mdf_R5)
+  s_mdf_R3_lt_5 := lt(C_mdf_R3, C_mdf_R6)
+  s_sum_mdf_R3_gt := s_mdf_R3_lt_1 + s_mdf_R3_lt_2 + s_mdf_R3_lt_3 + s_mdf_R3_lt_4 + s_mdf_R3_lt_5
+  s_is_R3_mmdf := eq(s_sum_mdf_R3_gt, 5)
+  ### C.R4
+  s_mdf_R4_lt_1 := lt(C_mdf_R4, C_mdf_R1)
+  s_mdf_R4_lt_2 := lt(C_mdf_R4, C_mdf_R2)
+  s_mdf_R4_lt_3 := lt(C_mdf_R4, C_mdf_R3)
+  s_mdf_R4_lt_4 := lt(C_mdf_R4, C_mdf_R5)
+  s_mdf_R4_lt_5 := lt(C_mdf_R4, C_mdf_R6)
+  s_sum_mdf_R4_gt := s_mdf_R4_lt_1 + s_mdf_R4_lt_2 + s_mdf_R4_lt_3 + s_mdf_R4_lt_4 + s_mdf_R4_lt_5
+  s_is_R4_mmdf := eq(s_sum_mdf_R4_gt, 5)
+  ### C.R5
+  s_mdf_R5_lt_1 := lt(C_mdf_R5, C_mdf_R1)
+  s_mdf_R5_lt_2 := lt(C_mdf_R5, C_mdf_R2)
+  s_mdf_R5_lt_3 := lt(C_mdf_R5, C_mdf_R3)
+  s_mdf_R5_lt_4 := lt(C_mdf_R5, C_mdf_R4)
+  s_mdf_R5_lt_5 := lt(C_mdf_R5, C_mdf_R6)
+  s_sum_mdf_R5_gt := s_mdf_R5_lt_1 + s_mdf_R5_lt_2 + s_mdf_R5_lt_3 + s_mdf_R5_lt_4 + s_mdf_R5_lt_5
+  s_is_R5_mmdf := eq(s_sum_mdf_R5_gt, 5)
+  ### C.R6
+  s_mdf_R6_lt_1 := lt(C_mdf_R6, C_mdf_R1)
+  s_mdf_R6_lt_2 := lt(C_mdf_R6, C_mdf_R2)
+  s_mdf_R6_lt_3 := lt(C_mdf_R6, C_mdf_R3)
+  s_mdf_R6_lt_4 := lt(C_mdf_R6, C_mdf_R4)
+  s_mdf_R6_lt_5 := lt(C_mdf_R6, C_mdf_R5)
+  s_sum_mdf_R6_gt := s_mdf_R6_lt_1 + s_mdf_R6_lt_2 + s_mdf_R6_lt_3 + s_mdf_R6_lt_4 + s_mdf_R6_lt_5
+  s_is_R6_mmdf := eq(s_sum_mdf_R6_gt, 5)
+  ### Single MMDF itself
+  s_mmdf := s_is_R1_mmdf * C_mdf_R1 + s_is_R2_mmdf * C_mdf_R2 + s_is_R3_mmdf * C_mdf_R3 + s_is_R4_mmdf * C_mdf_R4 + s_is_R5_mmdf * C_mdf_R5 + s_is_R6_mmdf * C_mdf_R6
+  # Total MMDF
+  s_mmdf_gt_c_mmdf := gt(s_mmdf, c_mmdf)
+  c_mmdf_gt_s_mmdf := gt(c_mmdf, s_mmdf)
+  total_mmdf := s_mmdf_gt_c_mmdf * s_mmdf + c_mmdf_gt_s_mmdf * c_mmdf
+
+  absolute_community_mmdf_advantage := c_mmdf - s_mmdf
+  relative_community_mmdf_advantage := c_mmdf / s_mmdf
+
+  # Extra statistics
+  is_a_x_gt_b_x := gt(community_A_to_community_B_metabolite_X_ratio, 1.0)
+  is_b_x_gt_a_x := gt(community_B_to_community_A_metabolite_X_ratio, 1.0)
+  is_community_advantageous := gt(relative_community_flux_advantage, 1.0)
+  is_community_advantageous_with_b_x_gt_a_x := is_b_x_gt_a_x * is_community_advantageous
+  is_community_advantageous_with_a_x_gt_b_x := is_a_x_gt_b_x * is_community_advantageous
+  community_advantage_with_b_x_gt_a_x := relative_community_flux_advantage * is_community_advantageous_with_b_x_gt_a_x
+  community_advantage_with_a_x_gt_b_x := relative_community_flux_advantage * is_community_advantageous_with_a_x_gt_b_x
+
+  # Extra statistics B
+  is_a_x_gt_b_x_B := gt(community_A_to_community_B_metabolite_X_ratio, 1.01)
+  is_b_x_gt_a_x_B := gt(community_B_to_community_A_metabolite_X_ratio, 1.01)
+  is_community_advantageous_B := gt(relative_community_flux_advantage, 1.01)
+  is_community_advantageous_with_b_x_gt_a_x_B := is_b_x_gt_a_x_B * is_community_advantageous_B
+  is_community_advantageous_with_a_x_gt_b_x_B := is_a_x_gt_b_x_B * is_community_advantageous_B
+  community_advantage_with_b_x_gt_a_x_B := relative_community_flux_advantage * is_community_advantageous_with_b_x_gt_a_x_B
+  community_advantage_with_a_x_gt_b_x_B := relative_community_flux_advantage * is_community_advantageous_with_a_x_gt_b_x_B
+end
