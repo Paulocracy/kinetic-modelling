@@ -343,7 +343,7 @@ original_parameter_values: Dict[str, float] = {
 min_flux = 0.1
 max_scaling = 1000
 num_batches = 1
-num_runs_per_batch = 10_000
+num_runs_per_batch = 2_500
 results: List[Dict[str, float]] = []
 # matplotlib.use('TkAgg')
 ray.init(num_cpus=cpu_count())
@@ -381,6 +381,8 @@ pairs = [
     ("c_mmdf", "s_mmdf"),
     ("community_flux", "single_flux"),
     ("relative_community_mmdf_advantage", "relative_community_flux_advantage"),
+    ("relative_community_mmdf_advantage", "CS2_to_CS1_X_ratio"),
+    ("relative_community_mmdf_advantage", "CS1_to_CS2_X_ratio"),
     ("CS1_to_CS2_X_ratio", "community_flux"),
     ("CS2_to_CS1_X_ratio", "community_flux"),
     ("CS1_to_SS1_X_ratio", "relative_community_flux_advantage"),
@@ -391,7 +393,7 @@ pairs = [
     ("relative_community_flux_advantage", "CS2_to_CS1_X_ratio"),
     ("community_flux", "relative_community_flux_advantage"),
     ("single_flux", "relative_community_flux_advantage"),
-] + [(x, "relative_community_flux_advantage") for x in selections if x.startswith("global_")]
+]
 
 for pair in pairs:
     save_xy_point_plot(
