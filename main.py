@@ -70,7 +70,7 @@ def sample(model: rr.RoadRunner,
             is_not_stable = True
 
     result_dict_return = copy.deepcopy(result_dict)
-    min_advantage = 1.000001
+    min_advantage = 0.0
     if (result_dict["relative_community_flux_advantage"] > min_advantage):
         for key in result_dict.keys():
             result_dict[key] = str(result_dict[key])
@@ -330,6 +330,8 @@ selections = [
     "dG0_R5",
     "dG0_R6",
     "dG0_RTB",
+    "Single_Sex",
+    "Community_Sex",
 ] + [x for x in model.keys() if x.startswith("global_")]
 string_keys: List[str] = [
     key for key in model.keys() if type(key) is str
@@ -341,9 +343,9 @@ original_parameter_values: Dict[str, float] = {
     key: model[key] for key in sampled_parameter_ids
 }
 min_flux = 0.1
-max_scaling = 1000
+max_scaling = 10000
 num_batches = 1
-num_runs_per_batch = 2_500
+num_runs_per_batch = 800
 results: List[Dict[str, float]] = []
 # matplotlib.use('TkAgg')
 ray.init(num_cpus=cpu_count())

@@ -1134,9 +1134,9 @@
             <ci> CS1_C </ci>
             <ci> CS1_X </ci>
             <ci> global_k_B_R4 </ci>
+            <cn type="integer"> 1 </cn>
             <ci> global_k_C_R4 </ci>
             <ci> global_k_X_R4 </ci>
-            <cn type="integer"> 1 </cn>
           </apply>
         </math>
       </assignmentRule>
@@ -1595,9 +1595,9 @@
             <ci> CS2_C </ci>
             <ci> CS2_X </ci>
             <ci> global_k_B_R4 </ci>
+            <cn type="integer"> 1 </cn>
             <ci> global_k_C_R4 </ci>
             <ci> global_k_X_R4 </ci>
-            <cn type="integer"> 1 </cn>
           </apply>
         </math>
       </assignmentRule>
@@ -2056,9 +2056,9 @@
             <ci> SS1_C </ci>
             <ci> SS1_X </ci>
             <ci> global_k_B_R4 </ci>
+            <cn type="integer"> 1 </cn>
             <ci> global_k_C_R4 </ci>
             <ci> global_k_X_R4 </ci>
-            <cn type="integer"> 1 </cn>
           </apply>
         </math>
       </assignmentRule>

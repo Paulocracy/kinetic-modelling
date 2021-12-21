@@ -139,7 +139,7 @@ model single_pathway()
     R4: B -> C + X;
     R4 = rate_law_one_s_two_p(is_on_R4, E_conc_R4, k_cat_R4, B, C, X, k_B_R4, k_C_R4, k_X_R4, dG0_R4, R, T)
     R4_vplus := v_plus(is_on_R4, E_conc_R4, k_cat_R4)
-    R4_kappa := kappa(B, 1, C, X, k_B_R4, k_C_R4, k_X_R4, 1)
+    R4_kappa := kappa(B, 1, C, X, k_B_R4, 1, k_C_R4, k_X_R4)
     R4_gamma := gamma_(B, 1, C, X, dG0_R4, R, T)
     ## R5
     R5: C + X -> P;
