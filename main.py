@@ -340,7 +340,7 @@ sampled_parameter_ids = [
 original_parameter_values: Dict[str, float] = {
     key: model[key] for key in sampled_parameter_ids
 }
-min_flux = 1.0
+min_flux = 0.1
 max_scaling = 1000
 num_batches = 1
 num_runs_per_batch = 10_000
