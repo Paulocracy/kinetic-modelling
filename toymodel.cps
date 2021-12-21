@@ -208,28 +208,46 @@
             <apply>
               <divide/>
               <apply>
-                <ci> _mul </ci>
-                <ci> conc_S1 </ci>
-                <ci> conc_S2 </ci>
-                <ci> k_S1 </ci>
-                <ci> k_S2 </ci>
+                <times/>
+                <apply>
+                  <divide/>
+                  <ci> conc_S1 </ci>
+                  <ci> k_S1 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> conc_S2 </ci>
+                  <ci> k_S2 </ci>
+                </apply>
               </apply>
               <apply>
                 <plus/>
                 <cn type="integer"> 1 </cn>
                 <apply>
-                  <ci> _mul </ci>
-                  <ci> conc_S1 </ci>
-                  <ci> conc_S2 </ci>
-                  <ci> k_S1 </ci>
-                  <ci> k_S2 </ci>
+                  <times/>
+                  <apply>
+                    <divide/>
+                    <ci> conc_S1 </ci>
+                    <ci> k_S1 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> conc_S2 </ci>
+                    <ci> k_S2 </ci>
+                  </apply>
                 </apply>
                 <apply>
-                  <ci> _mul </ci>
-                  <ci> conc_P1 </ci>
-                  <ci> conc_P2 </ci>
-                  <ci> k_P1 </ci>
-                  <ci> k_P2 </ci>
+                  <times/>
+                  <apply>
+                    <divide/>
+                    <ci> conc_P1 </ci>
+                    <ci> k_P1 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> conc_P2 </ci>
+                    <ci> k_P2 </ci>
+                  </apply>
                 </apply>
               </apply>
             </apply>
@@ -471,14 +489,17 @@
                 <plus/>
                 <cn type="integer"> 1 </cn>
                 <apply>
-                  <divide/>
-                  <ci> conc_S1 </ci>
-                  <ci> k_S1 </ci>
-                </apply>
-                <apply>
-                  <divide/>
-                  <ci> conc_S2 </ci>
-                  <ci> k_S2 </ci>
+                  <times/>
+                  <apply>
+                    <divide/>
+                    <ci> conc_S1 </ci>
+                    <ci> k_S1 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> conc_S2 </ci>
+                    <ci> k_S2 </ci>
+                  </apply>
                 </apply>
                 <apply>
                   <divide/>
@@ -582,14 +603,17 @@
                   <ci> k_S </ci>
                 </apply>
                 <apply>
-                  <divide/>
-                  <ci> conc_P1 </ci>
-                  <ci> k_P1 </ci>
-                </apply>
-                <apply>
-                  <divide/>
-                  <ci> conc_P2 </ci>
-                  <ci> k_P2 </ci>
+                  <times/>
+                  <apply>
+                    <divide/>
+                    <ci> conc_P1 </ci>
+                    <ci> k_P1 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> conc_P2 </ci>
+                    <ci> k_P2 </ci>
+                  </apply>
                 </apply>
               </apply>
             </apply>
@@ -608,7 +632,7 @@
       <species id="CS1_C" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
       <species id="CS1_X" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
       <species id="CS1_P" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="Community_Pex" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="Community_Pex" compartment="default_compartment" initialConcentration="2" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
       <species id="Community_Bex" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
       <species id="CS2_S" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
       <species id="CS2_A" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
@@ -623,7 +647,7 @@
       <species id="SS1_C" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
       <species id="SS1_X" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
       <species id="SS1_P" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="Single_Pex" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="Single_Pex" compartment="default_compartment" initialConcentration="2" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
       <species id="SS1_Bex" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
     </listOfSpecies>
     <listOfParameters>
@@ -680,6 +704,9 @@
       <parameter id="CS1_R1_vplus" constant="false"/>
       <parameter id="CS1_R1_kappa" constant="false"/>
       <parameter id="CS1_R1_gamma" constant="false"/>
+      <parameter id="CS1_div1" constant="false"/>
+      <parameter id="CS1_div2" constant="false"/>
+      <parameter id="CS1_div3" constant="false"/>
       <parameter id="CS1_R2_vplus" constant="false"/>
       <parameter id="CS1_R2_kappa" constant="false"/>
       <parameter id="CS1_R2_gamma" constant="false"/>
@@ -724,6 +751,9 @@
       <parameter id="CS2_R1_vplus" constant="false"/>
       <parameter id="CS2_R1_kappa" constant="false"/>
       <parameter id="CS2_R1_gamma" constant="false"/>
+      <parameter id="CS2_div1" constant="false"/>
+      <parameter id="CS2_div2" constant="false"/>
+      <parameter id="CS2_div3" constant="false"/>
       <parameter id="CS2_R2_vplus" constant="false"/>
       <parameter id="CS2_R2_kappa" constant="false"/>
       <parameter id="CS2_R2_gamma" constant="false"/>
@@ -768,6 +798,9 @@
       <parameter id="SS1_R1_vplus" constant="false"/>
       <parameter id="SS1_R1_kappa" constant="false"/>
       <parameter id="SS1_R1_gamma" constant="false"/>
+      <parameter id="SS1_div1" constant="false"/>
+      <parameter id="SS1_div2" constant="false"/>
+      <parameter id="SS1_div3" constant="false"/>
       <parameter id="SS1_R2_vplus" constant="false"/>
       <parameter id="SS1_R2_kappa" constant="false"/>
       <parameter id="SS1_R2_gamma" constant="false"/>
@@ -977,6 +1010,33 @@
           </apply>
         </math>
       </assignmentRule>
+      <assignmentRule variable="CS1_div1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> CS1_S </ci>
+            <ci> global_k_S_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="CS1_div2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> CS1_A </ci>
+            <ci> global_k_A_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="CS1_div3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> CS1_X </ci>
+            <ci> global_k_X_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
       <assignmentRule variable="CS1_R2_vplus">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
@@ -992,13 +1052,13 @@
           <apply>
             <ci> kappa </ci>
             <ci> CS1_S </ci>
+            <cn type="integer"> 1 </cn>
             <ci> CS1_A </ci>
             <ci> CS1_X </ci>
-            <cn type="integer"> 1 </cn>
             <ci> global_k_S_R2 </ci>
+            <cn type="integer"> 1 </cn>
             <ci> global_k_A_R2 </ci>
             <ci> global_k_X_R2 </ci>
-            <cn type="integer"> 1 </cn>
           </apply>
         </math>
       </assignmentRule>
@@ -1411,6 +1471,33 @@
           </apply>
         </math>
       </assignmentRule>
+      <assignmentRule variable="CS2_div1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> CS2_S </ci>
+            <ci> global_k_S_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="CS2_div2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> CS2_A </ci>
+            <ci> global_k_A_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="CS2_div3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> CS2_X </ci>
+            <ci> global_k_X_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
       <assignmentRule variable="CS2_R2_vplus">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
@@ -1426,13 +1513,13 @@
           <apply>
             <ci> kappa </ci>
             <ci> CS2_S </ci>
+            <cn type="integer"> 1 </cn>
             <ci> CS2_A </ci>
             <ci> CS2_X </ci>
-            <cn type="integer"> 1 </cn>
             <ci> global_k_S_R2 </ci>
+            <cn type="integer"> 1 </cn>
             <ci> global_k_A_R2 </ci>
             <ci> global_k_X_R2 </ci>
-            <cn type="integer"> 1 </cn>
           </apply>
         </math>
       </assignmentRule>
@@ -1845,6 +1932,33 @@
           </apply>
         </math>
       </assignmentRule>
+      <assignmentRule variable="SS1_div1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> SS1_S </ci>
+            <ci> global_k_S_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="SS1_div2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> SS1_A </ci>
+            <ci> global_k_A_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="SS1_div3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> SS1_X </ci>
+            <ci> global_k_X_R2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
       <assignmentRule variable="SS1_R2_vplus">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
@@ -1860,13 +1974,13 @@
           <apply>
             <ci> kappa </ci>
             <ci> SS1_S </ci>
+            <cn type="integer"> 1 </cn>
             <ci> SS1_A </ci>
             <ci> SS1_X </ci>
-            <cn type="integer"> 1 </cn>
             <ci> global_k_S_R2 </ci>
+            <cn type="integer"> 1 </cn>
             <ci> global_k_A_R2 </ci>
             <ci> global_k_X_R2 </ci>
-            <cn type="integer"> 1 </cn>
           </apply>
         </math>
       </assignmentRule>
