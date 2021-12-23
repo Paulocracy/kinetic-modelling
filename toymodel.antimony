@@ -105,6 +105,7 @@ model single_pathway()
     substanceOnly species B = 1e-6
     substanceOnly species C = 1e-6
     substanceOnly species X = 1e-6
+    substanceOnly species X2 = 1e-6
     substanceOnly species P = 1e-6
     const substanceOnly species Pex = 2
     # substanceOnly species Pex = 1e-6
@@ -123,9 +124,6 @@ model single_pathway()
     ## R2
     R2: S -> A + X;
     R2 = rate_law_one_s_two_p(is_on_R2, E_conc_R2, k_cat_R2, S, A, X, k_S_R2, k_A_R2, k_X_R2, dG0_R2, R, T)
-    div1 := S / k_S_R2
-    div2 := A / k_A_R2
-    div3 := X / k_X_R2
     R2_vplus := v_plus(is_on_R2, E_conc_R2, k_cat_R2)
     R2_kappa := kappa(S, 1, A, X, k_S_R2, 1, k_A_R2, k_X_R2)
     R2_gamma := gamma_(S, 1, A, X, dG0_R2, R, T)
@@ -136,17 +134,17 @@ model single_pathway()
     R3_kappa := kappa(A, X, B, 1, k_A_R3, k_X_R3, k_B_R3, 1)
     R3_gamma := gamma_(A, X, B, 1, dG0_R3, R, T)
     ## R4
-    R4: B -> C + X;
-    R4 = rate_law_one_s_two_p(is_on_R4, E_conc_R4, k_cat_R4, B, C, X, k_B_R4, k_C_R4, k_X_R4, dG0_R4, R, T)
+    R4: B -> C + X2;
+    R4 = rate_law_one_s_two_p(is_on_R4, E_conc_R4, k_cat_R4, B, C, X2, k_B_R4, k_C_R4, k_X_R4, dG0_R4, R, T)
     R4_vplus := v_plus(is_on_R4, E_conc_R4, k_cat_R4)
-    R4_kappa := kappa(B, 1, C, X, k_B_R4, 1, k_C_R4, k_X_R4)
-    R4_gamma := gamma_(B, 1, C, X, dG0_R4, R, T)
+    R4_kappa := kappa(B, 1, C, X2, k_B_R4, 1, k_C_R4, k_X_R4)
+    R4_gamma := gamma_(B, 1, C, X2, dG0_R4, R, T)
     ## R5
-    R5: C + X -> P;
-    R5 = rate_law_two_s_one_p(is_on_R5, E_conc_R5, k_cat_R5, C, X, P, k_C_R5, k_X_R5, k_P_R5, dG0_R5, R, T)
+    R5: C + X2 -> P;
+    R5 = rate_law_two_s_one_p(is_on_R5, E_conc_R5, k_cat_R5, C, X2, P, k_C_R5, k_X_R5, k_P_R5, dG0_R5, R, T)
     R5_vplus := v_plus(is_on_R5, E_conc_R5, k_cat_R5)
-    R5_kappa := kappa(C, X, P, 1, k_C_R5, k_X_R5, k_P_R5, 1)
-    R5_gamma := gamma_(C, X, P, 1, dG0_R5, R, T)
+    R5_kappa := kappa(C, X2, P, 1, k_C_R5, k_X_R5, k_P_R5, 1)
+    R5_gamma := gamma_(C, X2, P, 1, dG0_R5, R, T)
     ## R6
     R6: P -> Pex;
     R6 = rate_law_one_s_one_p(is_on_R6, E_conSS1_R6, k_cat_R6, P, Pex, k_P_R6, k_Pex_R6, dG0_R6, R, T)

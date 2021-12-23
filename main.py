@@ -10,7 +10,7 @@ from tellurium.tellurium import model
 from typing import Any, Dict, List
 from helper import ensure_folder_existence, get_main_statistics, json_write, json_zip_write, save_histogram, save_xy_point_plot
 
-@ray.remote
+# @ray.remote
 def sample(model: rr.RoadRunner,
            selections: List[str],
            sampled_values: Dict[str, float],
@@ -345,9 +345,11 @@ original_parameter_values: Dict[str, float] = {
 min_flux = 0.1
 max_scaling = 10000
 num_batches = 1
-num_runs_per_batch = 800
+num_runs_per_batch = 2
 results: List[Dict[str, float]] = []
 # matplotlib.use('TkAgg')
+results = [sample(model, selections, original_parameter_values, max_scaling, min_flux)]
+"""
 ray.init(num_cpus=cpu_count())
 for _ in range(num_batches):
     futures = [
@@ -356,7 +358,7 @@ for _ in range(num_batches):
     ]
     new_results = ray.get(futures)
     results += new_results
-
+"""
 results_list_dict: Dict[str, List[float]] = {}
 for key in selections + ["extra_data"]:
     results_list_dict[key] = []
