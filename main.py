@@ -46,9 +46,9 @@ def sample(model: rr.RoadRunner,
         is_not_stable = False
         current_index = 1
         while current_index < len(preprevious_result):
-            preprevious_value = round(preprevious_result[current_index], 10)
-            previous_value = round(previous_result[current_index], 10)
-            current_value = round(current_result[current_index], 10)
+            preprevious_value = round(preprevious_result[current_index], 6)
+            previous_value = round(previous_result[current_index], 6)
+            current_value = round(current_result[current_index], 6)
 
             if (preprevious_value != previous_value) or (previous_value != current_value):
                 is_not_stable = True
@@ -56,6 +56,10 @@ def sample(model: rr.RoadRunner,
             current_index += 1
 
         if is_not_stable:
+            print(preprevious_value)
+            print(previous_value)
+            print(current_value)
+            print("A")
             continue
 
         last_result = result[-1,:]
@@ -67,6 +71,7 @@ def sample(model: rr.RoadRunner,
 
         if (result_dict["community_flux"] < min_flux) or (result_dict["single_flux"] < min_flux):
             result_dict = {}
+            print("B")
             is_not_stable = True
 
     result_dict_return = copy.deepcopy(result_dict)
@@ -342,8 +347,8 @@ sampled_parameter_ids = [
 original_parameter_values: Dict[str, float] = {
     key: model[key] for key in sampled_parameter_ids
 }
-min_flux = 0.1
-max_scaling = 10000
+min_flux = -float("inf")
+max_scaling = 2
 num_batches = 1
 num_runs_per_batch = 2
 results: List[Dict[str, float]] = []

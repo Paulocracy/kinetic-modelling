@@ -506,6 +506,11 @@
                   <ci> conc_P </ci>
                   <ci> k_P </ci>
                 </apply>
+                <apply>
+                  <divide/>
+                  <ci> conc_S2 </ci>
+                  <cn type="integer"> 5 </cn>
+                </apply>
               </apply>
             </apply>
           </lambda>
@@ -626,32 +631,29 @@
     </listOfCompartments>
     <listOfSpecies>
       <species id="Community_Sex" compartment="default_compartment" initialConcentration="4" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
-      <species id="CS1_S" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="CS1_A" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="CS1_B" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="CS1_C" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="CS1_X" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
-      <species id="CS1_X2" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="CS1_P" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="Community_Pex" compartment="default_compartment" initialConcentration="2" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
-      <species id="Community_Bex" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
-      <species id="CS2_S" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="CS2_A" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="CS2_B" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="CS2_C" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="CS2_X" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
-      <species id="CS2_X2" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="CS2_P" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="CS1_S" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="CS1_A" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="CS1_B" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="CS1_C" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="CS1_X" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="CS1_P" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="Community_Pex" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="Community_Bex" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="CS2_S" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="CS2_A" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="CS2_B" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="CS2_C" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="CS2_X" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="CS2_P" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
       <species id="Single_Sex" compartment="default_compartment" initialConcentration="4" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
-      <species id="SS1_S" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="SS1_A" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="SS1_B" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="SS1_C" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="SS1_X" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
-      <species id="SS1_X2" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="SS1_P" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="Single_Pex" compartment="default_compartment" initialConcentration="2" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
-      <species id="SS1_Bex" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="SS1_S" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="SS1_A" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="SS1_B" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="SS1_C" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="SS1_X" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="SS1_P" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="Single_Pex" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="SS1_Bex" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
     </listOfSpecies>
     <listOfParameters>
       <parameter id="R" value="0.008315" constant="true"/>
@@ -1099,7 +1101,7 @@
             <ci> CS1_B </ci>
             <cn type="integer"> 1 </cn>
             <ci> CS1_C </ci>
-            <ci> CS1_X2 </ci>
+            <ci> CS1_X </ci>
             <ci> global_k_B_R4 </ci>
             <cn type="integer"> 1 </cn>
             <ci> global_k_C_R4 </ci>
@@ -1114,7 +1116,7 @@
             <ci> CS1_B </ci>
             <cn type="integer"> 1 </cn>
             <ci> CS1_C </ci>
-            <ci> CS1_X2 </ci>
+            <ci> CS1_X </ci>
             <ci> dG0_R4 </ci>
             <ci> R </ci>
             <ci> T </ci>
@@ -1136,7 +1138,7 @@
           <apply>
             <ci> kappa </ci>
             <ci> CS1_C </ci>
-            <ci> CS1_X2 </ci>
+            <ci> CS1_X </ci>
             <ci> CS1_P </ci>
             <cn type="integer"> 1 </cn>
             <ci> global_k_C_R5 </ci>
@@ -1151,7 +1153,7 @@
           <apply>
             <ci> gamma_ </ci>
             <ci> CS1_C </ci>
-            <ci> CS1_X2 </ci>
+            <ci> CS1_X </ci>
             <ci> CS1_P </ci>
             <cn type="integer"> 1 </cn>
             <ci> dG0_R5 </ci>
@@ -1533,7 +1535,7 @@
             <ci> CS2_B </ci>
             <cn type="integer"> 1 </cn>
             <ci> CS2_C </ci>
-            <ci> CS2_X2 </ci>
+            <ci> CS2_X </ci>
             <ci> global_k_B_R4 </ci>
             <cn type="integer"> 1 </cn>
             <ci> global_k_C_R4 </ci>
@@ -1548,7 +1550,7 @@
             <ci> CS2_B </ci>
             <cn type="integer"> 1 </cn>
             <ci> CS2_C </ci>
-            <ci> CS2_X2 </ci>
+            <ci> CS2_X </ci>
             <ci> dG0_R4 </ci>
             <ci> R </ci>
             <ci> T </ci>
@@ -1570,7 +1572,7 @@
           <apply>
             <ci> kappa </ci>
             <ci> CS2_C </ci>
-            <ci> CS2_X2 </ci>
+            <ci> CS2_X </ci>
             <ci> CS2_P </ci>
             <cn type="integer"> 1 </cn>
             <ci> global_k_C_R5 </ci>
@@ -1585,7 +1587,7 @@
           <apply>
             <ci> gamma_ </ci>
             <ci> CS2_C </ci>
-            <ci> CS2_X2 </ci>
+            <ci> CS2_X </ci>
             <ci> CS2_P </ci>
             <cn type="integer"> 1 </cn>
             <ci> dG0_R5 </ci>
@@ -1967,7 +1969,7 @@
             <ci> SS1_B </ci>
             <cn type="integer"> 1 </cn>
             <ci> SS1_C </ci>
-            <ci> SS1_X2 </ci>
+            <ci> SS1_X </ci>
             <ci> global_k_B_R4 </ci>
             <cn type="integer"> 1 </cn>
             <ci> global_k_C_R4 </ci>
@@ -1982,7 +1984,7 @@
             <ci> SS1_B </ci>
             <cn type="integer"> 1 </cn>
             <ci> SS1_C </ci>
-            <ci> SS1_X2 </ci>
+            <ci> SS1_X </ci>
             <ci> dG0_R4 </ci>
             <ci> R </ci>
             <ci> T </ci>
@@ -2004,7 +2006,7 @@
           <apply>
             <ci> kappa </ci>
             <ci> SS1_C </ci>
-            <ci> SS1_X2 </ci>
+            <ci> SS1_X </ci>
             <ci> SS1_P </ci>
             <cn type="integer"> 1 </cn>
             <ci> global_k_C_R5 </ci>
@@ -2019,7 +2021,7 @@
           <apply>
             <ci> gamma_ </ci>
             <ci> SS1_C </ci>
-            <ci> SS1_X2 </ci>
+            <ci> SS1_X </ci>
             <ci> SS1_P </ci>
             <cn type="integer"> 1 </cn>
             <ci> dG0_R5 </ci>
@@ -3719,7 +3721,7 @@
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="CS1_C" stoichiometry="1" constant="true"/>
-          <speciesReference species="CS1_X2" stoichiometry="1" constant="true"/>
+          <speciesReference species="CS1_X" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -3730,7 +3732,7 @@
               <ci> global_k_cat_R4 </ci>
               <ci> CS1_B </ci>
               <ci> CS1_C </ci>
-              <ci> CS1_X2 </ci>
+              <ci> CS1_X </ci>
               <ci> global_k_B_R4 </ci>
               <ci> global_k_C_R4 </ci>
               <ci> global_k_X_R4 </ci>
@@ -3744,7 +3746,7 @@
       <reaction id="CS1_R5" reversible="true" fast="false">
         <listOfReactants>
           <speciesReference species="CS1_C" stoichiometry="1" constant="true"/>
-          <speciesReference species="CS1_X2" stoichiometry="1" constant="true"/>
+          <speciesReference species="CS1_X" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="CS1_P" stoichiometry="1" constant="true"/>
@@ -3757,7 +3759,7 @@
               <ci> E_conc_R5 </ci>
               <ci> global_k_cat_R5 </ci>
               <ci> CS1_C </ci>
-              <ci> CS1_X2 </ci>
+              <ci> CS1_X </ci>
               <ci> CS1_P </ci>
               <ci> global_k_C_R5 </ci>
               <ci> global_k_X_R5 </ci>
@@ -3936,7 +3938,7 @@
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="CS2_C" stoichiometry="1" constant="true"/>
-          <speciesReference species="CS2_X2" stoichiometry="1" constant="true"/>
+          <speciesReference species="CS2_X" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -3947,7 +3949,7 @@
               <ci> global_k_cat_R4 </ci>
               <ci> CS2_B </ci>
               <ci> CS2_C </ci>
-              <ci> CS2_X2 </ci>
+              <ci> CS2_X </ci>
               <ci> global_k_B_R4 </ci>
               <ci> global_k_C_R4 </ci>
               <ci> global_k_X_R4 </ci>
@@ -3961,7 +3963,7 @@
       <reaction id="CS2_R5" reversible="true" fast="false">
         <listOfReactants>
           <speciesReference species="CS2_C" stoichiometry="1" constant="true"/>
-          <speciesReference species="CS2_X2" stoichiometry="1" constant="true"/>
+          <speciesReference species="CS2_X" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="CS2_P" stoichiometry="1" constant="true"/>
@@ -3974,7 +3976,7 @@
               <ci> E_conc_R5 </ci>
               <ci> global_k_cat_R5 </ci>
               <ci> CS2_C </ci>
-              <ci> CS2_X2 </ci>
+              <ci> CS2_X </ci>
               <ci> CS2_P </ci>
               <ci> global_k_C_R5 </ci>
               <ci> global_k_X_R5 </ci>
@@ -4153,7 +4155,7 @@
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="SS1_C" stoichiometry="1" constant="true"/>
-          <speciesReference species="SS1_X2" stoichiometry="1" constant="true"/>
+          <speciesReference species="SS1_X" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -4164,7 +4166,7 @@
               <ci> global_k_cat_R4 </ci>
               <ci> SS1_B </ci>
               <ci> SS1_C </ci>
-              <ci> SS1_X2 </ci>
+              <ci> SS1_X </ci>
               <ci> global_k_B_R4 </ci>
               <ci> global_k_C_R4 </ci>
               <ci> global_k_X_R4 </ci>
@@ -4178,7 +4180,7 @@
       <reaction id="SS1_R5" reversible="true" fast="false">
         <listOfReactants>
           <speciesReference species="SS1_C" stoichiometry="1" constant="true"/>
-          <speciesReference species="SS1_X2" stoichiometry="1" constant="true"/>
+          <speciesReference species="SS1_X" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="SS1_P" stoichiometry="1" constant="true"/>
@@ -4191,7 +4193,7 @@
               <ci> E_conc_R5 </ci>
               <ci> global_k_cat_R5 </ci>
               <ci> SS1_C </ci>
-              <ci> SS1_X2 </ci>
+              <ci> SS1_X </ci>
               <ci> SS1_P </ci>
               <ci> global_k_C_R5 </ci>
               <ci> global_k_X_R5 </ci>
