@@ -1,4 +1,4 @@
-==global_k_B_R4==
+==global_k_X_Xout==
 MEAN: 0.5
 MEDIAN: 0.5
 MAX: 0.5

@@ -56,10 +56,6 @@ def sample(model: rr.RoadRunner,
             current_index += 1
 
         if is_not_stable:
-            print(preprevious_value)
-            print(previous_value)
-            print(current_value)
-            print("A")
             continue
 
         last_result = result[-1,:]
@@ -75,7 +71,7 @@ def sample(model: rr.RoadRunner,
             is_not_stable = True
 
     result_dict_return = copy.deepcopy(result_dict)
-    min_advantage = 0.0
+    min_advantage = 1.0
     if (result_dict["relative_community_flux_advantage"] > min_advantage):
         for key in result_dict.keys():
             result_dict[key] = str(result_dict[key])
@@ -348,14 +344,16 @@ original_parameter_values: Dict[str, float] = {
     key: model[key] for key in sampled_parameter_ids
 }
 min_flux = -float("inf")
-max_scaling = 2
-num_batches = 1
-num_runs_per_batch = 2
+max_scaling = 1
+num_batches = 2
+num_runs_per_batch = 10_000
 results: List[Dict[str, float]] = []
 # matplotlib.use('TkAgg')
-results = [sample(model, selections, original_parameter_values, max_scaling, min_flux)]
-"""
+# results = [sample(model, selections, original_parameter_values, max_scaling, min_flux)]
+##
+
 ray.init(num_cpus=cpu_count())
+
 for _ in range(num_batches):
     futures = [
         sample.remote(model, selections, original_parameter_values, max_scaling, min_flux)
@@ -363,7 +361,8 @@ for _ in range(num_batches):
     ]
     new_results = ray.get(futures)
     results += new_results
-"""
+
+##
 results_list_dict: Dict[str, List[float]] = {}
 for key in selections + ["extra_data"]:
     results_list_dict[key] = []

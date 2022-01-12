@@ -158,14 +158,6 @@ model single_pathway()
     RTB_vplus := v_plus(is_on_RTB, E_conc_RTB, k_cat_RTB)
     RTB_kappa := kappa(B, 1, Bex, 1, k_B_RTB, 1, k_Bex_RTB, 1)
     RTB_gamma := gamma_(B, 1, Bex, 1, dG0_RTB, R, T)
-    ## X input
-    I = 0.8
-    Xin: -> X;
-    Xin = I
-    ## X output
-    k_X_Xout = 0.5
-    Xout: X ->;
-    Xout = k_X_Xout * X
 
     # dG assignments
     dG_R1 := dG(Sex, 1, S, 1, dG0_R1, R, T, R1)
@@ -214,13 +206,6 @@ model all_pathways
   CS2.Bex is Community_Bex
 
   # Set the same parameter variable for all pathways
-  ## Xin
-  CS1.k_X_Xout is global_k_X_Xout
-  CS2.k_X_Xout is global_k_X_Xout
-  SS1.k_X_Xout is global_k_X_Xout
-  CS1.I is global_I
-  CS2.I is global_I
-  SS1.I is global_I
   ## General
   CS1.T is T
   CS2.T is T

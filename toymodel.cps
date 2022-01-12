@@ -506,11 +506,6 @@
                   <ci> conc_P </ci>
                   <ci> k_P </ci>
                 </apply>
-                <apply>
-                  <divide/>
-                  <ci> conc_S2 </ci>
-                  <cn type="integer"> 5 </cn>
-                </apply>
               </apply>
             </apply>
           </lambda>
@@ -727,6 +722,8 @@
       <parameter id="CS1_RTB_vplus" constant="false"/>
       <parameter id="CS1_RTB_kappa" constant="false"/>
       <parameter id="CS1_RTB_gamma" constant="false"/>
+      <parameter id="global_I" value="0.8" constant="true"/>
+      <parameter id="global_k_X_Xout" value="0.5" constant="true"/>
       <parameter id="CS1_dG_R1" constant="false"/>
       <parameter id="CS1_dG_R2" constant="false"/>
       <parameter id="CS1_dG_R3" constant="false"/>
@@ -3836,6 +3833,30 @@
           </math>
         </kineticLaw>
       </reaction>
+      <reaction id="CS1_Xin" reversible="true" fast="false">
+        <listOfProducts>
+          <speciesReference species="CS1_X" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> global_I </ci>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="CS1_Xout" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="CS1_X" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> global_k_X_Xout </ci>
+              <ci> CS1_X </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
       <reaction id="CS2_Sex_uptake" reversible="true" fast="false">
         <listOfProducts>
           <speciesReference species="Community_Sex" stoichiometry="1" constant="true"/>
@@ -4053,6 +4074,30 @@
           </math>
         </kineticLaw>
       </reaction>
+      <reaction id="CS2_Xin" reversible="true" fast="false">
+        <listOfProducts>
+          <speciesReference species="CS2_X" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> global_I </ci>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="CS2_Xout" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="CS2_X" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> global_k_X_Xout </ci>
+              <ci> CS2_X </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
       <reaction id="SS1_Sex_uptake" reversible="true" fast="false">
         <listOfProducts>
           <speciesReference species="Single_Sex" stoichiometry="1" constant="true"/>
@@ -4266,6 +4311,30 @@
               <ci> dG0_RTB </ci>
               <ci> R </ci>
               <ci> T </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="SS1_Xin" reversible="true" fast="false">
+        <listOfProducts>
+          <speciesReference species="SS1_X" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> global_I </ci>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="SS1_Xout" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="SS1_X" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> global_k_X_Xout </ci>
+              <ci> SS1_X </ci>
             </apply>
           </math>
         </kineticLaw>
