@@ -10,7 +10,7 @@ from tellurium.tellurium import model
 from typing import Any, Dict, List
 from helper import ensure_folder_existence, get_main_statistics, json_write, json_zip_write, save_histogram, save_xy_point_plot
 
-# @ray.remote
+@ray.remote
 def sample(model: rr.RoadRunner,
            selections: List[str],
            sampled_values: Dict[str, float],
