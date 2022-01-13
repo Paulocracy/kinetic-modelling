@@ -722,8 +722,8 @@
       <parameter id="CS1_RTB_vplus" constant="false"/>
       <parameter id="CS1_RTB_kappa" constant="false"/>
       <parameter id="CS1_RTB_gamma" constant="false"/>
-      <parameter id="global_I" value="0.8" constant="true"/>
-      <parameter id="global_k_X_Xout" value="0.5" constant="true"/>
+      <parameter id="global_I_1" value="0.8" constant="true"/>
+      <parameter id="global_k_X_Xout_1" value="0.5" constant="true"/>
       <parameter id="CS1_dG_R1" constant="false"/>
       <parameter id="CS1_dG_R2" constant="false"/>
       <parameter id="CS1_dG_R3" constant="false"/>
@@ -768,6 +768,8 @@
       <parameter id="CS2_RTB_vplus" constant="false"/>
       <parameter id="CS2_RTB_kappa" constant="false"/>
       <parameter id="CS2_RTB_gamma" constant="false"/>
+      <parameter id="global_I_2" value="0.8" constant="true"/>
+      <parameter id="global_k_X_Xout_2" value="0.5" constant="true"/>
       <parameter id="CS2_dG_R1" constant="false"/>
       <parameter id="CS2_dG_R2" constant="false"/>
       <parameter id="CS2_dG_R3" constant="false"/>
@@ -3839,7 +3841,7 @@
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> global_I </ci>
+            <ci> global_I_1 </ci>
           </math>
         </kineticLaw>
       </reaction>
@@ -3851,7 +3853,7 @@
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
-              <ci> global_k_X_Xout </ci>
+              <ci> global_k_X_Xout_1 </ci>
               <ci> CS1_X </ci>
             </apply>
           </math>
@@ -4080,7 +4082,7 @@
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> global_I </ci>
+            <ci> global_I_2 </ci>
           </math>
         </kineticLaw>
       </reaction>
@@ -4092,7 +4094,7 @@
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
-              <ci> global_k_X_Xout </ci>
+              <ci> global_k_X_Xout_2 </ci>
               <ci> CS2_X </ci>
             </apply>
           </math>
@@ -4321,7 +4323,7 @@
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> global_I </ci>
+            <ci> global_I_1 </ci>
           </math>
         </kineticLaw>
       </reaction>
@@ -4333,7 +4335,7 @@
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
-              <ci> global_k_X_Xout </ci>
+              <ci> global_k_X_Xout_1 </ci>
               <ci> SS1_X </ci>
             </apply>
           </math>
