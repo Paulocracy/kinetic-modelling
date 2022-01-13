@@ -814,6 +814,8 @@
       <parameter id="SS1_RTB_vplus" constant="false"/>
       <parameter id="SS1_RTB_kappa" constant="false"/>
       <parameter id="SS1_RTB_gamma" constant="false"/>
+      <parameter id="global_I_3" value="0.8" constant="true"/>
+      <parameter id="global_k_X_Xout_3" value="0.5" constant="true"/>
       <parameter id="SS1_dG_R1" constant="false"/>
       <parameter id="SS1_dG_R2" constant="false"/>
       <parameter id="SS1_dG_R3" constant="false"/>
@@ -4323,7 +4325,7 @@
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> global_I_1 </ci>
+            <ci> global_I_3 </ci>
           </math>
         </kineticLaw>
       </reaction>
@@ -4335,7 +4337,7 @@
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
-              <ci> global_k_X_Xout_1 </ci>
+              <ci> global_k_X_Xout_3 </ci>
               <ci> SS1_X </ci>
             </apply>
           </math>

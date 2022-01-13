@@ -217,10 +217,10 @@ model all_pathways
   ## Xin
   CS1.k_X_Xout is global_k_X_Xout_1
   CS2.k_X_Xout is global_k_X_Xout_2
-  SS1.k_X_Xout is global_k_X_Xout_1
+  SS1.k_X_Xout is global_k_X_Xout_3
   CS1.I is global_I_1
   CS2.I is global_I_2
-  SS1.I is global_I_1
+  SS1.I is global_I_3
   ## General
   CS1.T is T
   CS2.T is T
