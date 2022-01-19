@@ -71,7 +71,7 @@ def sample(model: rr.RoadRunner,
             is_not_stable = True
 
     result_dict_return = copy.deepcopy(result_dict)
-    min_advantage = 1.0
+    min_advantage = 0.0
     if (result_dict["relative_community_flux_advantage"] > min_advantage):
         for key in result_dict.keys():
             result_dict[key] = str(result_dict[key])
@@ -83,12 +83,14 @@ def sample(model: rr.RoadRunner,
         extra_data += "========================================\n"
         extra_data += "========================================\n"
         extra_data += "Relative community flux advantage: " + result_dict["relative_community_flux_advantage"] + "\n"
-        extra_data += "[SS2_X]/[SS1_X]: " + result_dict["CS2_to_CS1_X_ratio"] + "\n"
+        extra_data += "[CS2_X]/[CS1_X]: " + result_dict["CS2_to_CS1_X_ratio"] + "\n"
         extra_data += "\n"
         extra_data += "Single species:\n"
+        extra_data += ">I_SS1: "+result_dict["global_I_SS1"]+"\n"
+        extra_data += ">k_X_Xout_SS1: "+result_dict["global_k_X_Xout_SS1"]+"\n"
         extra_data += ">Flux: "+result_dict["single_flux"]+"\n"
         extra_data += ">MMDF: "+result_dict["s_mmdf"]+"\n"
-        extra_data += ">Map:"
+        extra_data += ">Map:\n"
         extra_data += " Sex ["+result_dict["Single_Sex"]+"]\n"
         extra_data += " ↓ R1, dG0: "+result_dict["dG0_R1"]+", kcat: "+result_dict["global_k_cat_R1"]+", k_Sex: "+result_dict["global_k_Sex_R1"]+", k_S: "+result_dict["global_k_S_R1"]+"\n"
         extra_data += " ↓ dG': "+result_dict["SS1_dG_R1"]+"\n"
@@ -135,9 +137,13 @@ def sample(model: rr.RoadRunner,
         extra_data += " Pex ["+result_dict["Single_Pex"]+"]\n"
         extra_data += "\n"
         extra_data += "Community:\n"
+        extra_data += ">I_CS1: "+result_dict["global_I_CS1"]+"\n"
+        extra_data += ">k_X_Xout_CS1: "+result_dict["global_k_X_Xout_CS1"]+"\n"
+        extra_data += ">I_CS2: "+result_dict["global_I_CS2"]+"\n"
+        extra_data += ">k_X_Xout_CS2: "+result_dict["global_k_X_Xout_CS2"]+"\n"
         extra_data += ">Flux: "+result_dict["community_flux"]+"\n"
         extra_data += ">MMDF: "+result_dict["c_mmdf"]+"\n"
-        extra_data += ">Map:"
+        extra_data += ">Map:\n"
         extra_data += " Sex ["+result_dict["Community_Sex"]+"]\n"
         extra_data += " ↓ R1, dG0: "+result_dict["dG0_R1"]+", kcat: "+result_dict["global_k_cat_R1"]+", k_Sex: "+result_dict["global_k_Sex_R1"]+", k_S: "+result_dict["global_k_S_R1"]+"\n"
         extra_data += " ↓ dG': "+result_dict["CS1_dG_R1"]+"\n"
@@ -203,15 +209,19 @@ def sample(model: rr.RoadRunner,
     return result_dict_return
 
 
-model = te.loada("toymodel.antimony")
+model = te.loada("toymodel_expanded_with_Xin_and_Ain.antimony")
 
 with open("toymodel.cps", "w") as f:
     f.write(model.getSBML())
     print("Exported!")
 
-# import sys
-# model.simulate(0, 10, 100)
-# sys.exit(0)
+import sys
+matplotlib.use("TkAgg")
+# sselections = ["time", "SS1_S", "SS1_A", "CS1_A", "CS1_S", "SS1_X", "CS1_X", "CS2_X"]
+sselections = ["time", "CS1_R1", "CS1_R2", "CS1_R3", "CS2_R4", "CS2_R5", "CS2_R6"]
+simulation = model.simulate(0, 10, 1000, selections=sselections)
+model.plot(simulation)
+sys.exit(0)
 
 selections = [
     "time",
@@ -344,9 +354,9 @@ original_parameter_values: Dict[str, float] = {
     key: model[key] for key in sampled_parameter_ids
 }
 min_flux = -float("inf")
-max_scaling = 1_000
+max_scaling = 1
 num_batches = 1
-num_runs_per_batch = 10_000
+num_runs_per_batch = 1
 results: List[Dict[str, float]] = []
 # matplotlib.use('TkAgg')
 # results = [sample(model, selections, original_parameter_values, max_scaling, min_flux)]

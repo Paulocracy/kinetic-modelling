@@ -1,0 +1,89 @@
+Moieties Result:
+
+Dependent Species	Total Amount	Total Particle Amount	Expression
+SS1_A	1e-06	6.02214e+17	SS1_A - SS1_X + SS1_C
+CS1_C	1e-06	6.02214e+17	CS1_C - CS1_X + CS1_A
+CS2_C	1e-06	6.02214e+17	CS2_C - CS2_X + CS2_A
+
+Stoichiometry(ann)
+Stoichiometry Matrix
+Rows:    Species that are controlled by reactions
+Columns: Reactions
+	(CS1_Sex_uptake)	(CS1_R1)	(CS1_R2)	(CS1_R3)	(CS1_R4)	(CS1_R5)	(CS1_R6)	(CS1_Pex_secretion)	(CS1_RTB)	(CS2_Sex_uptake)	(CS2_R1)	(CS2_R2)	(CS2_R3)	(CS2_R4)	(CS2_R5)	(CS2_R6)	(CS2_Pex_secretion)	(CS2_RTB)	(SS1_Sex_uptake)	(SS1_R1)	(SS1_R2)	(SS1_R3)	(SS1_R4)	(SS1_R5)	(SS1_R6)	(SS1_Pex_secretion)	(SS1_RTB)
+CS1_X	0	0	1	-1	1	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Community_Pex	0	0	0	0	0	0	1	-1	0	0	0	0	0	0	0	1	-1	0	0	0	0	0	0	0	0	0	0
+CS2_X	0	0	0	0	0	0	0	0	0	0	0	1	-1	1	-1	0	0	0	0	0	0	0	0	0	0	0	0
+SS1_X	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	1	-1	0	0	0
+Community_Bex	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0
+Single_Pex	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	0
+SS1_B	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	0	0	0	-1
+CS1_S	0	1	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+CS2_S	0	0	0	0	0	0	0	0	0	0	1	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+SS1_S	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	0	0	0	0	0	0
+CS2_P	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	0	0	0	0	0	0	0	0	0	0	0
+CS1_P	0	0	0	0	0	1	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+CS1_B	0	0	0	1	-1	0	0	0	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+SS1_P	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	0	0
+CS2_B	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	0	0	0	-1	0	0	0	0	0	0	0	0	0
+CS1_A	0	0	1	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+CS2_A	0	0	0	0	0	0	0	0	0	0	0	1	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+SS1_C	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	0	0	0
+SS1_Bex	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1
+SS1_A	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	0	0	0	0	0
+CS1_C	0	0	0	0	1	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+CS2_C	0	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	0	0	0	0	0	0	0	0	0	0	0	0
+
+Link matrix(ann)
+Link matrix
+Rows:    Species that are controlled by reactions (full system)
+Columns: Species (reduced system)
+	CS1_X	Community_Pex	CS2_X	SS1_X	Community_Bex	Single_Pex	SS1_B	CS1_S	CS2_S	SS1_S	CS2_P	CS1_P	CS1_B	SS1_P	CS2_B	CS1_A	CS2_A	SS1_C	SS1_Bex
+CS1_X	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Community_Pex	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+CS2_X	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+SS1_X	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Community_Bex	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Single_Pex	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0
+SS1_B	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0
+CS1_S	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0
+CS2_S	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0
+SS1_S	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0
+CS2_P	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0
+CS1_P	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0
+CS1_B	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0
+SS1_P	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0
+CS2_B	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0
+CS1_A	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0
+CS2_A	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0
+SS1_C	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0
+SS1_Bex	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1
+SS1_A	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	-1	0
+CS1_C	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	-1	0	0	0
+CS2_C	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	-1	0	0
+
+Reduced stoichiometry(ann)
+Reduced stoichiometry Matrix
+Rows:    Species (reduced system)
+Columns: Reactions
+	(CS1_Sex_uptake)	(CS1_R1)	(CS1_R2)	(CS1_R3)	(CS1_R4)	(CS1_R5)	(CS1_R6)	(CS1_Pex_secretion)	(CS1_RTB)	(CS2_Sex_uptake)	(CS2_R1)	(CS2_R2)	(CS2_R3)	(CS2_R4)	(CS2_R5)	(CS2_R6)	(CS2_Pex_secretion)	(CS2_RTB)	(SS1_Sex_uptake)	(SS1_R1)	(SS1_R2)	(SS1_R3)	(SS1_R4)	(SS1_R5)	(SS1_R6)	(SS1_Pex_secretion)	(SS1_RTB)
+CS1_X	0	0	1	-1	1	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Community_Pex	0	0	0	0	0	0	1	-1	0	0	0	0	0	0	0	1	-1	0	0	0	0	0	0	0	0	0	0
+CS2_X	0	0	0	0	0	0	0	0	0	0	0	1	-1	1	-1	0	0	0	0	0	0	0	0	0	0	0	0
+SS1_X	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	1	-1	0	0	0
+Community_Bex	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0
+Single_Pex	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	0
+SS1_B	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	0	0	0	-1
+CS1_S	0	1	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+CS2_S	0	0	0	0	0	0	0	0	0	0	1	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+SS1_S	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	0	0	0	0	0	0
+CS2_P	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	0	0	0	0	0	0	0	0	0	0	0
+CS1_P	0	0	0	0	0	1	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+CS1_B	0	0	0	1	-1	0	0	0	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+SS1_P	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	0	0
+CS2_B	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	0	0	0	-1	0	0	0	0	0	0	0	0	0
+CS1_A	0	0	1	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+CS2_A	0	0	0	0	0	0	0	0	0	0	0	1	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+SS1_C	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	-1	0	0	0
+SS1_Bex	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1
+
+

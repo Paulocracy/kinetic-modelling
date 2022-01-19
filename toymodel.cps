@@ -722,8 +722,10 @@
       <parameter id="CS1_RTB_vplus" constant="false"/>
       <parameter id="CS1_RTB_kappa" constant="false"/>
       <parameter id="CS1_RTB_gamma" constant="false"/>
-      <parameter id="global_I_1" value="0.8" constant="true"/>
-      <parameter id="global_k_X_Xout_1" value="0.5" constant="true"/>
+      <parameter id="global_I_CS1" value="0.1" constant="true"/>
+      <parameter id="global_k_X_Xout_CS1" value="1.6" constant="true"/>
+      <parameter id="CS1_Ia" value="0.4" constant="true"/>
+      <parameter id="CS1_k_A_Aout" value="0.5" constant="true"/>
       <parameter id="CS1_dG_R1" constant="false"/>
       <parameter id="CS1_dG_R2" constant="false"/>
       <parameter id="CS1_dG_R3" constant="false"/>
@@ -768,8 +770,10 @@
       <parameter id="CS2_RTB_vplus" constant="false"/>
       <parameter id="CS2_RTB_kappa" constant="false"/>
       <parameter id="CS2_RTB_gamma" constant="false"/>
-      <parameter id="global_I_2" value="0.8" constant="true"/>
-      <parameter id="global_k_X_Xout_2" value="0.5" constant="true"/>
+      <parameter id="global_I_CS2" value="6" constant="true"/>
+      <parameter id="global_k_X_Xout_CS2" value="0.2" constant="true"/>
+      <parameter id="CS2_Ia" value="0.4" constant="true"/>
+      <parameter id="CS2_k_A_Aout" value="0.5" constant="true"/>
       <parameter id="CS2_dG_R1" constant="false"/>
       <parameter id="CS2_dG_R2" constant="false"/>
       <parameter id="CS2_dG_R3" constant="false"/>
@@ -814,8 +818,10 @@
       <parameter id="SS1_RTB_vplus" constant="false"/>
       <parameter id="SS1_RTB_kappa" constant="false"/>
       <parameter id="SS1_RTB_gamma" constant="false"/>
-      <parameter id="global_I_3" value="0.8" constant="true"/>
-      <parameter id="global_k_X_Xout_3" value="0.5" constant="true"/>
+      <parameter id="global_I_SS1" value="2" constant="true"/>
+      <parameter id="global_k_X_Xout_SS1" value="0.9" constant="true"/>
+      <parameter id="SS1_Ia" value="0.4" constant="true"/>
+      <parameter id="SS1_k_A_Aout" value="0.5" constant="true"/>
       <parameter id="SS1_dG_R1" constant="false"/>
       <parameter id="SS1_dG_R2" constant="false"/>
       <parameter id="SS1_dG_R3" constant="false"/>
@@ -3843,7 +3849,7 @@
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> global_I_1 </ci>
+            <ci> global_I_CS1 </ci>
           </math>
         </kineticLaw>
       </reaction>
@@ -3855,8 +3861,32 @@
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
-              <ci> global_k_X_Xout_1 </ci>
+              <ci> global_k_X_Xout_CS1 </ci>
               <ci> CS1_X </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="CS1_Ain" reversible="true" fast="false">
+        <listOfProducts>
+          <speciesReference species="CS1_A" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> CS1_Ia </ci>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="CS1_Aout" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="CS1_A" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> CS1_k_A_Aout </ci>
+              <ci> CS1_A </ci>
             </apply>
           </math>
         </kineticLaw>
@@ -4084,7 +4114,7 @@
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> global_I_2 </ci>
+            <ci> global_I_CS2 </ci>
           </math>
         </kineticLaw>
       </reaction>
@@ -4096,8 +4126,32 @@
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
-              <ci> global_k_X_Xout_2 </ci>
+              <ci> global_k_X_Xout_CS2 </ci>
               <ci> CS2_X </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="CS2_Ain" reversible="true" fast="false">
+        <listOfProducts>
+          <speciesReference species="CS2_A" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> CS2_Ia </ci>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="CS2_Aout" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="CS2_A" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> CS2_k_A_Aout </ci>
+              <ci> CS2_A </ci>
             </apply>
           </math>
         </kineticLaw>
@@ -4325,7 +4379,7 @@
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> global_I_3 </ci>
+            <ci> global_I_SS1 </ci>
           </math>
         </kineticLaw>
       </reaction>
@@ -4337,8 +4391,32 @@
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
-              <ci> global_k_X_Xout_3 </ci>
+              <ci> global_k_X_Xout_SS1 </ci>
               <ci> SS1_X </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="SS1_Ain" reversible="true" fast="false">
+        <listOfProducts>
+          <speciesReference species="SS1_A" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> SS1_Ia </ci>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="SS1_Aout" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="SS1_A" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> SS1_k_A_Aout </ci>
+              <ci> SS1_A </ci>
             </apply>
           </math>
         </kineticLaw>

@@ -1,0 +1,16 @@
+==global_k_X_Xout_CS1==
+MEAN: 1.6
+MEDIAN: 1.6
+MAX: 1.6
+MIN: 1.6
+# POSITIVE: 1
+# ZERO: 0
+# NEGATIVE: 0
+# >1.0: 1
+# =1.0: 0
+# <1.0: 0
+MEAN IF NOT ZERO: 1.6
+MEDIAN IF NOT ZERO: 1.6
+MIN IF NOT ZERO: 1.6
+MAX IF NOT ZERO: 1.6
+

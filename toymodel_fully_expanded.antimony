@@ -99,16 +99,16 @@ model single_pathway()
 
 
     # Metabolite initialization
-    const substanceOnly species Sex = 4
-    substanceOnly species S = 1e-6
-    substanceOnly species A = 1e-6
-    substanceOnly species B = 1e-6
-    substanceOnly species C = 1e-6
-    substanceOnly species X = 1e-6
-    substanceOnly species P = 1e-6
-    # const substanceOnly species Pex = 2
-    substanceOnly species Pex = 1e-6
-    substanceOnly species Bex = 1e-6
+    const substanceOnly species Sex = 5
+    substanceOnly species S = 1
+    substanceOnly species A = 1
+    substanceOnly species B = 1
+    substanceOnly species C = 1
+    substanceOnly species X = 1
+    substanceOnly species P = 1
+    const substanceOnly species Pex = 5
+    # substanceOnly species Pex = 1
+    substanceOnly species Bex = 1
 
 
     # Reactions
@@ -159,13 +159,58 @@ model single_pathway()
     RTB_kappa := kappa(B, 1, Bex, 1, k_B_RTB, 1, k_Bex_RTB, 1)
     RTB_gamma := gamma_(B, 1, Bex, 1, dG0_RTB, R, T)
     ## X input
-    I = 0.8
+    I = 1.0
     Xin: -> X;
     Xin = I
     ## X output
-    k_X_Xout = 0.5
+    k_X_Xout = 1.0
     Xout: X ->;
     Xout = k_X_Xout * X
+
+    ## S input
+    I_S = 1.0
+    S_in: -> S;
+    S_in = I_S
+    ## S output
+    k_S_Sout = 1.0
+    Sout: S ->;
+    Sout = k_S_Sout * S
+
+    ## A input
+    IA = 1.0
+    Ain: -> A;
+    Ain = IA
+    ## A output
+    k_A_Aout = 1.0
+    Aout: A ->;
+    Aout = k_A_Aout * A
+
+    ## B input
+    IB = 1.0
+    Bin: -> B;
+    Bin = IB
+    ## B output
+    k_B_Bout = 1.0
+    Bout: B ->;
+    Bout = k_B_Bout * B
+
+    ## C input
+    IC = 1.0
+    Cin: -> C;
+    Cin = IC
+    ## C output
+    k_C_Cout = 1.0
+    Cout: C ->;
+    Cout = k_C_Cout * C
+
+    ## P input
+    IP = 1.0
+    Pin: -> P;
+    Pin = IP
+    ## P output
+    k_P_Pout = 1.0
+    Pout: P ->;
+    Pout = k_P_Pout * P
 
     # dG assignments
     dG_R1 := dG(Sex, 1, S, 1, dG0_R1, R, T, R1)
@@ -214,13 +259,6 @@ model all_pathways
   CS2.Bex is Community_Bex
 
   # Set the same parameter variable for all pathways
-  ## Xin
-  CS1.k_X_Xout is global_k_X_Xout_1
-  CS2.k_X_Xout is global_k_X_Xout_2
-  SS1.k_X_Xout is global_k_X_Xout_3
-  CS1.I is global_I_1
-  CS2.I is global_I_2
-  SS1.I is global_I_3
   ## General
   CS1.T is T
   CS2.T is T
