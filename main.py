@@ -209,7 +209,7 @@ def sample(model: rr.RoadRunner,
     return result_dict_return
 
 
-model = te.loada("toymodel_expanded_with_Xin_and_Ain.antimony")
+model = te.loada("toymodel_separated_X.antimony")
 
 with open("toymodel.cps", "w") as f:
     f.write(model.getSBML())
