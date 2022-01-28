@@ -216,7 +216,7 @@ with open("toymodel.cps", "w") as f:
     print("Exported!")
 
 import sys
-matplotlib.use("TkAgg")
+# matplotlib.use("TkAgg")
 # sselections = ["time", "SS1_S", "SS1_A", "CS1_A", "CS1_S", "SS1_X", "CS1_X", "CS2_X"]
 sselections = ["time", "CS1_R1", "CS1_R2", "CS1_R3", "CS2_R4", "CS2_R5", "CS2_R6"]
 simulation = model.simulate(0, 10, 1000, selections=sselections)
