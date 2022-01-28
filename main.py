@@ -355,7 +355,7 @@ original_parameter_values: Dict[str, float] = {
 min_flux = -float("inf")
 max_scaling = 1_000
 num_batches = 1
-num_runs_per_batch = 10_000
+num_runs_per_batch = 5_000
 results: List[Dict[str, float]] = []
 # matplotlib.use('TkAgg')
 # results = [sample(model, selections, original_parameter_values, max_scaling, min_flux)]
