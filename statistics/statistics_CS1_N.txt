@@ -1,0 +1,12 @@
+==CS1_N==
+MEAN: 1.0
+MEDIAN: 1.0
+MAX: 1.0
+MIN: 1.0
+# POSITIVE: 1600
+# ZERO: 0
+# NEGATIVE: 0
+# >1.0: 0
+# =1.0: 1600
+# <1.0: 0
+

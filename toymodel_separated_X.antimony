@@ -203,9 +203,9 @@ model single_pathway()
     # dG assignments
     dG_R1 := dG(Sex, 1, S, 1, dG0_R1, R, T, R1)
     dG_R2 := dG(S, 1, A, X, dG0_R2, R, T, R2)
-    dG_R3 := dG(A, X, B, 1, dG0_R3, R, T, R3)
-    dG_R4 := dG(B, 1, C, X, dG0_R4, R, T, R4)
-    dG_R5 := dG(C, X, P, 1, dG0_R5, R, T, R5)
+    dG_R3 := dG(Y, X, B, 1, dG0_R3, R, T, R3)
+    dG_R4 := dG(B, 1, M, X, dG0_R4, R, T, R4)
+    dG_R5 := dG(N, X, P, 1, dG0_R5, R, T, R5)
     dG_R6 := dG(P, 1, Pex, 1, dG0_R6, R, T, R6)
     dG_RTB := dG(B, 1, Bex, 1, dG0_RTB, R, T, RTB)
 

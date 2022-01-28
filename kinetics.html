@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <title>kinetics</title>
+    <meta name="generator" content="wxMaxima"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/x-mathjax-config">  MathJax.Hub.Config({
+    displayAlign: "left",
+    context: "MathJax",
+    TeX: {TagSide: "left"}
+  })
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async="async">  // A comment that hinders wxWidgets from optimizing this tag too much.
+</script>
+    <link rel="stylesheet" type="text/css" href="kinetics_htmlimg/kinetics.css"/>
+  </head>
+  <body>
+    <!-- ****************************************************** -->
+    <!-- *        Created with wxMaxima version 21.05.2       * -->
+    <!-- ****************************************************** -->
+    <noscript>
+      <div class="error message">
+        <p>Please enable JavaScript in order to get a 2d display of the equations embedded in this web page.</p>
+      </div>
+    </noscript>
+    <p hidden="hidden">\(      \DeclareMathOperator{\abs}{abs}
+      \newcommand{\ensuremath}[1]{\mbox{$#1$}}
+\)</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt"> --&gt;	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_variable">eq_r2</span>
+            <span class="code_operator">:</span>
+            <span class="code_variable">v_plus_R2</span>
+            <span class="code_operator">·</span>
+            <span class="code_operator">(</span>
+            <span class="code_operator">(</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">s</span>
+            <span class="code_operator">/</span>
+            <span class="code_variable">k_s_r2</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">/</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">+</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">s</span>
+            <span class="code_operator">/</span>
+            <span class="code_variable">k_s_r2</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">+</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">a</span>
+            <span class="code_operator">/</span>
+            <span class="code_variable">k_a_r2</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">·</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">x</span>
+            <span class="code_operator">/</span>
+            <span class="code_variable">k_x_r2</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">·</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">−</span>
+            <span class="code_function">exp</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">delta_g0_r2</span>
+            <span class="code_operator">/</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">r</span>
+            <span class="code_operator">·</span>
+            <span class="code_variable">t</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">·</span>
+            <span class="code_operator">(</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">a</span>
+            <span class="code_operator">·</span>
+            <span class="code_variable">x</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">/</span>
+            <span class="code_variable">s</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\operatorname{	}\frac{s\, \ensuremath{\mathrm{v\_ plus\_ R2}} \left( 1-\frac{a {{\% e}^{\frac{\ensuremath{\mathrm{delta\_ g0\_ r2}}}{r t}}} x}{s}\right) }{\ensuremath{\mathrm{k\_ s\_ r2}} \left( \frac{a x}{\ensuremath{\mathrm{k\_ a\_ r2}} \ensuremath{\mathrm{k\_ x\_ r2}}}+\frac{s}{\ensuremath{\mathrm{k\_ s\_ r2}}}+1\right) }\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt"> --&gt;	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_variable">eq_r3</span>
+            <span class="code_operator">:</span>
+            <span class="code_variable">v_plus_R3</span>
+            <span class="code_operator">·</span>
+            <span class="code_operator">(</span>
+            <span class="code_operator">(</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">a</span>
+            <span class="code_operator">/</span>
+            <span class="code_variable">k_a_r3</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">·</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">x</span>
+            <span class="code_operator">/</span>
+            <span class="code_variable">k_x_r3</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">/</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">+</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">b</span>
+            <span class="code_operator">/</span>
+            <span class="code_variable">k_b_r3</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">+</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">a</span>
+            <span class="code_operator">/</span>
+            <span class="code_variable">k_a_r3</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">·</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">x</span>
+            <span class="code_operator">/</span>
+            <span class="code_variable">k_x_r3</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">·</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">−</span>
+            <span class="code_function">exp</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">delta_g0_r3</span>
+            <span class="code_operator">/</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">r</span>
+            <span class="code_operator">·</span>
+            <span class="code_variable">t</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">·</span>
+            <span class="code_operator">(</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">b</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">/</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">a</span>
+            <span class="code_operator">·</span>
+            <span class="code_variable">x</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\operatorname{	}\frac{a\, \ensuremath{\mathrm{v\_ plus\_ R3}} \left( 1-\frac{b {{\% e}^{\frac{\ensuremath{\mathrm{delta\_ g0\_ r3}}}{r t}}}}{a x}\right)  x}{\ensuremath{\mathrm{k\_ a\_ r3}} \ensuremath{\mathrm{k\_ x\_ r3}} \left( \frac{a x}{\ensuremath{\mathrm{k\_ a\_ r3}} \ensuremath{\mathrm{k\_ x\_ r3}}}+\frac{b}{\ensuremath{\mathrm{k\_ b\_ r3}}}+1\right) }\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt"> --&gt;	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_variable">full_equality</span>
+            <span class="code_operator">:</span>
+            <span class="code_variable">eq_r2</span>
+            <span class="code_operator">=</span>
+            <span class="code_variable">eq_r3</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\operatorname{	}\frac{s\, \ensuremath{\mathrm{v\_ plus\_ R2}} \left( 1-\frac{a {{\% e}^{\frac{\ensuremath{\mathrm{delta\_ g0\_ r2}}}{r t}}} x}{s}\right) }{\ensuremath{\mathrm{k\_ s\_ r2}} \left( \frac{a x}{\ensuremath{\mathrm{k\_ a\_ r2}} \ensuremath{\mathrm{k\_ x\_ r2}}}+\frac{s}{\ensuremath{\mathrm{k\_ s\_ r2}}}+1\right) }=\frac{a\, \ensuremath{\mathrm{v\_ plus\_ R3}} \left( 1-\frac{b {{\% e}^{\frac{\ensuremath{\mathrm{delta\_ g0\_ r3}}}{r t}}}}{a x}\right)  x}{\ensuremath{\mathrm{k\_ a\_ r3}} \ensuremath{\mathrm{k\_ x\_ r3}} \left( \frac{a x}{\ensuremath{\mathrm{k\_ a\_ r3}} \ensuremath{\mathrm{k\_ x\_ r3}}}+\frac{b}{\ensuremath{\mathrm{k\_ b\_ r3}}}+1\right) }\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt"> --&gt;	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">solve</span>
+            <span class="code_operator">(</span>
+            <span class="code_operator">[</span>
+            <span class="code_variable">full_equality</span>
+            <span class="code_operator">]</span>
+            <span class="code_endofline">,</span>
+            <span class="code_operator">[</span>
+            <span class="code_variable">x</span>
+            <span class="code_operator">]</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\operatorname{	}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt"> --&gt;	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_variable">r2_x_diff</span>
+            <span class="code_operator">:</span>
+            <span class="code_function">diff</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">eq_r2</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">x</span>
+            <span class="code_endofline">,</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\operatorname{	}-\frac{a {{\% e}^{\frac{\ensuremath{\mathrm{delta\_ g0\_ r2}}}{r t}}} \ensuremath{\mathrm{v\_ plus\_ R2}}}{\ensuremath{\mathrm{k\_ s\_ r2}} \left( \frac{a x}{\ensuremath{\mathrm{k\_ a\_ r2}} \ensuremath{\mathrm{k\_ x\_ r2}}}+\frac{s}{\ensuremath{\mathrm{k\_ s\_ r2}}}+1\right) }-\frac{a s\, \ensuremath{\mathrm{v\_ plus\_ R2}} \left( 1-\frac{a {{\% e}^{\frac{\ensuremath{\mathrm{delta\_ g0\_ r2}}}{r t}}} x}{s}\right) }{\ensuremath{\mathrm{k\_ a\_ r2}} \ensuremath{\mathrm{k\_ s\_ r2}} \ensuremath{\mathrm{k\_ x\_ r2}} {{\left( \frac{a x}{\ensuremath{\mathrm{k\_ a\_ r2}} \ensuremath{\mathrm{k\_ x\_ r2}}}+\frac{s}{\ensuremath{\mathrm{k\_ s\_ r2}}}+1\right) }^{2}}}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt"> --&gt;	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_variable">r3_x_diff</span>
+            <span class="code_operator">:</span>
+            <span class="code_function">diff</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">eq_r3</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">x</span>
+            <span class="code_endofline">,</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\operatorname{	}\frac{a\, \ensuremath{\mathrm{v\_ plus\_ R3}} \left( 1-\frac{b {{\% e}^{\frac{\ensuremath{\mathrm{delta\_ g0\_ r3}}}{r t}}}}{a x}\right) }{\ensuremath{\mathrm{k\_ a\_ r3}} \ensuremath{\mathrm{k\_ x\_ r3}} \left( \frac{a x}{\ensuremath{\mathrm{k\_ a\_ r3}} \ensuremath{\mathrm{k\_ x\_ r3}}}+\frac{b}{\ensuremath{\mathrm{k\_ b\_ r3}}}+1\right) }+\frac{b {{\% e}^{\frac{\ensuremath{\mathrm{delta\_ g0\_ r3}}}{r t}}} \ensuremath{\mathrm{v\_ plus\_ R3}}}{\ensuremath{\mathrm{k\_ a\_ r3}} \ensuremath{\mathrm{k\_ x\_ r3}} x\, \left( \frac{a x}{\ensuremath{\mathrm{k\_ a\_ r3}} \ensuremath{\mathrm{k\_ x\_ r3}}}+\frac{b}{\ensuremath{\mathrm{k\_ b\_ r3}}}+1\right) }-\frac{{{a}^{2}} \ensuremath{\mathrm{v\_ plus\_ R3}} \left( 1-\frac{b {{\% e}^{\frac{\ensuremath{\mathrm{delta\_ g0\_ r3}}}{r t}}}}{a x}\right)  x}{{{\ensuremath{\mathrm{k\_ a\_ r3}}}^{2}} {{\ensuremath{\mathrm{k\_ x\_ r3}}}^{2}} {{\left( \frac{a x}{\ensuremath{\mathrm{k\_ a\_ r3}} \ensuremath{\mathrm{k\_ x\_ r3}}}+\frac{b}{\ensuremath{\mathrm{k\_ b\_ r3}}}+1\right) }^{2}}}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt"> --&gt;	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_variable">full_equality_x_diff</span>
+            <span class="code_operator">:</span>
+            <span class="code_function">diff</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">full_equality</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">x</span>
+            <span class="code_endofline">,</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\operatorname{	}-\frac{a {{\% e}^{\frac{\ensuremath{\mathrm{delta\_ g0\_ r2}}}{r t}}} \ensuremath{\mathrm{v\_ plus\_ R2}}}{\ensuremath{\mathrm{k\_ s\_ r2}} \left( \frac{a x}{\ensuremath{\mathrm{k\_ a\_ r2}} \ensuremath{\mathrm{k\_ x\_ r2}}}+\frac{s}{\ensuremath{\mathrm{k\_ s\_ r2}}}+1\right) }-\frac{a s\, \ensuremath{\mathrm{v\_ plus\_ R2}} \left( 1-\frac{a {{\% e}^{\frac{\ensuremath{\mathrm{delta\_ g0\_ r2}}}{r t}}} x}{s}\right) }{\ensuremath{\mathrm{k\_ a\_ r2}} \ensuremath{\mathrm{k\_ s\_ r2}} \ensuremath{\mathrm{k\_ x\_ r2}} {{\left( \frac{a x}{\ensuremath{\mathrm{k\_ a\_ r2}} \ensuremath{\mathrm{k\_ x\_ r2}}}+\frac{s}{\ensuremath{\mathrm{k\_ s\_ r2}}}+1\right) }^{2}}}=\frac{a\, \ensuremath{\mathrm{v\_ plus\_ R3}} \left( 1-\frac{b {{\% e}^{\frac{\ensuremath{\mathrm{delta\_ g0\_ r3}}}{r t}}}}{a x}\right) }{\ensuremath{\mathrm{k\_ a\_ r3}} \ensuremath{\mathrm{k\_ x\_ r3}} \left( \frac{a x}{\ensuremath{\mathrm{k\_ a\_ r3}} \ensuremath{\mathrm{k\_ x\_ r3}}}+\frac{b}{\ensuremath{\mathrm{k\_ b\_ r3}}}+1\right) }+\frac{b {{\% e}^{\frac{\ensuremath{\mathrm{delta\_ g0\_ r3}}}{r t}}} \ensuremath{\mathrm{v\_ plus\_ R3}}}{\ensuremath{\mathrm{k\_ a\_ r3}} \ensuremath{\mathrm{k\_ x\_ r3}} x\, \left( \frac{a x}{\ensuremath{\mathrm{k\_ a\_ r3}} \ensuremath{\mathrm{k\_ x\_ r3}}}+\frac{b}{\ensuremath{\mathrm{k\_ b\_ r3}}}+1\right) }-\frac{{{a}^{2}} \ensuremath{\mathrm{v\_ plus\_ R3}} \left( 1-\frac{b {{\% e}^{\frac{\ensuremath{\mathrm{delta\_ g0\_ r3}}}{r t}}}}{a x}\right)  x}{{{\ensuremath{\mathrm{k\_ a\_ r3}}}^{2}} {{\ensuremath{\mathrm{k\_ x\_ r3}}}^{2}} {{\left( \frac{a x}{\ensuremath{\mathrm{k\_ a\_ r3}} \ensuremath{\mathrm{k\_ x\_ r3}}}+\frac{b}{\ensuremath{\mathrm{k\_ b\_ r3}}}+1\right) }^{2}}}\]
+</p>
+    <hr/>
+    <p>
+      <small> Created with 
+        <a href="https://wxMaxima-developers.github.io/wxmaxima/">wxMaxima</a>.</small>
+    </p>
+    <small> The source of this Maxima session can be downloaded 
+      <a href="kinetics_htmlimg/kinetics.wxmx">here</a>.</small>
+  </body>
+</html>

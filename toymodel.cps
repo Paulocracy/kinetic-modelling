@@ -1302,7 +1302,7 @@
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <ci> dG </ci>
-            <ci> CS1_A </ci>
+            <ci> CS1_Y </ci>
             <ci> CS1_X </ci>
             <ci> CS1_B </ci>
             <cn type="integer"> 1 </cn>
@@ -1319,7 +1319,7 @@
             <ci> dG </ci>
             <ci> CS1_B </ci>
             <cn type="integer"> 1 </cn>
-            <ci> CS1_C </ci>
+            <ci> CS1_M </ci>
             <ci> CS1_X </ci>
             <ci> dG0_R4 </ci>
             <ci> R </ci>
@@ -1332,7 +1332,7 @@
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <ci> dG </ci>
-            <ci> CS1_C </ci>
+            <ci> CS1_N </ci>
             <ci> CS1_X </ci>
             <ci> CS1_P </ci>
             <cn type="integer"> 1 </cn>
@@ -1736,7 +1736,7 @@
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <ci> dG </ci>
-            <ci> CS2_A </ci>
+            <ci> CS2_Y </ci>
             <ci> CS2_X </ci>
             <ci> CS2_B </ci>
             <cn type="integer"> 1 </cn>
@@ -1753,7 +1753,7 @@
             <ci> dG </ci>
             <ci> CS2_B </ci>
             <cn type="integer"> 1 </cn>
-            <ci> CS2_C </ci>
+            <ci> CS2_M </ci>
             <ci> CS2_X </ci>
             <ci> dG0_R4 </ci>
             <ci> R </ci>
@@ -1766,7 +1766,7 @@
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <ci> dG </ci>
-            <ci> CS2_C </ci>
+            <ci> CS2_N </ci>
             <ci> CS2_X </ci>
             <ci> CS2_P </ci>
             <cn type="integer"> 1 </cn>
@@ -2170,7 +2170,7 @@
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <ci> dG </ci>
-            <ci> SS1_A </ci>
+            <ci> SS1_Y </ci>
             <ci> SS1_X </ci>
             <ci> SS1_B </ci>
             <cn type="integer"> 1 </cn>
@@ -2187,7 +2187,7 @@
             <ci> dG </ci>
             <ci> SS1_B </ci>
             <cn type="integer"> 1 </cn>
-            <ci> SS1_C </ci>
+            <ci> SS1_M </ci>
             <ci> SS1_X </ci>
             <ci> dG0_R4 </ci>
             <ci> R </ci>
@@ -2200,7 +2200,7 @@
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <ci> dG </ci>
-            <ci> SS1_C </ci>
+            <ci> SS1_N </ci>
             <ci> SS1_X </ci>
             <ci> SS1_P </ci>
             <cn type="integer"> 1 </cn>
