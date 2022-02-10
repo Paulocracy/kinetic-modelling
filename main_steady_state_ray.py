@@ -2,6 +2,7 @@ import matplotlib
 import random
 import copy
 from matplotlib.pyplot import title
+import ray
 import tellurium as te
 import roadrunner as rr
 from multiprocessing import cpu_count
@@ -9,7 +10,7 @@ from tellurium.tellurium import model
 from typing import Any, Dict, List
 from helper import ensure_folder_existence, get_main_statistics, json_write, json_zip_write, save_histogram, save_xy_point_plot
 
-
+@ray.remote
 def sample(model: rr.RoadRunner,
            selections: List[str],
            sampled_values: Dict[str, float],
@@ -202,8 +203,6 @@ def sample(model: rr.RoadRunner,
     else:
         result_dict_return["extra_data"] = ""
 
-    print("BBB")
-    print(result_dict_return)
     return result_dict_return
 
 
@@ -350,20 +349,24 @@ original_parameter_values: Dict[str, float] = {
     key: model[key] for key in sampled_parameter_ids
 }
 min_flux = 0.1
-max_scaling = 100
-num_runs = 1000
+max_scaling = 25
+num_batches = 1
+num_runs_per_batch = 100
 results: List[Dict[str, float]] = []
 # matplotlib.use('TkAgg')
 # results = [sample(model, selections, original_parameter_values, max_scaling, min_flux)]
 ##
 
-for _ in range(num_runs):
-    new_result = sample(model, selections, original_parameter_values, max_scaling, min_flux)
-    if new_result != {}:
-        print("AAA")
-        print(new_result)
-        print("AAA")
-        results += [new_result]
+ray.init(num_cpus=cpu_count())
+
+for _ in range(num_batches):
+    futures = [
+        sample.remote(model, selections, original_parameter_values, max_scaling, min_flux)
+        for i in range(num_runs_per_batch)
+    ]
+    new_results = ray.get(futures)
+    new_results = [x for x in new_results if x!={}]
+    results += new_results
 
 ##
 results_list_dict: Dict[str, List[float]] = {}
@@ -371,9 +374,6 @@ for key in selections + ["extra_data"]:
     results_list_dict[key] = []
 for result in results:
     for key in selections + ["extra_data"]:
-        print(key)
-        print(results_list_dict[key])
-        print(result)
         results_list_dict[key].append(result[key])
 
 plotfolder = "./statistics/"
