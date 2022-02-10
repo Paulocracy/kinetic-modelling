@@ -1,14 +1,14 @@
 ==is_community_advantageous_with_CS2_X_gt_CS1_X==
-MEAN: 0.2
+MEAN: 0.0
 MEDIAN: 0.0
-MAX: 1.0
+MAX: 0.0
 MIN: 0.0
-# POSITIVE: 2
-# ZERO: 8
+# POSITIVE: 0
+# ZERO: 9
 # NEGATIVE: 0
 # >1.0: 0
-# =1.0: 2
-# <1.0: 8
+# =1.0: 0
+# <1.0: 9
 MEAN IF NOT ZERO: 0.0
 MEDIAN IF NOT ZERO: 0.0
 MIN IF NOT ZERO: 0.0

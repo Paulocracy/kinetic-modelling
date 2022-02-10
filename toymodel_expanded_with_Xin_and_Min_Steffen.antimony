@@ -58,8 +58,8 @@ model single_pathway()
     is_on_R3 = 1
     E_conc_R3 = 1
     k_cat_R3 = 8
-    k_Y_R3 = 4.6
-    k_X_R3 = 0.4
+    k_A_R3 = 4.6
+    k_M_R3 = 0.4
     k_B_R3 = 2.5
     dG0_R3 = -5
     ## R4
@@ -67,14 +67,13 @@ model single_pathway()
     E_conc_R4 = 1
     k_cat_R4 = 9
     k_B_R4 = 0.5
-    k_M_R4 = 0.9
-    k_X_R4 = 3.1
+    k_C_R4 = 0.9
     dG0_R4 = -5
     ## R5
     is_on_R5 = 1
     E_conc_R5 = 1
     k_cat_R5 = 10
-    k_N_R5 = 1.5
+    k_C_R5 = 1.5
     k_X_R5 = 2.6
     k_P_R5 = 6.8
     dG0_R5 = 4
@@ -107,8 +106,6 @@ model single_pathway()
     substanceOnly species X = 1e-6
     substanceOnly species P = 1e-6
     substanceOnly species M = 1e-6
-    substanceOnly species N = 1e-6
-    substanceOnly species Y = 1e-6
     # const substanceOnly species Pex = 2
     substanceOnly species Pex = 1e-6
     substanceOnly species Bex = 1e-6
@@ -130,23 +127,23 @@ model single_pathway()
     R2_kappa := kappa(S, 1, A, X, k_S_R2, 1, k_A_R2, k_X_R2)
     R2_gamma := gamma_(S, 1, A, X, dG0_R2, R, T)
     ## R3
-    R3: Y + X -> B;
-    R3 = rate_law_two_s_one_p(is_on_R3, E_conc_R3, k_cat_R3, Y, X, B, k_Y_R3, k_X_R3, k_B_R3, dG0_R3, R, T)
+    R3: A + M -> B;
+    R3 = rate_law_two_s_one_p(is_on_R3, E_conc_R3, k_cat_R3, A, M, B, k_A_R3, k_M_R3, k_B_R3, dG0_R3, R, T)
     R3_vplus := v_plus(is_on_R3, E_conc_R3, k_cat_R3)
-    R3_kappa := kappa(Y, X, B, 1, k_Y_R3, k_X_R3, k_B_R3, 1)
-    R3_gamma := gamma_(Y, X, B, 1, dG0_R3, R, T)
+    R3_kappa := kappa(A, M, B, 1, k_A_R3, k_M_R3, k_B_R3, 1)
+    R3_gamma := gamma_(A, M, B, 1, dG0_R3, R, T)
     ## R4
-    R4: B -> M + X;
-    R4 = rate_law_one_s_two_p(is_on_R4, E_conc_R4, k_cat_R4, B, M, X, k_B_R4, k_M_R4, k_X_R4, dG0_R4, R, T)
+    R4: B -> C;
+    R4 = rate_law_one_s_one_p(is_on_R4, E_conc_R4, k_cat_R4, B, C, k_B_R4, k_C_R4, dG0_R4, R, T)
     R4_vplus := v_plus(is_on_R4, E_conc_R4, k_cat_R4)
-    R4_kappa := kappa(B, 1, M, X, k_B_R4, 1, k_M_R4, k_X_R4)
-    R4_gamma := gamma_(B, 1, M, X, dG0_R4, R, T)
+    R4_kappa := kappa(B, 1, C, 1, k_B_R4, 1, k_C_R4, 1)
+    R4_gamma := gamma_(B, 1, C, 1, dG0_R4, R, T)
     ## R5
-    R5: N + X -> P;
-    R5 = rate_law_two_s_one_p(is_on_R5, E_conc_R5, k_cat_R5, N, X, P, k_N_R5, k_X_R5, k_P_R5, dG0_R5, R, T)
+    R5: C + X -> P;
+    R5 = rate_law_two_s_one_p(is_on_R5, E_conc_R5, k_cat_R5, C, X, P, k_C_R5, k_X_R5, k_P_R5, dG0_R5, R, T)
     R5_vplus := v_plus(is_on_R5, E_conc_R5, k_cat_R5)
-    R5_kappa := kappa(N, X, P, 1, k_N_R5, k_X_R5, k_P_R5, 1)
-    R5_gamma := gamma_(N, X, P, 1, dG0_R5, R, T)
+    R5_kappa := kappa(C, X, P, 1, k_C_R5, k_X_R5, k_P_R5, 1)
+    R5_gamma := gamma_(C, X, P, 1, dG0_R5, R, T)
     ## R6
     R6: P -> Pex;
     R6 = rate_law_one_s_one_p(is_on_R6, E_conSS1_R6, k_cat_R6, P, Pex, k_P_R6, k_Pex_R6, dG0_R6, R, T)
@@ -161,51 +158,29 @@ model single_pathway()
     RTB_vplus := v_plus(is_on_RTB, E_conc_RTB, k_cat_RTB)
     RTB_kappa := kappa(B, 1, Bex, 1, k_B_RTB, 1, k_Bex_RTB, 1)
     RTB_gamma := gamma_(B, 1, Bex, 1, dG0_RTB, R, T)
-
-    ######
-    ## A input
-    Ia = 0.9
-    Ain: -> A;
-    Ain = Ia
-    ## A output
-    k_A_Aout = 0.25
-    Aout: A ->;
-    Aout = k_A_Aout * A
-
-    ## Y input
-    Iy = 0.1
-    Yin: -> Y;
-    Yin = Iy
-    ## Y output
-    k_Y_Yout = 0.5
-    Yout: Y ->;
-    Yout = k_Y_Yout * Y
-
+    ## X input
+    Ix = 0.8
+    Xin: -> X;
+    Xin = Ix
+    ## X output
+    k_X_Xout = 0.5
+    Xout: X ->;
+    Xout = k_X_Xout * X
     ## M input
-    Im = 0.3
+    Im = 2.0
     Min_: -> M;
     Min_ = Im
-    ## A output
-    k_M_Mout = 0.7
+    ## M output
+    k_M_Mout = 0.75
     Mout: M ->;
     Mout = k_M_Mout * M
-
-    ## N input
-    In_ = 0.3
-    Nin: -> N;
-    Nin = In_
-    ## N output
-    k_N_Nout = 0.3
-    Nout: N ->;
-    Nout = k_N_Nout * N
-    ######
 
     # dG assignments
     dG_R1 := dG(Sex, 1, S, 1, dG0_R1, R, T, R1)
     dG_R2 := dG(S, 1, A, X, dG0_R2, R, T, R2)
-    dG_R3 := dG(Y, X, B, 1, dG0_R3, R, T, R3)
-    dG_R4 := dG(B, 1, M, X, dG0_R4, R, T, R4)
-    dG_R5 := dG(N, X, P, 1, dG0_R5, R, T, R5)
+    dG_R3 := dG(A, M, B, 1, dG0_R3, R, T, R3)
+    dG_R4 := dG(B, 1, C, 1, dG0_R4, R, T, R4)
+    dG_R5 := dG(C, X, P, 1, dG0_R5, R, T, R5)
     dG_R6 := dG(P, 1, Pex, 1, dG0_R6, R, T, R6)
     dG_RTB := dG(B, 1, Bex, 1, dG0_RTB, R, T, RTB)
 
@@ -247,6 +222,32 @@ model all_pathways
   CS2.Bex is Community_Bex
 
   # Set the same parameter variable for all pathways
+  ## Xin and Xout
+  CS1.k_X_Xout is global_k_X_Xout_CS1
+  global_k_X_Xout_CS1 = 1
+  CS2.k_X_Xout is global_k_X_Xout_CS2
+  global_k_X_Xout_CS2 = 1
+  SS1.k_X_Xout is global_k_X_Xout_SS1
+  global_k_X_Xout_SS1 = 1
+  CS1.Ix is global_Ix_CS1
+  global_Ix_CS1 = 1
+  CS2.Ix is global_Ix_CS2
+  global_Ix_CS2 = 1
+  SS1.Ix is global_Ix_SS1
+  global_Ix_SS1 = 1
+  ## Min and Mout
+  CS1.k_M_Mout is global_k_M_Mout_CS1
+  global_k_M_Mout_CS1 = 1
+  CS2.k_M_Mout is global_k_M_Mout_CS2
+  global_k_M_Mout_CS2 = 1
+  SS1.k_M_Mout is global_k_M_Mout_SS1
+  global_k_M_Mout_SS1 = 1
+  CS1.Im is global_Im_CS1
+  global_Im_CS1 = 1
+  CS2.Im is global_Im_CS2
+  global_Im_CS2 = 1
+  SS1.Im is global_Im_SS1
+  global_Im_SS1 = 1
   ## General
   CS1.T is T
   CS2.T is T
@@ -292,57 +293,54 @@ model all_pathways
   ## R3
   CS1.E_conc_R3 is E_conc_R3
   CS1.k_cat_R3 is global_k_cat_R3
-  CS1.k_Y_R3 is global_k_Y_R3
-  CS1.k_X_R3 is global_k_X_R3
+  CS1.k_A_R3 is global_k_A_R3
+  CS1.k_M_R3 is global_k_M_R3
   CS1.k_B_R3 is global_k_B_R3
   CS1.dG0_R3 is dG0_R3
   CS2.E_conc_R3 is E_conc_R3
   CS2.k_cat_R3 is global_k_cat_R3
-  CS2.k_Y_R3 is global_k_Y_R3
-  CS2.k_X_R3 is global_k_X_R3
+  CS2.k_A_R3 is global_k_A_R3
+  CS2.k_M_R3 is global_k_M_R3
   CS2.k_B_R3 is global_k_B_R3
   CS2.dG0_R3 is dG0_R3
   SS1.E_conc_R3 is E_conc_R3
   SS1.k_cat_R3 is global_k_cat_R3
-  SS1.k_Y_R3 is global_k_Y_R3
-  SS1.k_X_R3 is global_k_X_R3
+  SS1.k_A_R3 is global_k_A_R3
+  SS1.k_M_R3 is global_k_M_R3
   SS1.k_B_R3 is global_k_B_R3
   SS1.dG0_R3 is dG0_R3
   ## R4
   CS1.E_conc_R4 is E_conc_R4
   CS1.k_cat_R4 is global_k_cat_R4
   CS1.k_B_R4 is global_k_B_R4
-  CS1.k_M_R4 is global_k_M_R4
-  CS1.k_X_R4 is global_k_X_R4
+  CS1.k_C_R4 is global_k_C_R4
   CS1.dG0_R4 is dG0_R4
   CS2.E_conc_R4 is E_conc_R4
   CS2.k_cat_R4 is global_k_cat_R4
   CS2.k_B_R4 is global_k_B_R4
-  CS2.k_M_R4 is global_k_M_R4
-  CS2.k_X_R4 is global_k_X_R4
+  CS2.k_C_R4 is global_k_C_R4
   CS2.dG0_R4 is dG0_R4
   SS1.E_conc_R4 is E_conc_R4
   SS1.k_cat_R4 is global_k_cat_R4
   SS1.k_B_R4 is global_k_B_R4
-  SS1.k_M_R4 is global_k_M_R4
-  SS1.k_X_R4 is global_k_X_R4
+  SS1.k_C_R4 is global_k_C_R4
   SS1.dG0_R4 is dG0_R4
   ## R5
   CS1.E_conc_R5 is E_conc_R5
   CS1.k_cat_R5 is global_k_cat_R5
-  CS1.k_N_R5 is global_k_N_R5
+  CS1.k_C_R5 is global_k_C_R5
   CS1.k_X_R5 is global_k_X_R5
   CS1.k_P_R5 is global_k_P_R5
   CS1.dG0_R5 is dG0_R5
   CS2.E_conc_R5 is E_conc_R5
   CS2.k_cat_R5 is global_k_cat_R5
-  CS2.k_N_R5 is global_k_N_R5
+  CS2.k_C_R5 is global_k_C_R5
   CS2.k_X_R5 is global_k_X_R5
   CS2.k_P_R5 is global_k_P_R5
   CS2.dG0_R5 is dG0_R5
   SS1.E_conc_R5 is E_conc_R5
   SS1.k_cat_R5 is global_k_cat_R5
-  SS1.k_N_R5 is global_k_N_R5
+  SS1.k_C_R5 is global_k_C_R5
   SS1.k_X_R5 is global_k_X_R5
   SS1.k_P_R5 is global_k_P_R5
   SS1.dG0_R5 is dG0_R5

@@ -17,7 +17,9 @@ def sample(model: rr.RoadRunner,
            max_scaling: float,
            min_flux: float):
     is_not_usable = True
+    model.conservedMoietyAnalysis = True
     model.steadyStateSelections = selections
+    result_dict = {}
     while is_not_usable:
         # Change values randomly
         for id in sampled_values.keys():
@@ -37,21 +39,21 @@ def sample(model: rr.RoadRunner,
             values = model.getSteadyStateValues()
         except RuntimeError as e:
             print(f"Tellurium runtime error: {e}")
-            continue
+            result_dict["relative_community_flux_advantage"] = -float("inf")
+            return {}
 
         for value_id, value in zip(model.steadyStateSelections, model.getSteadyStateValues()):
-            result_dict[value_id] = round(value, 6)
+            result_dict[value_id] = value  # round(value, 6)
 
         if (result_dict["community_flux"] < min_flux) or (result_dict["single_flux"] < min_flux):
             result_dict = {}
             is_not_usable = True
-            print("A")
         else:
             is_not_usable = False
 
 
     result_dict_return = copy.deepcopy(result_dict)
-    min_advantage = 1.0
+    min_advantage = 1.1
     if (result_dict["relative_community_flux_advantage"] > min_advantage):
         for key in result_dict.keys():
             result_dict[key] = str(result_dict[key])
@@ -75,6 +77,7 @@ def sample(model: rr.RoadRunner,
         extra_data += " ↓ V⁺: "+result_dict["SS1_R1_vplus"]+"\n"
         extra_data += " ↓ κ: "+result_dict["SS1_R1_kappa"]+"\n"
         extra_data += " ↓ γ: "+result_dict["SS1_R1_gamma"]+"\n"
+        extra_data += " ↓ Flux: "+result_dict["SS1_R1"]+"\n"
         extra_data += " ↓ V⁺*κ*γ: "+str(float(result_dict["SS1_R1_vplus"]) * float(result_dict["SS1_R1_gamma"]) * float(result_dict["SS1_R1_kappa"]))+"\n"
         extra_data += " SS1_S ["+result_dict["SS1_S"]+"]\n"
         extra_data += " ⥥ R2, dG0: "+result_dict["dG0_R2"]+", kcat: "+result_dict["global_k_cat_R2"]+", k_S: "+result_dict["global_k_S_R2"]+", k_A "+result_dict["global_k_A_R2"]+", k_X: "+result_dict["global_k_X_R2"]+"\n"
@@ -82,15 +85,17 @@ def sample(model: rr.RoadRunner,
         extra_data += " ⥥ V⁺: "+result_dict["SS1_R2_vplus"]+"\n"
         extra_data += " ⥥ κ: "+result_dict["SS1_R2_kappa"]+"\n"
         extra_data += " ⥥ γ: "+result_dict["SS1_R2_gamma"]+"\n"
+        extra_data += " ⥥ Flux: "+result_dict["SS1_R2"]+"\n"
         extra_data += " ⥥ V⁺*κ*γ: "+str(float(result_dict["SS1_R2_vplus"]) * float(result_dict["SS1_R2_kappa"]) * float(result_dict["SS1_R2_gamma"]))+"\n"
         extra_data += " SS1_X ["+result_dict["SS1_X"]+"] + SS1_A ["+result_dict["SS1_A"]+"]\n"
         extra_data += " '''''\n"
-        extra_data += " SS1_X ["+result_dict["SS1_X"]+"] + SS1_Y ["+result_dict["SS1_Y"]+"]\n"
+        # extra_data += " SS1_X ["+result_dict["SS1_X"]+"] + SS1_Y ["+result_dict["SS1_Y"]+"]\n"
         extra_data += " ⇓ R3" #, dG0: "+result_dict["dG0_R3"]+", kcat: "+result_dict["global_k_cat_R3"]+", k_A: "+result_dict["global_k_A_R3"]+", k_X: "+result_dict["global_k_X_R3"]+", k_B "+result_dict["global_k_B_R3"]+"\n"
         extra_data += " ⇓ dG': "+result_dict["SS1_dG_R3"]+"\n"
         extra_data += " ⇓ V⁺: "+result_dict["SS1_R3_vplus"]+"\n"
         extra_data += " ⇓ κ: "+result_dict["SS1_R3_kappa"]+"\n"
         extra_data += " ⇓ γ: "+result_dict["SS1_R3_gamma"]+"\n"
+        extra_data += " ⥥ Flux: "+result_dict["SS1_R3"]+"\n"
         extra_data += " ⇓ V⁺*κ*γ: "+str(float(result_dict["SS1_R3_vplus"]) * float(result_dict["SS1_R3_kappa"]) * float(result_dict["SS1_R3_gamma"]))+"\n"
         extra_data += " SS1_B ["+result_dict["SS1_B"]+"]\n"
         extra_data += " ⥥ R4" #, dG0: "+result_dict["dG0_R4"]+", kcat: "+result_dict["global_k_cat_R4"]+", k_B: "+result_dict["global_k_B_R4"]+", k_C: "+result_dict["global_k_C_R4"]+", k_X "+result_dict["global_k_X_R4"]+"\n"
@@ -98,15 +103,17 @@ def sample(model: rr.RoadRunner,
         extra_data += " ⥥ V⁺: "+result_dict["SS1_R4_vplus"]+"\n"
         extra_data += " ⥥ κ: "+result_dict["SS1_R4_kappa"]+"\n"
         extra_data += " ⥥ γ: "+result_dict["SS1_R4_gamma"]+"\n"
+        extra_data += " ⥥ Flux: "+result_dict["SS1_R4"]+"\n"
         extra_data += " ⥥ V⁺*κ*γ: "+str(float(result_dict["SS1_R4_vplus"]) * float(result_dict["SS1_R4_kappa"]) * float(result_dict["SS1_R4_gamma"]))+"\n"
-        extra_data += " SS1_X ["+result_dict["SS1_X"]+"] + SS1_M ["+result_dict["SS1_M"]+"]\n"
+        # extra_data += " SS1_X ["+result_dict["SS1_X"]+"] + SS1_M ["+result_dict["SS1_M"]+"]\n"
         extra_data += " '''''\n"
-        extra_data += " SS1_X ["+result_dict["SS1_X"]+"] + SS1_N ["+result_dict["SS1_N"]+"]\n"
+        # extra_data += " SS1_X ["+result_dict["SS1_X"]+"] + SS1_N ["+result_dict["SS1_N"]+"]\n"
         extra_data += " ⇓ R5" #, dG0: "+result_dict["dG0_R5"]+", kcat: "+result_dict["global_k_cat_R5"]+", k_C: "+result_dict["global_k_C_R5"]+", k_X: "+result_dict["global_k_X_R5"]+", k_P "+result_dict["global_k_P_R5"]+"\n"
         extra_data += " ⇓ dG': "+result_dict["SS1_dG_R5"]+"\n"
         extra_data += " ⇓ V⁺: "+result_dict["SS1_R5_vplus"]+"\n"
         extra_data += " ⇓ κ: "+result_dict["SS1_R5_kappa"]+"\n"
         extra_data += " ⇓ γ: "+result_dict["SS1_R5_gamma"]+"\n"
+        extra_data += " ⥥ Flux: "+result_dict["SS1_R5"]+"\n"
         extra_data += " ⇓ V⁺*κ*γ: "+str(float(result_dict["SS1_R5_vplus"]) * float(result_dict["SS1_R5_kappa"]) * float(result_dict["SS1_R5_gamma"]))+"\n"
         extra_data += " SS1_P ["+result_dict["SS1_P"]+"]\n"
         extra_data += " ↓ R6, dG0: "+result_dict["dG0_R6"]+", kcat: "+result_dict["global_k_cat_R6"]+", k_P: "+result_dict["global_k_P_R6"]+", k_Pex: "+result_dict["global_k_Pex_R6"]+"\n"
@@ -114,6 +121,7 @@ def sample(model: rr.RoadRunner,
         extra_data += " ↓ V⁺: "+result_dict["SS1_R6_vplus"]+"\n"
         extra_data += " ↓ κ: "+result_dict["SS1_R6_kappa"]+"\n"
         extra_data += " ↓ γ: "+result_dict["SS1_R6_gamma"]+"\n"
+        extra_data += " ↓ Flux: "+result_dict["SS1_R6"]+"\n"
         extra_data += " ↓ V⁺*κ*γ: "+str(float(result_dict["SS1_R6_vplus"]) * float(result_dict["SS1_R6_kappa"]) * float(result_dict["SS1_R6_gamma"]))+"\n"
         extra_data += " Pex ["+result_dict["Single_Pex"]+"]\n"
         extra_data += "\n"
@@ -127,6 +135,7 @@ def sample(model: rr.RoadRunner,
         extra_data += " ↓ V⁺: "+result_dict["CS1_R1_vplus"]+"\n"
         extra_data += " ↓ κ: "+result_dict["CS1_R1_kappa"]+"\n"
         extra_data += " ↓ γ: "+result_dict["CS1_R1_gamma"]+"\n"
+        extra_data += " ↓ Flux: "+result_dict["CS1_R1"]+"\n"
         extra_data += " ↓ V⁺*κ*γ: "+str(float(result_dict["CS1_R1_vplus"]) * float(result_dict["CS1_R1_kappa"]) * float(result_dict["CS1_R1_gamma"]))+"\n"
         extra_data += " CS1_S ["+result_dict["CS1_S"]+"]\n"
         extra_data += " ⥥ R2" #, dG0: "+result_dict["dG0_R2"]+", kcat: "+result_dict["global_k_cat_R2"]+", k_S: "+result_dict["global_k_S_R2"]+", k_A "+result_dict["global_k_A_R2"]+", k_X: "+result_dict["global_k_X_R2"]+"\n"
@@ -134,15 +143,17 @@ def sample(model: rr.RoadRunner,
         extra_data += " ⥥ V⁺: "+result_dict["CS1_R2_vplus"]+"\n"
         extra_data += " ⥥ κ: "+result_dict["CS1_R2_kappa"]+"\n"
         extra_data += " ⥥ γ: "+result_dict["CS1_R2_gamma"]+"\n"
+        extra_data += " ⥥ Flux: "+result_dict["CS1_R2"]+"\n"
         extra_data += " ⥥ V⁺*κ*γ: "+str(float(result_dict["CS1_R2_vplus"]) * float(result_dict["CS1_R2_kappa"]) * float(result_dict["CS1_R2_gamma"]))+"\n"
         extra_data += " CS1_X ["+result_dict["CS1_X"]+"] + CS1_A ["+result_dict["CS1_A"]+"]\n"
         extra_data += " '''''\n"
-        extra_data += " CS1_X ["+result_dict["CS1_X"]+"] + CS1_Y ["+result_dict["CS1_Y"]+"]\n"
+        # extra_data += " CS1_X ["+result_dict["CS1_X"]+"] + CS1_Y ["+result_dict["CS1_Y"]+"]\n"
         extra_data += " ⇓ R3" #, dG0: "+result_dict["dG0_R3"]+", kcat: "+result_dict["global_k_cat_R3"]+", k_A: "+result_dict["global_k_A_R3"]+", k_X: "+result_dict["global_k_X_R3"]+", k_B "+result_dict["global_k_B_R3"]+"\n"
         extra_data += " ⇓ dG': "+result_dict["CS1_dG_R3"]+"\n"
         extra_data += " ⇓ V⁺: "+result_dict["CS1_R3_vplus"]+"\n"
         extra_data += " ⇓ κ: "+result_dict["CS1_R3_kappa"]+"\n"
         extra_data += " ⇓ γ: "+result_dict["CS1_R3_gamma"]+"\n"
+        extra_data += " ⥥ Flux: "+result_dict["CS1_R3"]+"\n"
         extra_data += " ⇓ V⁺*κ*γ: "+str(float(result_dict["CS1_R3_vplus"]) * float(result_dict["CS1_R3_kappa"]) * float(result_dict["CS1_R3_gamma"]))+"\n"
         extra_data += " CS1_B ["+result_dict["CS1_B"]+"]\n"
         extra_data += " ↓ CS1_RTB, dG0: "+result_dict["dG0_RTB"]+", kcat: "+result_dict["global_k_cat_RTB"]+", k_B: "+result_dict["global_k_B_RTB"]+", k_Bex: "+result_dict["global_k_Bex_RTB"]+"\n"
@@ -150,6 +161,7 @@ def sample(model: rr.RoadRunner,
         extra_data += " ↓ V⁺: "+result_dict["CS1_RTB_vplus"]+"\n"
         extra_data += " ↓ κ: "+result_dict["CS1_RTB_kappa"]+"\n"
         extra_data += " ↓ γ: "+result_dict["CS1_RTB_gamma"]+"\n"
+        extra_data += " ↓ Flux: "+result_dict["CS1_RTB"]+"\n"
         extra_data += " ↓ V⁺*κ*γ: "+str(float(result_dict["CS1_RTB_vplus"]) * float(result_dict["CS1_RTB_kappa"]) * float(result_dict["CS1_RTB_gamma"]))+"\n"
         extra_data += " Bex ["+result_dict["Community_Bex"]+"]\n"
         extra_data += " ↓ CS2_RTB, dG0: "+result_dict["dG0_RTB"]+", kcat: "+result_dict["global_k_cat_RTB"]+", k_B: "+result_dict["global_k_B_RTB"]+", k_Bex: "+result_dict["global_k_Bex_RTB"]+"\n"
@@ -157,6 +169,7 @@ def sample(model: rr.RoadRunner,
         extra_data += " ↓ V⁺: "+result_dict["CS2_RTB_vplus"]+"\n"
         extra_data += " ↓ κ: "+result_dict["CS2_RTB_kappa"]+"\n"
         extra_data += " ↓ γ: "+result_dict["CS2_RTB_gamma"]+"\n"
+        extra_data += " ↓ Flux: "+result_dict["CS2_RTB"]+"\n"
         extra_data += " ↓ V⁺*κ*γ: "+str(float(result_dict["CS2_RTB_vplus"]) * float(result_dict["CS2_RTB_kappa"]) * float(result_dict["CS2_RTB_gamma"]))+"\n"
         extra_data += " CS2_B ["+result_dict["CS2_B"]+"]\n"
         extra_data += " ⥥ R4" #, dG0: "+result_dict["dG0_R4"]+", kcat: "+result_dict["global_k_cat_R4"]+", k_B: "+result_dict["global_k_B_R4"]+", k_C: "+result_dict["global_k_C_R4"]+", k_X "+result_dict["global_k_X_R4"]+"\n"
@@ -164,15 +177,17 @@ def sample(model: rr.RoadRunner,
         extra_data += " ⥥ V⁺: "+result_dict["CS2_R4_vplus"]+"\n"
         extra_data += " ⥥ κ: "+result_dict["CS2_R4_kappa"]+"\n"
         extra_data += " ⥥ γ: "+result_dict["CS2_R4_gamma"]+"\n"
+        extra_data += " ⥥ Flux: "+result_dict["CS2_R4"]+"\n"
         extra_data += " ⥥ V⁺*κ*γ: "+str(float(result_dict["CS2_R4_vplus"]) * float(result_dict["CS2_R4_kappa"]) * float(result_dict["CS2_R4_gamma"]))+"\n"
-        extra_data += " CS2_X ["+result_dict["CS2_X"]+"] + CS2_M ["+result_dict["CS2_M"]+"]\n"
-        extra_data += " '''''\n"
-        extra_data += " CS2_X ["+result_dict["CS2_X"]+"] + CS2_N ["+result_dict["CS2_N"]+"]\n"
+        # extra_data += " CS2_X ["+result_dict["CS2_X"]+"] + CS2_M ["+result_dict["CS2_M"]+"]\n"
+        # extra_data += " '''''\n"
+        # extra_data += " CS2_X ["+result_dict["CS2_X"]+"] + CS2_N ["+result_dict["CS2_N"]+"]\n"
         extra_data += " ⇓ R5" #, dG0: "+result_dict["dG0_R5"]+", kcat: "+result_dict["global_k_cat_R5"]+", k_C: "+result_dict["global_k_C_R5"]+", k_X: "+result_dict["global_k_X_R5"]+", k_P "+result_dict["global_k_P_R5"]+"\n"
         extra_data += " ⇓ dG': "+result_dict["CS2_dG_R5"]+"\n"
         extra_data += " ⇓ V⁺: "+result_dict["CS2_R5_vplus"]+"\n"
         extra_data += " ⇓ κ: "+result_dict["CS2_R5_kappa"]+"\n"
         extra_data += " ⇓ γ: "+result_dict["CS2_R5_gamma"]+"\n"
+        extra_data += " ⥥ Flux: "+result_dict["CS2_R5"]+"\n"
         extra_data += " ⇓ V⁺*κ*γ: "+str(float(result_dict["CS2_R5_vplus"]) * float(result_dict["CS2_R5_kappa"]) * float(result_dict["CS2_R5_gamma"]))+"\n"
         extra_data += " CS2_P ["+result_dict["CS2_P"]+"]\n"
         extra_data += " ↓ R6, dG0: "+result_dict["dG0_R6"]+", kcat: "+result_dict["global_k_cat_R6"]+", k_P: "+result_dict["global_k_P_R6"]+", k_Pex: "+result_dict["global_k_Pex_R6"]+"\n"
@@ -180,6 +195,7 @@ def sample(model: rr.RoadRunner,
         extra_data += " ↓ V⁺: "+result_dict["CS2_R6_vplus"]+"\n"
         extra_data += " ↓ κ: "+result_dict["CS2_R6_kappa"]+"\n"
         extra_data += " ↓ γ: "+result_dict["CS2_R6_gamma"]+"\n"
+        extra_data += " ↓ Flux: "+result_dict["CS2_R6"]+"\n"
         extra_data += " ↓ V⁺*κ*γ: "+str(float(result_dict["CS2_R6_vplus"]) * float(result_dict["CS2_R6_kappa"]) * float(result_dict["CS2_R6_gamma"]))+"\n"
         extra_data += " Pex ["+result_dict["Community_Pex"]+"]\n"
 
@@ -190,7 +206,7 @@ def sample(model: rr.RoadRunner,
     return result_dict_return
 
 
-model = te.loada("toymodel_separated_X.antimony")
+model = te.loada("toymodel_expanded_with_Xin_and_Min_Steffen_deletions.antimony")
 
 with open("toymodel.cps", "w") as f:
     f.write(model.getSBML())
@@ -199,12 +215,11 @@ with open("toymodel.cps", "w") as f:
 import sys
 # matplotlib.use("TkAgg")
 # sselections = ["time", "SS1_S", "SS1_A", "CS1_A", "CS1_S", "SS1_X", "CS1_X", "CS2_X"]
-sselections = ["time", "CS1_R1", "CS1_R2", "CS1_R3", "CS2_R4", "CS2_R5", "CS2_R6"]
-simulation = model.simulate(0, 10, 1000, selections=sselections)
+# sselections = ["time", "CS1_R1", "CS1_R2", "CS1_R3", "CS2_R4", "CS2_R5", "CS2_R6"]
+# simulation = model.simulate(0, 10, 1000, selections=sselections)
 # model.plot(simulation)
 
 selections = [
-    "time",
     "c_mmdf",
     "s_mmdf",
     "total_mmdf",
@@ -237,13 +252,7 @@ selections = [
     "SS1_R6",
     "SS1_Pex_secretion",
     "CS2_X",
-    "CS2_Y",
-    "CS2_M",
-    "CS2_N",
     "CS1_X",
-    "CS1_Y",
-    "CS1_M",
-    "CS1_N",
     "SS1_X",
     "CS1_S",
     "CS1_A",
@@ -257,9 +266,6 @@ selections = [
     "SS1_B",
     "SS1_C",
     "SS1_P",
-    "SS1_Y",
-    "SS1_M",
-    "SS1_N",
     "CS1_dG_R1",
     "CS1_dG_R2",
     "CS1_dG_R3",
@@ -342,10 +348,10 @@ sampled_parameter_ids = [
 original_parameter_values: Dict[str, float] = {
     key: model[key] for key in sampled_parameter_ids
 }
-min_flux = 0.01
-max_scaling = 1
+min_flux = 0.1
+max_scaling = 100
 num_batches = 1
-num_runs_per_batch = 10
+num_runs_per_batch = 1000
 results: List[Dict[str, float]] = []
 # matplotlib.use('TkAgg')
 # results = [sample(model, selections, original_parameter_values, max_scaling, min_flux)]
@@ -359,6 +365,7 @@ for _ in range(num_batches):
         for i in range(num_runs_per_batch)
     ]
     new_results = ray.get(futures)
+    new_results = [x for x in new_results if x!={}]
     results += new_results
 
 ##

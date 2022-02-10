@@ -33,7 +33,7 @@ def sample(model: rr.RoadRunner,
 
         # Run simulation
         try:
-            result = model.simulate(0, 500, 1000, selections=selections)
+            result = model.simulate(0, 1000, 250, selections=selections)
         except RuntimeError as e:
             print(f"Tellurium runtime error: {e}")
             continue
@@ -106,7 +106,7 @@ def sample(model: rr.RoadRunner,
         extra_data += " SS1_X ["+result_dict["SS1_X"]+"] + SS1_A ["+result_dict["SS1_A"]+"]\n"
         extra_data += " '''''\n"
         # extra_data += " SS1_X ["+result_dict["SS1_X"]+"] + SS1_Y ["+result_dict["SS1_Y"]+"]\n"
-        extra_data += " ⇓ R3" #, dG0: "+result_dict["dG0_R3"]+", kcat: "+result_dict["global_k_cat_R3"]+", k_A: "+result_dict["global_k_A_R3"]+", k_X: "+result_dict["global_k_X_R3"]+", k_B "+result_dict["global_k_B_R3"]+"\n"
+        extra_data += " ⇓ R3" #, dG0: "+result_dict["dG0_R3"]+", kcat: "+result_dict["global_k_cat_R3"]+", k_A: "+result_dict["global_k_A_R3"]+", k_X: "+result_dict["global_k_M_R3"]+", k_B "+result_dict["global_k_B_R3"]+"\n"
         extra_data += " ⇓ dG': "+result_dict["SS1_dG_R3"]+"\n"
         extra_data += " ⇓ V⁺: "+result_dict["SS1_R3_vplus"]+"\n"
         extra_data += " ⇓ κ: "+result_dict["SS1_R3_kappa"]+"\n"
@@ -158,7 +158,7 @@ def sample(model: rr.RoadRunner,
         extra_data += " CS1_X ["+result_dict["CS1_X"]+"] + CS1_A ["+result_dict["CS1_A"]+"]\n"
         extra_data += " '''''\n"
         # extra_data += " CS1_X ["+result_dict["CS1_X"]+"] + CS1_Y ["+result_dict["CS1_Y"]+"]\n"
-        extra_data += " ⇓ R3" #, dG0: "+result_dict["dG0_R3"]+", kcat: "+result_dict["global_k_cat_R3"]+", k_A: "+result_dict["global_k_A_R3"]+", k_X: "+result_dict["global_k_X_R3"]+", k_B "+result_dict["global_k_B_R3"]+"\n"
+        extra_data += " ⇓ R3" #, dG0: "+result_dict["dG0_R3"]+", kcat: "+result_dict["global_k_cat_R3"]+", k_A: "+result_dict["global_k_A_R3"]+", k_X: "+result_dict["global_k_M_R3"]+", k_B "+result_dict["global_k_B_R3"]+"\n"
         extra_data += " ⇓ dG': "+result_dict["CS1_dG_R3"]+"\n"
         extra_data += " ⇓ V⁺: "+result_dict["CS1_R3_vplus"]+"\n"
         extra_data += " ⇓ κ: "+result_dict["CS1_R3_kappa"]+"\n"
@@ -365,7 +365,7 @@ original_parameter_values: Dict[str, float] = {
 min_flux = -float("inf")
 max_scaling = 1_000
 num_batches = 1
-num_runs_per_batch = 10
+num_runs_per_batch = 200
 results: List[Dict[str, float]] = []
 # matplotlib.use('TkAgg')
 # results = [sample(model, selections, original_parameter_values, max_scaling, min_flux)]

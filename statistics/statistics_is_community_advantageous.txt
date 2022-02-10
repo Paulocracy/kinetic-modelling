@@ -1,14 +1,14 @@
 ==is_community_advantageous==
-MEAN: 0.3
+MEAN: 0.3333333333333333
 MEDIAN: 0.0
 MAX: 1.0
 MIN: 0.0
 # POSITIVE: 3
-# ZERO: 7
+# ZERO: 6
 # NEGATIVE: 0
 # >1.0: 0
 # =1.0: 3
-# <1.0: 7
+# <1.0: 6
 MEAN IF NOT ZERO: 0.0
 MEDIAN IF NOT ZERO: 0.0
 MIN IF NOT ZERO: 0.0
