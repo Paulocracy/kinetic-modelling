@@ -352,9 +352,9 @@ original_parameter_values: Dict[str, float] = {
     key: model[key] for key in sampled_parameter_ids
 }
 min_flux = 0.1
-max_scaling = 25
+max_scaling = 100
 num_batches = 1
-num_runs_per_batch = 100
+num_runs_per_batch = 1000
 results: List[Dict[str, float]] = []
 # matplotlib.use('TkAgg')
 # results = [sample(model, selections, original_parameter_values, max_scaling, min_flux)]
