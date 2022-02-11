@@ -2,6 +2,7 @@ import matplotlib
 import random
 import copy
 from matplotlib.pyplot import title
+import ray
 import tellurium as te
 import roadrunner as rr
 from multiprocessing import cpu_count
@@ -9,18 +10,20 @@ from tellurium.tellurium import model
 from typing import Any, Dict, List
 from helper import ensure_folder_existence, get_main_statistics, json_write, json_zip_write, save_histogram, save_xy_point_plot
 
-
-def sample(model: rr.RoadRunner,
+@ray.remote
+def sample(original_model: rr.RoadRunner,
            selections: List[str],
            sampled_values: Dict[str, float],
            max_scaling: float,
-           min_flux: float):
-    model = copy.deepcopy(model)
+           min_flux: float,
+           run_number: float=0):
+    print(run_number)
     is_not_usable = True
-    model.conservedMoietyAnalysis = True
-    model.steadyStateSelections = selections
     result_dict = {}
     while is_not_usable:
+        model = copy.deepcopy(original_model)
+        model.conservedMoietyAnalysis = True
+        model.steadyStateSelections = selections
         # Change values randomly
         for id in sampled_values.keys():
             original_value = sampled_values[id]
@@ -39,19 +42,17 @@ def sample(model: rr.RoadRunner,
             values = model.getSteadyStateValues()
         except RuntimeError as e:
             print(f"Tellurium runtime error: {e}")
-            result_dict["relative_community_flux_advantage"] = -float("inf")
-            print("Ending!")
-            return {}
+            continue
+            #result_dict["relative_community_flux_advantage"] = -float("inf")
+            #return {}
 
         for value_id, value in zip(model.steadyStateSelections, model.getSteadyStateValues()):
             result_dict[value_id] = value  # round(value, 6)
 
         if (result_dict["community_flux"] < min_flux) or (result_dict["single_flux"] < min_flux):
             result_dict = {}
-            is_not_usable = True
         else:
             is_not_usable = False
-            print("Done!")
 
 
     result_dict_return = copy.deepcopy(result_dict)
@@ -351,21 +352,24 @@ original_parameter_values: Dict[str, float] = {
     key: model[key] for key in sampled_parameter_ids
 }
 min_flux = 0.1
-max_scaling = 10
-num_runs = 100
+max_scaling = 25
+num_batches = 1
+num_runs_per_batch = 100
 results: List[Dict[str, float]] = []
 # matplotlib.use('TkAgg')
 # results = [sample(model, selections, original_parameter_values, max_scaling, min_flux)]
 ##
 
-for i in range(num_runs):
-    print(i)
-    new_result = sample(model, selections, original_parameter_values, max_scaling, min_flux)
-    if new_result != {}:
-        print("AAA")
-        print(new_result)
-        print("AAA")
-        results += [new_result]
+ray.init(num_cpus=cpu_count())
+
+for _ in range(num_batches):
+    futures = [
+        sample.remote(model, selections, original_parameter_values, max_scaling, min_flux, i)
+        for i in range(num_runs_per_batch)
+    ]
+    new_results = ray.get(futures)
+    new_results = [x for x in new_results if x!={}]
+    results += new_results
 
 ##
 results_list_dict: Dict[str, List[float]] = {}
@@ -373,9 +377,6 @@ for key in selections + ["extra_data"]:
     results_list_dict[key] = []
 for result in results:
     for key in selections + ["extra_data"]:
-        print(key)
-        print(results_list_dict[key])
-        print(result)
         results_list_dict[key].append(result[key])
 
 plotfolder = "./statistics/"
