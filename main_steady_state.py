@@ -347,7 +347,7 @@ original_parameter_values: Dict[str, float] = {
 }
 min_flux = 0.1
 max_scaling = 100
-num_runs = 1000
+num_runs = 5000
 results: List[Dict[str, float]] = []
 # matplotlib.use('TkAgg')
 # results = [sample(model, selections, original_parameter_values, max_scaling, min_flux)]
@@ -366,70 +366,70 @@ for i in range(num_runs):
     if new_result != {}:
         results += [new_result]
 
-##
-results_list_dict: Dict[str, List[float]] = {}
-for key in selections + ["extra_data"]:
-    results_list_dict[key] = []
-for result in results:
+    ##
+    results_list_dict: Dict[str, List[float]] = {}
     for key in selections + ["extra_data"]:
-        results_list_dict[key].append(result[key])
+        results_list_dict[key] = []
+    for result in results:
+        for key in selections + ["extra_data"]:
+            results_list_dict[key].append(result[key])
 
-plotfolder = "./statistics/"
-ensure_folder_existence(plotfolder)
-# HISTOGRAMS
-# for key in selections:
-#     if key == "time":
-#         continue
-#     save_histogram(
-#         path=plotfolder+"histogram_"+key+".png",
-#         data=results_list_dict[key],
-#         title=key,
-#         xlabel=key,
-#         ylabel="Number of"
-#     )
+    plotfolder = "./statistics/"
+    ensure_folder_existence(plotfolder)
+    # HISTOGRAMS
+    # for key in selections:
+    #     if key == "time":
+    #         continue
+    #     save_histogram(
+    #         path=plotfolder+"histogram_"+key+".png",
+    #         data=results_list_dict[key],
+    #         title=key,
+    #         xlabel=key,
+    #         ylabel="Number of"
+    #     )
 
-# POINT PLOTS
-pairs = [
-    ("c_mmdf", "s_mmdf"),
-    ("community_flux", "single_flux"),
-    ("relative_community_mmdf_advantage", "relative_community_flux_advantage"),
-    ("relative_community_mmdf_advantage", "CS2_to_CS1_X_ratio"),
-    ("relative_community_mmdf_advantage", "CS1_to_CS2_X_ratio"),
-    ("CS1_to_CS2_X_ratio", "community_flux"),
-    ("CS2_to_CS1_X_ratio", "community_flux"),
-    ("CS1_to_SS1_X_ratio", "relative_community_flux_advantage"),
-    ("CS2_to_SS1_X_ratio", "relative_community_flux_advantage"),
-    ("CS1_to_CS2_X_ratio", "relative_community_flux_advantage"),
-    ("CS2_to_CS1_X_ratio", "relative_community_flux_advantage"),
-    ("relative_community_flux_advantage", "CS1_to_CS2_X_ratio"),
-    ("relative_community_flux_advantage", "CS2_to_CS1_X_ratio"),
-    ("community_flux", "relative_community_flux_advantage"),
-    ("single_flux", "relative_community_flux_advantage"),
-]
+    # POINT PLOTS
+    pairs = [
+        ("c_mmdf", "s_mmdf"),
+        ("community_flux", "single_flux"),
+        ("relative_community_mmdf_advantage", "relative_community_flux_advantage"),
+        ("relative_community_mmdf_advantage", "CS2_to_CS1_X_ratio"),
+        ("relative_community_mmdf_advantage", "CS1_to_CS2_X_ratio"),
+        ("CS1_to_CS2_X_ratio", "community_flux"),
+        ("CS2_to_CS1_X_ratio", "community_flux"),
+        ("CS1_to_SS1_X_ratio", "relative_community_flux_advantage"),
+        ("CS2_to_SS1_X_ratio", "relative_community_flux_advantage"),
+        ("CS1_to_CS2_X_ratio", "relative_community_flux_advantage"),
+        ("CS2_to_CS1_X_ratio", "relative_community_flux_advantage"),
+        ("relative_community_flux_advantage", "CS1_to_CS2_X_ratio"),
+        ("relative_community_flux_advantage", "CS2_to_CS1_X_ratio"),
+        ("community_flux", "relative_community_flux_advantage"),
+        ("single_flux", "relative_community_flux_advantage"),
+    ]
 
-for pair in pairs:
-    save_xy_point_plot(
-        path=plotfolder+"xy_"+pair[0]+"_VS_"+pair[1]+".png",
-        xs=results_list_dict[pair[0]],
-        ys=results_list_dict[pair[1]],
-        title=pair[0]+" vs. "+pair[1],
-        xlabel=pair[0],
-        ylabel=pair[1],
-    )
+    for pair in pairs:
+        save_xy_point_plot(
+            path=plotfolder+"xy_"+pair[0]+"_VS_"+pair[1]+".png",
+            xs=results_list_dict[pair[0]],
+            ys=results_list_dict[pair[1]],
+            title=pair[0]+" vs. "+pair[1],
+            xlabel=pair[0],
+            ylabel=pair[1],
+        )
 
-# TEXT STATISTICS
-for key in selections:
-    if key == "time":
-        continue
-    text_statistics = get_main_statistics(results_list_dict[key], key)
-    with open(plotfolder+"statistics_"+key+".txt", "w") as f:
-        f.write(text_statistics)
+    # TEXT STATISTICS
+    for key in selections:
+        if key == "time":
+            continue
+        text_statistics = get_main_statistics(results_list_dict[key], key)
+        with open(plotfolder+"statistics_"+key+".txt", "w") as f:
+            f.write(text_statistics)
 
-# TEXT REPORT
-complete_extra_data = ""
-for result in results_list_dict["extra_data"]:
-    complete_extra_data += result
-with open(plotfolder+"extra_data.txt", "w", encoding="utf-8") as f:
-    f.write(complete_extra_data)
+    # TEXT REPORT
+    complete_extra_data = ""
+    for result in results_list_dict["extra_data"]:
+        complete_extra_data += result
+    with open(plotfolder+"extra_data.txt", "w", encoding="utf-8") as f:
+        f.write(complete_extra_data)
 
-json_zip_write(plotfolder+"TEST.json", results_list_dict)
+    json_zip_write(plotfolder+"TEST.json", results_list_dict)
