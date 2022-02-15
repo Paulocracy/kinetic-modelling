@@ -122,9 +122,11 @@ def sample(original_model: rr.RoadRunner,
         except RuntimeError as e:
             print(f"Tellurium runtime error: {e}")
             continue
-
-        for value_id, value in zip(model.steadyStateSelections, model.getSteadyStateValues()):
-            result_dict[value_id] = value  # round(value, 6)
+        try:
+            for value_id, value in zip(model.steadyStateSelections, model.getSteadyStateValues()):
+                result_dict[value_id] = value  # round(value, 6)
+        except RuntimeError:
+            continue
 
         if (result_dict["community_flux"] < min_flux) or (result_dict["single_flux"] < min_flux):
             result_dict = {}
