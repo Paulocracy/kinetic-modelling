@@ -106,8 +106,8 @@ model single_pathway()
     substanceOnly species X = 1e-6
     substanceOnly species P = 1e-6
     substanceOnly species M = 1e-6
-    # const substanceOnly species Pex = 2
-    substanceOnly species Pex = 1e-6
+    const substanceOnly species Pex = 2
+    # substanceOnly species Pex = 1e-6
     substanceOnly species Bex = 1e-6
 
 
@@ -236,18 +236,14 @@ model all_pathways
   SS1.Ix is global_Ix_SS1
   global_Ix_SS1 = 1
   ## Min and Mout
-  CS1.k_M_Mout is global_k_M_Mout_CS1
-  global_k_M_Mout_CS1 = 1
-  CS2.k_M_Mout is global_k_M_Mout_CS2
-  global_k_M_Mout_CS2 = 1
-  SS1.k_M_Mout is global_k_M_Mout_SS1
-  global_k_M_Mout_SS1 = 1
-  CS1.Im is global_Im_CS1
-  global_Im_CS1 = 1
-  CS2.Im is global_Im_CS2
-  global_Im_CS2 = 1
-  SS1.Im is global_Im_SS1
-  global_Im_SS1 = 1
+  CS1.k_M_Mout is global_k_M_Mout
+  CS2.k_M_Mout is global_k_M_Mout
+  SS1.k_M_Mout is global_k_M_Mout
+  global_k_M_Mout = 1
+  CS1.Im is global_Im
+  CS2.Im is global_Im
+  SS1.Im is global_Im
+  global_Im = 1
   ## General
   CS1.T is T
   CS2.T is T

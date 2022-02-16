@@ -160,10 +160,15 @@ def sample(original_model: rr.RoadRunner,
         extra_data += reaction_report("SS1_R4", ["SS1_B"], ["SS1_C"], result_dict)
         extra_data += reaction_report("SS1_R5", ["SS1_C", "SS1_X"], ["SS1_P"], result_dict)
         extra_data += reaction_report("SS1_R6", ["SS1_P"], ["Single_Pex"], result_dict)
+        extra_data += "global_Im: "+result_dict["global_Im"]+"\n"
         extra_data += reaction_report("SS1_Min_", [""], ["SS1_M"], result_dict)
+        extra_data += "global_k_M_Mout: "+result_dict["global_k_M_Mout"]+"\n"
         extra_data += reaction_report("SS1_Mout", ["SS1_M"], [""], result_dict)
+        extra_data += "global_Ix_SS1: "+result_dict["global_Ix_SS1"]+"\n"
         extra_data += reaction_report("SS1_Xin", [""], ["SS1_X"], result_dict)
+        extra_data += "global_k_X_Xout_SS1: "+result_dict["global_k_X_Xout_SS1"]+"\n"
         extra_data += reaction_report("SS1_Xout", ["SS1_X"], [""], result_dict)
+
         extra_data += "\n"
         extra_data += "Community:\n"
         extra_data += ">Flux: "+result_dict["community_flux"]+"\n"
@@ -177,11 +182,17 @@ def sample(original_model: rr.RoadRunner,
         extra_data += reaction_report("CS2_R4", ["CS2_B"], ["CS2_C"], result_dict)
         extra_data += reaction_report("CS2_R5", ["CS2_C", "CS2_X"], ["CS2_P"], result_dict)
         extra_data += reaction_report("CS2_R6", ["CS2_P"], ["Community_Pex"], result_dict)
+        extra_data += "Im: "+result_dict["global_Im"]+"\n"
         extra_data += reaction_report("CS1_Min_", [""], ["CS1_M"], result_dict)
+        extra_data += "k_M_Mout: "+result_dict["global_k_M_Mout"]+"\n"
         extra_data += reaction_report("CS1_Mout", ["CS1_M"], [""], result_dict)
+        extra_data += "Ix_CS1: "+result_dict["global_Ix_CS1"]+"\n"
         extra_data += reaction_report("CS1_Xin", [""], ["CS1_X"], result_dict)
+        extra_data += "k_X_Xout_CS1: "+result_dict["global_k_X_Xout_CS1"]+"\n"
         extra_data += reaction_report("CS1_Xout", ["CS1_X"], [""], result_dict)
+        extra_data += "Ix_CS2: "+result_dict["global_Ix_CS2"]+"\n"
         extra_data += reaction_report("CS2_Xin", [""], ["CS2_X"], result_dict)
+        extra_data += "k_X_Xout_CS2: "+result_dict["global_k_X_Xout_CS2"]+"\n"
         extra_data += reaction_report("CS2_Xout", ["CS2_X"], [""], result_dict)
 
         result_dict_return["extra_data"] = extra_data + "\n\n"
@@ -226,6 +237,15 @@ concentration_ids = [
     "CS2_X",
 ]
 selections = concentration_ids + [
+    "global_k_M_Mout",
+    "global_Im",
+    "global_Ix_CS1",
+    "global_Ix_CS2",
+    "global_Ix_SS1",
+    "global_k_X_Xout_CS1",
+    "global_k_X_Xout_CS2",
+    "global_k_X_Xout_SS1",
+
     "c_mmdf",
     "s_mmdf",
     "total_mmdf",
@@ -348,7 +368,7 @@ original_parameter_values: Dict[str, float] = {
     key: model[key] for key in sampled_parameter_ids
 }
 min_flux = 0.1
-max_scaling = 100
+max_scaling = 10
 num_runs = 5000
 results: List[Dict[str, float]] = []
 # matplotlib.use('TkAgg')

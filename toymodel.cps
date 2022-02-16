@@ -633,7 +633,7 @@
       <species id="CS1_X" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
       <species id="CS1_P" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
       <species id="CS1_M" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="Community_Pex" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="Community_Pex" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
       <species id="Community_Bex" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
       <species id="CS2_S" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
       <species id="CS2_A" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
@@ -650,7 +650,7 @@
       <species id="SS1_X" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
       <species id="SS1_P" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
       <species id="SS1_M" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="Single_Pex" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="Single_Pex" compartment="default_compartment" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
       <species id="SS1_Bex" compartment="default_compartment" initialConcentration="1e-06" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
     </listOfSpecies>
     <listOfParameters>
@@ -726,8 +726,8 @@
       <parameter id="CS1_RTB_gamma" constant="false"/>
       <parameter id="global_Ix_CS1" value="1" constant="true"/>
       <parameter id="global_k_X_Xout_CS1" value="1" constant="true"/>
-      <parameter id="global_Im_CS1" value="1" constant="true"/>
-      <parameter id="global_k_M_Mout_CS1" value="1" constant="true"/>
+      <parameter id="global_Im" value="1" constant="true"/>
+      <parameter id="global_k_M_Mout" value="1" constant="true"/>
       <parameter id="CS1_dG_R1" constant="false"/>
       <parameter id="CS1_dG_R2" constant="false"/>
       <parameter id="CS1_dG_R3" constant="false"/>
@@ -774,8 +774,6 @@
       <parameter id="CS2_RTB_gamma" constant="false"/>
       <parameter id="global_Ix_CS2" value="1" constant="true"/>
       <parameter id="global_k_X_Xout_CS2" value="1" constant="true"/>
-      <parameter id="global_Im_CS2" value="1" constant="true"/>
-      <parameter id="global_k_M_Mout_CS2" value="1" constant="true"/>
       <parameter id="CS2_dG_R1" value="1" constant="false"/>
       <parameter id="CS2_dG_R2" value="1" constant="false"/>
       <parameter id="CS2_dG_R3" value="1" constant="false"/>
@@ -822,8 +820,6 @@
       <parameter id="SS1_RTB_gamma" constant="false"/>
       <parameter id="global_Ix_SS1" value="1" constant="true"/>
       <parameter id="global_k_X_Xout_SS1" value="1" constant="true"/>
-      <parameter id="global_Im_SS1" value="1" constant="true"/>
-      <parameter id="global_k_M_Mout_SS1" value="1" constant="true"/>
       <parameter id="SS1_dG_R1" constant="false"/>
       <parameter id="SS1_dG_R2" constant="false"/>
       <parameter id="SS1_dG_R3" constant="false"/>
@@ -3734,7 +3730,7 @@
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> global_Im_CS1 </ci>
+            <ci> global_Im </ci>
           </math>
         </kineticLaw>
       </reaction>
@@ -3746,7 +3742,7 @@
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
-              <ci> global_k_M_Mout_CS1 </ci>
+              <ci> global_k_M_Mout </ci>
               <ci> CS1_M </ci>
             </apply>
           </math>
@@ -3915,7 +3911,7 @@
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> global_Im_CS2 </ci>
+            <ci> global_Im </ci>
           </math>
         </kineticLaw>
       </reaction>
@@ -3927,7 +3923,7 @@
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
-              <ci> global_k_M_Mout_CS2 </ci>
+              <ci> global_k_M_Mout </ci>
               <ci> CS2_M </ci>
             </apply>
           </math>
@@ -4177,7 +4173,7 @@
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> global_Im_SS1 </ci>
+            <ci> global_Im </ci>
           </math>
         </kineticLaw>
       </reaction>
@@ -4189,7 +4185,7 @@
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
-              <ci> global_k_M_Mout_SS1 </ci>
+              <ci> global_k_M_Mout </ci>
               <ci> SS1_M </ci>
             </apply>
           </math>
