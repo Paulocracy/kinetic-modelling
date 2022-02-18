@@ -223,16 +223,18 @@ model all_pathways
 
   # Set the same parameter variable for all pathways
   ## Xin and Xout
-  CS1.k_X_Xout is global_k_X_Xout_CS1_and_SS1
+  CS1.k_X_Xout is global_k_X_Xout_CS1
+  global_k_X_Xout_CS1 = 1
   CS2.k_X_Xout is global_k_X_Xout_CS2
   global_k_X_Xout_CS2 = 1
-  SS1.k_X_Xout is global_k_X_Xout_CS1_and_SS1
-  global_k_X_Xout_CS1_and_SS1 = 1
-  CS1.Ix is global_Ix_CS1_and_SS1
+  SS1.k_X_Xout is global_k_X_Xout_SS1
+  global_k_X_Xout_SS1 = 1
+  CS1.Ix is global_Ix_CS1
+  global_Ix_CS1 = 1
   CS2.Ix is global_Ix_CS2
   global_Ix_CS2 = 1
-  SS1.Ix is global_Ix_CS1_and_SS1
-  global_Ix_CS1_and_SS1 = 1
+  SS1.Ix is global_Ix_SS1
+  global_Ix_SS1 = 1
   ## Min and Mout
   CS1.k_M_Mout is global_k_M_Mout
   CS2.k_M_Mout is global_k_M_Mout

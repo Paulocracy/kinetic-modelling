@@ -164,9 +164,9 @@ def sample(original_model: rr.RoadRunner,
         extra_data += reaction_report("SS1_Min_", [""], ["SS1_M"], result_dict)
         extra_data += "global_k_M_Mout: "+result_dict["global_k_M_Mout"]+"\n"
         extra_data += reaction_report("SS1_Mout", ["SS1_M"], [""], result_dict)
-        extra_data += "global_Ix_CS1_and_SS1: "+result_dict["global_Ix_CS1_and_SS1"]+"\n"
+        extra_data += "global_Ix_SS1: "+result_dict["global_Ix_SS1"]+"\n"
         extra_data += reaction_report("SS1_Xin", [""], ["SS1_X"], result_dict)
-        extra_data += "global_k_X_Xout_CS1_and_SS1: "+result_dict["global_k_X_Xout_CS1_and_SS1"]+"\n"
+        extra_data += "global_k_X_Xout_SS1: "+result_dict["global_k_X_Xout_SS1"]+"\n"
         extra_data += reaction_report("SS1_Xout", ["SS1_X"], [""], result_dict)
 
         extra_data += "\n"
@@ -186,9 +186,9 @@ def sample(original_model: rr.RoadRunner,
         extra_data += reaction_report("CS1_Min_", [""], ["CS1_M"], result_dict)
         extra_data += "k_M_Mout: "+result_dict["global_k_M_Mout"]+"\n"
         extra_data += reaction_report("CS1_Mout", ["CS1_M"], [""], result_dict)
-        extra_data += "global_Ix_CS1_and_SS1: "+result_dict["global_Ix_CS1_and_SS1"]+"\n"
+        extra_data += "Ix_CS1: "+result_dict["global_Ix_CS1"]+"\n"
         extra_data += reaction_report("CS1_Xin", [""], ["CS1_X"], result_dict)
-        extra_data += "global_k_X_Xout_CS1_and_SS1: "+result_dict["global_k_X_Xout_CS1_and_SS1"]+"\n"
+        extra_data += "k_X_Xout_CS1: "+result_dict["global_k_X_Xout_CS1"]+"\n"
         extra_data += reaction_report("CS1_Xout", ["CS1_X"], [""], result_dict)
         extra_data += "Ix_CS2: "+result_dict["global_Ix_CS2"]+"\n"
         extra_data += reaction_report("CS2_Xin", [""], ["CS2_X"], result_dict)
@@ -239,10 +239,12 @@ concentration_ids = [
 selections = concentration_ids + [
     "global_k_M_Mout",
     "global_Im",
-    "global_Ix_CS1_and_SS1",
+    "global_Ix_CS1",
     "global_Ix_CS2",
-    "global_k_X_Xout_CS1_and_SS1",
+    "global_Ix_SS1",
+    "global_k_X_Xout_CS1",
     "global_k_X_Xout_CS2",
+    "global_k_X_Xout_SS1",
 
     "c_mmdf",
     "s_mmdf",

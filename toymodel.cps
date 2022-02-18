@@ -724,8 +724,8 @@
       <parameter id="CS1_RTB_vplus" constant="false"/>
       <parameter id="CS1_RTB_kappa" constant="false"/>
       <parameter id="CS1_RTB_gamma" constant="false"/>
-      <parameter id="global_Ix_CS1" value="1" constant="true"/>
-      <parameter id="global_k_X_Xout_CS1" value="1" constant="true"/>
+      <parameter id="global_Ix_CS1_and_SS1" value="1" constant="true"/>
+      <parameter id="global_k_X_Xout_CS1_and_SS1" value="1" constant="true"/>
       <parameter id="global_Im" value="1" constant="true"/>
       <parameter id="global_k_M_Mout" value="1" constant="true"/>
       <parameter id="CS1_dG_R1" constant="false"/>
@@ -818,8 +818,6 @@
       <parameter id="SS1_RTB_vplus" constant="false"/>
       <parameter id="SS1_RTB_kappa" constant="false"/>
       <parameter id="SS1_RTB_gamma" constant="false"/>
-      <parameter id="global_Ix_SS1" value="1" constant="true"/>
-      <parameter id="global_k_X_Xout_SS1" value="1" constant="true"/>
       <parameter id="SS1_dG_R1" constant="false"/>
       <parameter id="SS1_dG_R2" constant="false"/>
       <parameter id="SS1_dG_R3" constant="false"/>
@@ -3706,7 +3704,7 @@
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> global_Ix_CS1 </ci>
+            <ci> global_Ix_CS1_and_SS1 </ci>
           </math>
         </kineticLaw>
       </reaction>
@@ -3718,7 +3716,7 @@
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
-              <ci> global_k_X_Xout_CS1 </ci>
+              <ci> global_k_X_Xout_CS1_and_SS1 </ci>
               <ci> CS1_X </ci>
             </apply>
           </math>
@@ -4149,7 +4147,7 @@
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> global_Ix_SS1 </ci>
+            <ci> global_Ix_CS1_and_SS1 </ci>
           </math>
         </kineticLaw>
       </reaction>
@@ -4161,7 +4159,7 @@
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
-              <ci> global_k_X_Xout_SS1 </ci>
+              <ci> global_k_X_Xout_CS1_and_SS1 </ci>
               <ci> SS1_X </ci>
             </apply>
           </math>
