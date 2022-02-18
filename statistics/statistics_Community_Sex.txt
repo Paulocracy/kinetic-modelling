@@ -3,10 +3,10 @@ MEAN: 4.0
 MEDIAN: 4.0
 MAX: 4.0
 MIN: 4.0
-# POSITIVE: 37
+# POSITIVE: 63
 # ZERO: 0
 # NEGATIVE: 0
-# >1.0: 37
+# >1.0: 63
 # =1.0: 0
 # <1.0: 0
 MEAN IF NOT ZERO: 4.0
