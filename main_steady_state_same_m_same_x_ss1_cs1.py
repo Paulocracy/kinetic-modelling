@@ -165,9 +165,9 @@ def sample(original_model: rr.RoadRunner,
         extra_data += reaction_report("SS1_Min_", [""], ["SS1_M"], result_dict)
         extra_data += "global_k_M_Mout: "+result_dict["global_k_M_Mout"]+"\n"
         extra_data += reaction_report("SS1_Mout", ["SS1_M"], [""], result_dict)
-        extra_data += "global_Ix_CS1_and_SS1_and_CS2: "+result_dict["global_Ix_CS1_and_SS1_and_CS2"]+"\n"
+        extra_data += "global_Ix_CS1_and_SS1: "+result_dict["global_Ix_CS1_and_SS1"]+"\n"
         extra_data += reaction_report("SS1_Xin", [""], ["SS1_X"], result_dict)
-        extra_data += "global_k_X_Xout_CS1_and_SS1_and_CS2: "+result_dict["global_k_X_Xout_CS1_and_SS1_and_CS2"]+"\n"
+        extra_data += "global_k_X_Xout_CS1_and_SS1: "+result_dict["global_k_X_Xout_CS1_and_SS1"]+"\n"
         extra_data += reaction_report("SS1_Xout", ["SS1_X"], [""], result_dict)
 
         extra_data += "\n"
@@ -187,13 +187,13 @@ def sample(original_model: rr.RoadRunner,
         extra_data += reaction_report("CS1_Min_", [""], ["CS1_M"], result_dict)
         extra_data += "k_M_Mout: "+result_dict["global_k_M_Mout"]+"\n"
         extra_data += reaction_report("CS1_Mout", ["CS1_M"], [""], result_dict)
-        extra_data += "global_Ix_CS1_and_SS1_and_CS2: "+result_dict["global_Ix_CS1_and_SS1_and_CS2"]+"\n"
+        extra_data += "global_Ix_CS1_and_SS1: "+result_dict["global_Ix_CS1_and_SS1"]+"\n"
         extra_data += reaction_report("CS1_Xin", [""], ["CS1_X"], result_dict)
-        extra_data += "global_k_X_Xout_CS1_and_SS1_and_CS2: "+result_dict["global_k_X_Xout_CS1_and_SS1_and_CS2"]+"\n"
+        extra_data += "global_k_X_Xout_CS1_and_SS1: "+result_dict["global_k_X_Xout_CS1_and_SS1"]+"\n"
         extra_data += reaction_report("CS1_Xout", ["CS1_X"], [""], result_dict)
-        extra_data += "Ix_CS2: "+result_dict["global_Ix_CS1_and_SS1_and_CS2"]+"\n"
+        extra_data += "Ix_CS2: "+result_dict["global_Ix_CS2"]+"\n"
         extra_data += reaction_report("CS2_Xin", [""], ["CS2_X"], result_dict)
-        extra_data += "global_k_X_Xout_CS1_and_SS1_and_CS2: "+result_dict["global_k_X_Xout_CS1_and_SS1_and_CS2"]+"\n"
+        extra_data += "k_X_Xout_CS2: "+result_dict["global_k_X_Xout_CS2"]+"\n"
         extra_data += reaction_report("CS2_Xout", ["CS2_X"], [""], result_dict)
 
         result_dict_return["extra_data"] = extra_data + "\n\n"
@@ -203,9 +203,9 @@ def sample(original_model: rr.RoadRunner,
     return result_dict_return
 
 
-model = te.loada("toymodel_expanded_with_Xin_and_Min_Steffen_deletions_same_m_same_x_ss1_cs1_cs2.antimony")
+model = te.loada("toymodel_expanded_with_Xin_and_Min_Steffen_deletions_same_m_same_x_ss1_cs1.antimony")
 
-with open("toymodel_same_m_same_x_ss1_cs1_cs2.cps", "w") as f:
+with open("toymodel_same_m_same_x_ss1_cs1.cps", "w") as f:
     f.write(model.getSBML())
     print("Exported!")
 
@@ -240,8 +240,10 @@ concentration_ids = [
 selections = concentration_ids + [
     "global_k_M_Mout",
     "global_Im",
-    "global_Ix_CS1_and_SS1_and_CS2",
-    "global_k_X_Xout_CS1_and_SS1_and_CS2",
+    "global_Ix_CS1_and_SS1",
+    "global_Ix_CS2",
+    "global_k_X_Xout_CS1_and_SS1",
+    "global_k_X_Xout_CS2",
 
     "c_mmdf",
     "s_mmdf",
@@ -366,7 +368,7 @@ original_parameter_values: Dict[str, float] = {
 }
 min_flux = 0.1
 max_scaling = 100
-num_runs = 10_000
+num_runs = 5000
 results: List[Dict[str, float]] = []
 # matplotlib.use('TkAgg')
 # results = [sample(model, selections, original_parameter_values, max_scaling, min_flux)]
@@ -393,7 +395,7 @@ for i in range(num_runs):
         for key in selections + ["extra_data"]:
             results_list_dict[key].append(result[key])
 
-    plotfolder = "./statistics_same_m_same_x_ss1_cs1_cs2/"
+    plotfolder = "./statistics/"
     ensure_folder_existence(plotfolder)
     # HISTOGRAMS
     # for key in selections:

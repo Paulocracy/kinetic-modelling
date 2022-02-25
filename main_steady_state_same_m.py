@@ -202,9 +202,9 @@ def sample(original_model: rr.RoadRunner,
     return result_dict_return
 
 
-model = te.loada("toymodel_expanded_with_Xin_and_Min_Steffen_deletions.antimony")
+model = te.loada("toymodel_expanded_with_Xin_and_Min_Steffen_deletions_same_m.antimony")
 
-with open("toymodel.cps", "w") as f:
+with open("toymodel_same_m.cps", "w") as f:
     f.write(model.getSBML())
     print("Exported!")
 
@@ -396,7 +396,7 @@ for i in range(num_runs):
         for key in selections + ["extra_data"]:
             results_list_dict[key].append(result[key])
 
-    plotfolder = "./statistics/"
+    plotfolder = "./statistics_same_m/"
     ensure_folder_existence(plotfolder)
     # HISTOGRAMS
     # for key in selections:
