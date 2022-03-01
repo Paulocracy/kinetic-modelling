@@ -5,7 +5,7 @@ from helper import json_load
 STANDARD_R = 8.314e-3  # kJ⋅K⁻1⋅mol⁻1 (standard value is in J⋅K⁻1⋅mol⁻1)
 STANDARD_T = 298.15  # K
 
-data = json_load("statistics_same_m/TEST.json")
+data = json_load("statistics_same_m_same_x_ss1_cs1_cs2/TEST.json")
 
 # SS1 check
 # Stoichiometry:
@@ -27,7 +27,7 @@ for solution_index in range(len(data["CS1_dG_R1"])):
 
     difference = abs(maximal_dG_SS1) - abs(dG_sum_SS1)
     differences_SS1.append(difference)
-print("abs(Maximal_ΔG)-abs(Occurring_ΔG) SS1:")
+print("SINGLE) abs(Maximal_ΔG)-abs(Occurring_ΔG) SS1:")
 print("Max: ", max(differences_SS1), " kJ/mol")
 print("Mean: ", statistics.mean(differences_SS1), " kJ/mol")
 print("Min: ", min(differences_SS1), " kJ/mol")
@@ -56,7 +56,7 @@ for solution_index in range(len(data["CS1_dG_R1"])):
     difference = abs(maximal_dG_CS1_CS2) - abs(dG_sum_CS1_CS2)
     differences_CS1_CS2.append(difference)
 
-print("abs(Maximal_ΔG)-abs(Occurring_ΔG) statistics for CS1/CS2:")
+print("COMM) abs(Maximal_ΔG)-abs(Occurring_ΔG) statistics for CS1/CS2:")
 print("Max: ", max(differences_CS1_CS2), " kJ/mol")
 print("Mean: ", statistics.mean(differences_CS1_CS2), " kJ/mol")
 print("Min: ", min(differences_CS1_CS2), " kJ/mol")

@@ -1,0 +1,30 @@
+A)
+SINGLE) abs(Maximal_ΔG)-abs(Occurring_ΔG) SS1:
+Max:  0.009125280911533196  kJ/mol
+Mean:  0.0035625820107338608  kJ/mol
+Min:  -0.0007488612639926298  kJ/mol
+COMM) abs(Maximal_ΔG)-abs(Occurring_ΔG) statistics for CS1/CS2:
+Max:  2.21958149994407  kJ/mol
+Mean:  0.012474940996561589  kJ/mol
+Min:  -0.0007251827771834474  kJ/mol
+''''''
+B)
+SINGLE) abs(Maximal_ΔG)-abs(Occurring_ΔG) SS1:
+Max:  0.009105800251639096  kJ/mol
+Mean:  0.003257999072575472  kJ/mol
+Min:  -0.0007373890320581528  kJ/mol
+COMM) abs(Maximal_ΔG)-abs(Occurring_ΔG) statistics for CS1/CS2:
+Max:  2.267674474731413  kJ/mol
+Mean:  0.009191409759312846  kJ/mol
+Min:  -0.0007565734525897191  kJ/mol
+''''''
+C)
+SINGLE) abs(Maximal_ΔG)-abs(Occurring_ΔG) SS1:
+Max:  0.008906408084303763  kJ/mol
+Mean:  0.003273800658988428  kJ/mol
+Min:  -0.0007319737260785553  kJ/mol
+COMM) abs(Maximal_ΔG)-abs(Occurring_ΔG) statistics for CS1/CS2:
+Max:  1.0986378444870937  kJ/mol
+Mean:  0.003937703873826021  kJ/mol
+Min:  -0.0007354819348948799  kJ/mol
+''''''
