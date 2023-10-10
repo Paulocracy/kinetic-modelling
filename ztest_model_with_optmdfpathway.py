@@ -46,6 +46,7 @@ for comp in compartments:
     R2.add_metabolites({
         S: -1,
         A: 1,
+        X: 1,
     })
     R3.add_metabolites({
         M: -1,
