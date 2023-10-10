@@ -139,7 +139,31 @@ print(results)
 concentration_values = {
     "DEFAULT": {
         "min": 1e-9,
-        "max": 0.02,
+        "max": 100.0,
+    },
+    "P_ex_1": {
+        "min": 2.0,
+        "max": 2.0,
+    },
+    "P_ex_2": {
+        "min": 2.0,
+        "max": 2.0,
+    },
+    "P_ex_3": {
+        "min": 2.0,
+        "max": 2.0,
+    },
+    "S_ex_1": {
+        "min": 4.0,
+        "max": 4.0,
+    },
+    "S_ex_2": {
+        "min": 4.0,
+        "max": 4.0,
+    },
+    "S_ex_3": {
+        "min": 4.0,
+        "max": 4.0,
     },
 }
 R = 8.314e-3
