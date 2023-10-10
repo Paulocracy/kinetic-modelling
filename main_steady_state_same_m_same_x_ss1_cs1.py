@@ -209,13 +209,6 @@ with open("toymodel_same_m_same_x_ss1_cs1.cps", "w") as f:
     f.write(model.getSBML())
     print("Exported!")
 
-import sys
-# matplotlib.use("TkAgg")
-# sselections = ["time", "SS1_S", "SS1_A", "CS1_A", "CS1_S", "SS1_X", "CS1_X", "CS2_X"]
-# sselections = ["time", "CS1_R1", "CS1_R2", "CS1_R3", "CS2_R4", "CS2_R5", "CS2_R6"]
-# simulation = model.simulate(0, 10, 1000, selections=sselections)
-# model.plot(simulation)
-
 concentration_ids = [
     "Community_Bex",
     "Community_Pex",
@@ -370,9 +363,6 @@ min_flux = 0.1
 max_scaling = 100
 num_runs = 5000
 results: List[Dict[str, float]] = []
-# matplotlib.use('TkAgg')
-# results = [sample(model, selections, original_parameter_values, max_scaling, min_flux)]
-##
 
 for i in range(num_runs):
     print(i)
@@ -397,17 +387,6 @@ for i in range(num_runs):
 
     plotfolder = "./statistics/"
     ensure_folder_existence(plotfolder)
-    # HISTOGRAMS
-    # for key in selections:
-    #     if key == "time":
-    #         continue
-    #     save_histogram(
-    #         path=plotfolder+"histogram_"+key+".png",
-    #         data=results_list_dict[key],
-    #         title=key,
-    #         xlabel=key,
-    #         ylabel="Number of"
-    #     )
 
     # POINT PLOTS
     pairs = [
