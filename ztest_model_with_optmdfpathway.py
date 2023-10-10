@@ -179,13 +179,12 @@ dG0_values = {}
 for reac_id, value in base_dG0_values.items():
     for comp in compartments:
         dG0_values[reac_id+comp] = value
-print(dG0_values)
 
 optmdfpathway_base_problem = get_optmdfpathway_base_problem(
     cobra_model=model,
     extra_constraints=[
         {
-            "R6_1": 1,
+            "R6_3": 1,
             "ub": 1,
             "lb": 1,
         },
@@ -220,3 +219,30 @@ bottlenecks, report = get_thermodynamic_bottlenecks(
     optmdfpathway_base_problem=optmdfpathway_base_problem
 )
 print(report)
+
+targets = ("single", "community")
+for target in targets:
+    if target == "single":
+        reac_id = "R6_1"
+    else:
+        reac_id = "R6_3"
+    optmdfpathway_base_problem = get_optmdfpathway_base_problem(
+        cobra_model=model,
+        extra_constraints=[
+            {
+                reac_id: 1,
+                "ub": 1,
+                "lb": 1,
+            },
+        ],
+        dG0_values=dG0_values,
+        metabolite_concentration_values=concentration_values,
+        ratio_constraint_data=[],
+        R=R,
+        T=T,
+    )
+    optmdfpathway_result = perform_optmdfpathway_mdf_maximization(
+        optmdfpathway_base_problem=optmdfpathway_base_problem,
+    )
+    print(target, optmdfpathway_result["values"]["var_B"])
+
