@@ -203,7 +203,7 @@ def sample(original_model: rr.RoadRunner,
     return result_dict_return
 
 
-model = te.loada("toymodel_expanded_with_Xin_and_Min_Steffen_deletions_same_m_same_x_ss1_cs1.antimony")
+model = te.loada("toymodel_expanded_with_Xin_and_Min_same_m_same_x_ss1_cs1.antimony")
 
 with open("toymodel_same_m_same_x_ss1_cs1.cps", "w") as f:
     f.write(model.getSBML())

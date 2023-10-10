@@ -1,6 +1,6 @@
 import statistics
 from helper import json_zip_load, save_boxplot
-dictionary = json_zip_load("./statistics_50000/TEST.json")
+dictionary = json_zip_load("./statistics_same_m/TEST.json")
 
 rel_flux_adv = dictionary["relative_community_flux_advantage"]
 abs_flux_adv = dictionary["absolute_community_flux_advantage"]

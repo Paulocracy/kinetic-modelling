@@ -1,0 +1,15 @@
+name: kinetic-modeling-psb
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - pytest
+  - ruff
+  - mypy
+  - black
+  - matplotlib-base
+  - numpy
+  - python=3.9
+  - pip
+  - pip:
+    - tellurium
