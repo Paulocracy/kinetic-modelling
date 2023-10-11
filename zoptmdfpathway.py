@@ -100,9 +100,10 @@ def get_optmdfpathway_base_problem(cobra_model: cobra.Model, dG0_values: Dict[st
         ln_h_max = log(ratio_constraint["h_max"])
 
         # (A) x_i - x_j - ln(h_max) <= 0
-        max_ratio_constraint: pulp.LpConstraint = concentration_vars[c_i_id] - concentration_vars[c_j_id] - ln_h_max <= 0
+        # max_ratio_constraint: pulp.LpConstraint = concentration_vars[c_i_id] - concentration_vars[c_j_id] - ln_h_max <= 0
+        max_ratio_constraint: pulp.LpConstraint = concentration_vars[c_i_id] - concentration_vars[c_j_id] <= ln_h_max
         # (B) -x_i + x_j - ln(h_min) <= 0
-        min_ratio_constraint: pulp.LpConstraint = -concentration_vars[c_i_id] + concentration_vars[c_j_id] - ln_h_min <= 0
+        min_ratio_constraint: pulp.LpConstraint = concentration_vars[c_i_id] - concentration_vars[c_j_id] >= ln_h_min
 
         base_problem += max_ratio_constraint
         base_problem += min_ratio_constraint
