@@ -226,8 +226,8 @@ ratio_constraint_data = [
     # {
     #     "c_i": "X_2",
     #     "c_j": "X_3",
-    #     "h_min": 0.5,
-    #     "h_max": 0.5,
+    #     "h_min": 0.01,
+    #     "h_max": 0.01,
     # }
 ]
 

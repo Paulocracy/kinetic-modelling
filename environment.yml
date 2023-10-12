@@ -14,5 +14,5 @@ dependencies:
   - pip:
     - tellurium
     - cobra
-    - straindesign
+    - pulp
     - cplex
