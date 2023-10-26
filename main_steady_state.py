@@ -205,9 +205,11 @@ def sample(original_model: rr.RoadRunner,
 
 model = te.loada("toymodel_expanded_with_Xin_and_Min_same_m_same_x_ss1_cs1_cs2.antimony")
 
+"""
 with open("toymodel_same_m_same_x_ss1_cs1_cs2.cps", "w") as f:
     f.write(model.getSBML())
     print("Exported!")
+"""
 
 concentration_ids = [
     "Community_Bex",
