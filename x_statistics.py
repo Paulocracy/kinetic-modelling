@@ -97,8 +97,8 @@ for target_folder in target_folders:
 
     # Plot the line
     ax.plot([x1, x2], [y1, y2], marker='o', linestyle='-', c="black")
-    ax.set_xlabel(r'ln([$X_2$])')
-    ax.set_ylabel(r'ln([$X_3$])')
+    ax.set_xlabel(r'ln([$X_1$])')
+    ax.set_ylabel(r'ln([$X_2$])')
 
     all_x_X_2s = x_X_2s_no_advantage + x_X_2s_advantage
     all_x_X_2s = log(all_x_X_2s)
