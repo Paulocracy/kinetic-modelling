@@ -4,12 +4,11 @@ import matplotlib.pyplot as plt
 from numpy import log
 
 target_folders = [
-    "statistics_same_m/",
     "statistics_same_m_same_x_ss1_cs1/",
     # "statistics_same_m_same_x_ss1_cs1_cs2/",
 ]
 
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4.75), dpi=400)
+fig, ax1 = plt.subplots(1, 1, figsize=(6, 4.75), dpi=400)
 
 current_case = 1
 for target_folder in target_folders:
@@ -81,25 +80,25 @@ for target_folder in target_folders:
     print("max(X_1_to_X2_ratios_advantage)", max(X_1_to_X2_ratios_advantage))
 
     #->Plot
-    if current_case == 1:
-        ax = ax1
-        ax.set_title("A) Fall I", loc="left", fontweight="bold")
-        label_without_advantage = "Einzellösung ohne Gemeinschaftsvorteil"
-        label_with_advantage = "Einzellösung mit Gemeinschaftsvorteil"
-    else:
-        label_without_advantage = None
-        label_with_advantage = None
-        ax = ax2
-        ax.set_title("B) Fall II", loc="left", fontweight="bold")
-    ax.scatter(log(x_X_2s_no_advantage), log(x_X_3s_no_advantage), c="orangered", marker=".", label=label_without_advantage)
-    ax.scatter(log(x_X_2s_advantage), log(x_X_3s_advantage), c="blue", marker=".", label=label_with_advantage)
+    ax = ax1
+    label_without_advantage = "Einzellösung ohne Gemeinschaftsvorteil"
+    label_with_advantage = "Einzellösung mit Gemeinschaftsvorteil"
+
+    ax.scatter(
+        log(x_X_2s_no_advantage), log(x_X_3s_no_advantage),
+        c="orangered", marker=".", label=label_without_advantage
+    )
+    ax.scatter(
+        log(x_X_2s_advantage), log(x_X_3s_advantage),
+        c="blue", marker=".", label=label_with_advantage
+    )
     x1, y1 = -100, -100
     x2, y2 = 100, 100
 
     # Plot the line
     ax.plot([x1, x2], [y1, y2], marker='o', linestyle='-', c="black")
-    ax.set_xlabel(r'ln([$X_2$])')
-    ax.set_ylabel(r'ln([$X_3$])')
+    ax.set_xlabel(r'ln([$X_1$])')
+    ax.set_ylabel(r'ln([$X_2$])')
 
     all_x_X_2s = x_X_2s_no_advantage + x_X_2s_advantage
     all_x_X_2s = log(all_x_X_2s)
@@ -112,10 +111,8 @@ for target_folder in target_folders:
     current_case += 1
 
 lines1, labels1 = ax1.get_legend_handles_labels()
-lines2, labels2 = ax2.get_legend_handles_labels()
-lines = lines1 + lines2
-labels = labels1 + labels2
-ax1.legend(lines, labels, loc='upper center', bbox_to_anchor=(1.1, 1.25))
+lines = lines1
+ax1.legend(lines, labels1, loc='lower right')
 plt.tight_layout()
 plt.subplots_adjust(wspace=0.19)
 
