@@ -237,11 +237,11 @@ model all_pathways
   CS1.k_M_Mout is global_k_M_Mout
   CS2.k_M_Mout is global_k_M_Mout
   SS1.k_M_Mout is global_k_M_Mout
-  global_k_M_Mout = 93.14992906461681
+  global_k_M_Mout = 93.14992906461681 # 150.14992906461681
   CS1.Im is global_Im
   CS2.Im is global_Im
   SS1.Im is global_Im
-  global_Im = 65.43971428148042
+  global_Im = 65.43971428148042 # 50.43971428148042
   ## General
   CS1.T is T
   CS2.T is T
